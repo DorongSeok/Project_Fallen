@@ -1,0 +1,10 @@
+1. 텍스처 설정
+TextureType - Sprite
+SpriteMode - Single or Multiple
+MeshType - Full Rect
+Advanced - Read/Write - 활성화
+Compression - None
+
+2. 객체에 스프라이트 추가 후 텍스처 설정
+
+3. AdvancedPolygoneCollider 스크립트 추가 후 Distance Threshold 값 설정
