@@ -21,6 +21,14 @@ public class SceneMgr : MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator OpenTestScene()
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("H", LoadSceneMode.Single);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
+    }
     public void CorutineOpenPlayScene()
     {
         StartCoroutine(nameof(OpenPlayScene));
@@ -28,5 +36,9 @@ public class SceneMgr : MonoBehaviour
     public void CorutineOpenMainScene()
     {
         StartCoroutine(nameof(OpenPlayScene));
+    }
+    public void CorutineOpenTestScene()
+    {
+        StartCoroutine(nameof(OpenTestScene));
     }
 }

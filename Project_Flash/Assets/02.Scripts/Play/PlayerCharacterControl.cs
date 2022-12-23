@@ -19,13 +19,21 @@ public class PlayerCharacterControl : MonoBehaviour
 
     private void Awake()
     {
-        isMove = false;
+        GameObject.FindObjectOfType<CameraMove>().SetTargetTr(this.transform);
         rigidBody = GetComponent<Rigidbody2D>();
+        isMove = false;
     }
     private void Start()
     {
+        //SetPosition(GameManager.instance.GetSavePoint());
+
         StartCoroutine(nameof(CheckPCMove));
     }
+
+    //private void SetPosition(Transform pos)
+    //{
+    //    gameObject.transform.position = pos.position;
+    //}
     private void Update()
     {
         directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
@@ -104,16 +112,24 @@ public class PlayerCharacterControl : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 7 || collision.gameObject.layer == 9)
+        if (collision.gameObject.layer == 7 || collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
         {
+            Debug.Log(collision.gameObject.name);
             Die();
+        }
+        if (collision.gameObject.layer == 10)
+        {
+            Debug.Log("세이브 !!" + collision.gameObject.GetComponentsInChildren<Transform>()[1].name);
+            GameManager.instance.SetSavePoint(collision.gameObject.GetComponentsInChildren<Transform>()[1]);
         }
     }
     private void Die()
     {
         Debug.Log("으앙 쥬금");
-        this.gameObject.SetActive(false);
-        // 이 부분에 일정 시간 후 세이브 지점에서 살아나는 명령 입력
+        Destroy(this.gameObject);
+        // 죽는 연출 입력할 것
+
+        GameManager.instance.CoroutineStageRestart();
         nonMoveTime = 0;
     }
 }
