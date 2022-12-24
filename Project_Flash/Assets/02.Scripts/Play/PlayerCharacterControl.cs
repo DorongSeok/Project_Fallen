@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerCharacterControl : MonoBehaviour
 {
+    private GameManager gameManager;
     private Rigidbody2D rigidBody;
     private float directionX;
     private float directionY;
     private bool isMove;
     private bool isSafe;
     private float nonMoveTime;
+
 
     public float limitTime;
 
@@ -19,6 +21,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
         GameObject.FindObjectOfType<CameraMove>().SetTargetTr(this.transform);
         rigidBody = GetComponent<Rigidbody2D>();
         isMove = false;
@@ -120,7 +123,7 @@ public class PlayerCharacterControl : MonoBehaviour
         if (collision.gameObject.layer == 10)
         {
             Debug.Log("세이브 !!" + collision.gameObject.GetComponentsInChildren<Transform>()[1].name);
-            GameManager.instance.SetSavePoint(collision.gameObject.GetComponentsInChildren<Transform>()[1]);
+            DataManager.instance.SetSavePoint(collision.gameObject.GetComponentsInChildren<Transform>()[1].position);
         }
     }
     private void Die()
@@ -129,7 +132,7 @@ public class PlayerCharacterControl : MonoBehaviour
         Destroy(this.gameObject);
         // 죽는 연출 입력할 것
 
-        GameManager.instance.CoroutineStageRestart();
+        gameManager.CoroutineStageRestart();
         nonMoveTime = 0;
     }
 }
