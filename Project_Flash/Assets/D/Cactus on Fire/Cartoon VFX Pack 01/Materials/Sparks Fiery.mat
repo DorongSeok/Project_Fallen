@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sparks Fiery
+  m_Shader: {fileID: 4800000, guid: 7c38284c0bb90cb46a33800bc03e83c5, type: 3}
+  m_ShaderKeywords: _OFFSETBYPOSITION_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Sparks:
+        m_Texture: {fileID: 2800000, guid: defe7b026b4eb8c458c842c0211b00a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _OffsetbyPosition: 1
+    - _SparkSize: 0.1
+    - _SparkSpeed: 8
+    - _TrailLength: 0.229
+    - _TrailOpacity: 0.3
+    m_Colors:
+    - _SparkColor: {r: 0.9338235, g: 0.386315, b: 0.089262515, a: 1}
