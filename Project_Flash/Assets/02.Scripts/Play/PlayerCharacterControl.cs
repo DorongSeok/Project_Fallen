@@ -2,22 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharactorMove : MonoBehaviour
+public class PlayerCharacterControl : MonoBehaviour
 {
+    private GameManager gameManager;
     private Rigidbody2D rigidBody;
     private float directionX;
     private float directionY;
     private bool isMove;
+    private bool isSafe;
+    private float nonMoveTime;
+
+
+    public float limitTime;
 
     public float moveSpeed;
     public float delayTime;
 
+
     private void Awake()
     {
-        isMove = false;
+        gameManager = FindObjectOfType<GameManager>();
+        GameObject.FindObjectOfType<CameraMove>().SetTargetTr(this.transform);
         rigidBody = GetComponent<Rigidbody2D>();
+        isMove = false;
+    }
+    private void Start()
+    {
+        //SetPosition(GameManager.instance.GetSavePoint());
+
+        StartCoroutine(nameof(CheckPCMove));
     }
 
+    //private void SetPosition(Transform pos)
+    //{
+    //    gameObject.transform.position = pos.position;
+    //}
     private void Update()
     {
         directionX = Input.GetAxisRaw("Horizontal"); // ÁÂ¿ì ÀÔ·Â
@@ -73,8 +92,47 @@ public class PlayerCharactorMove : MonoBehaviour
     }
     IEnumerator MoveDelay()
     {
+        nonMoveTime = 0;
         isMove = true;
         yield return new WaitForSeconds(delayTime);
         isMove = false;
+    }
+    IEnumerator CheckPCMove()
+    {
+        while(true)
+        {
+            yield return new WaitForEndOfFrame();
+            if (isMove == false && isSafe == false)
+            {
+                nonMoveTime += Time.deltaTime;
+                if (nonMoveTime >= limitTime)
+                {
+                    Die();
+                }
+            }
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 7 || collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
+        {
+            Debug.Log(collision.gameObject.name);
+            Die();
+        }
+        if (collision.gameObject.layer == 10)
+        {
+            Debug.Log("¼¼ÀÌºê !!" + collision.gameObject.GetComponentsInChildren<Transform>()[1].name);
+            DataManager.instance.SetSavePoint(collision.gameObject.GetComponentsInChildren<Transform>()[1].position);
+        }
+    }
+    private void Die()
+    {
+        Debug.Log("À¸¾Ó Áê±Ý");
+        Destroy(this.gameObject);
+        // Á×´Â ¿¬Ãâ ÀÔ·ÂÇÒ °Í
+
+        gameManager.CoroutineStageRestart();
+        nonMoveTime = 0;
     }
 }
