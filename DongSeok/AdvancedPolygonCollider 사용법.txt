@@ -8,3 +8,5 @@ Compression - None
 2. 객체에 스프라이트 추가 후 텍스처 설정
 
 3. AdvancedPolygoneCollider 스크립트 추가 후 Distance Threshold 값 설정
+
+4. 설정 후 스크립트 제거
