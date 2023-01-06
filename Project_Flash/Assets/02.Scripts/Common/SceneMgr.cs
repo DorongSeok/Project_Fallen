@@ -29,16 +29,29 @@ public class SceneMgr : MonoBehaviour
             yield return null;
         }
     }
-    public void CorutineOpenPlayScene()
+    //IEnumerator ReTestButton()
+    //{
+    //    DataManager.instance.ResetSavePoint();
+    //    AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("H", LoadSceneMode.Single);
+    //    while (!asyncOperation.isDone)
+    //    {
+    //        yield return null;
+    //    }
+    //}
+    public void CoroutineOpenPlayScene()
     {
         StartCoroutine(nameof(OpenPlayScene));
     }
-    public void CorutineOpenMainScene()
+    public void CoroutineOpenMainScene()
     {
         StartCoroutine(nameof(OpenPlayScene));
     }
-    public void CorutineOpenTestScene()
+    public void CoroutineOpenTestScene()
     {
         StartCoroutine(nameof(OpenTestScene));
     }
+    //public void CoroutineReTestButton()
+    //{
+    //    StartCoroutine(nameof(ReTestButton));
+    //}
 }

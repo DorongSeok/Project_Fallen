@@ -1,11 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 
-[Serializable]
-public class GameData
+namespace DataInfo
 {
-    public string savePos; // 0/0/0
+    [System.Serializable]
+    public class GameData
+    {
+        public string _savePos; // 0/0/0
+        public string _velocity; // 0/0/0
+        public float _gravityScale;
+        public float _linearDrag;
+        public bool _isFallen;
+        public bool _isMove;
 
-    // 추후 기존 문서 참고해서, 생성자 선언 필요 여부 판단할 것
+        public GameData() // 생성자(초기값 선언)
+        {
+            _savePos = "0,0,0";
+            _velocity = "0,0,0";
+            _gravityScale = 0.0f;
+            _linearDrag = 10.0f;
+            _isFallen = false;
+            _isMove = false;
+        }
+
+        // 추가적인 데이터 저장 필요 시 추가하고 생성자에도 추가할 것
+    }
 }

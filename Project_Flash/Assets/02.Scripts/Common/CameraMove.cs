@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class CameraMove : MonoBehaviour
 {
     private Transform camTr;
+    private Transform targetTr;
     private Camera cam;
-    private Vector3 movePos;
+    private Vector3 movePos; // 움직일 목표 위치
 
     private bool isMoving;
     private bool camUp;
     private bool camDown;
     
-    private float camHeight = -10.0f;
-
-    public Transform targetTr;
+    public float camHeight = -10.0f;
 
     public float upDownDamping;
     public float moveDamping;
@@ -76,7 +75,7 @@ public class CameraMove : MonoBehaviour
         camDown = false;
     }
 
-    public void SetTargetTr(Transform targetTr)
+    public void SetTargetTr(Transform targetTr) // 카메라가 추적할 대상 세팅
     {
         this.targetTr = targetTr;
     }

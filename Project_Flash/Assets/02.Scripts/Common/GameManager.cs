@@ -4,50 +4,42 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // public static GameManager instance;
     public GameObject playerPrefab;
-    public GameObject magneticPrefab;
-    public Transform startPoint;
     
     private GameObject player;
-    private GameObject magnetic;
-    private Magnetic_FieldMove magnetic_FieldMove;
+    private PlayerCharacterControl playerCharacterControl;
 
-    public float reviveTime;
-    void Start() // 최초 실행 시 싱글톤 실행 필요 시 활성화할 것
+    void Start() 
     {
-        if (DataManager.instance.GetSavePoint() == null)
+        if (DataManager.instance != null) // datamanger가 존재한다면 스테이지 시작 함수 실행(오류 방지)
         {
-            DataManager.instance.SetSavePoint(startPoint.position);
+            StageStart();
         }
-        // 싱글톤
-        //if (instance == null) instance = this;
-        //else if (instance != this) Destroy(this.gameObject);
-        //DontDestroyOnLoad(gameObject);
-        StageStart();
+
+        // 존재하지 않는다면 종료하는 구문 필요 시 추가할 것
+        //else if (DataManager.instance == null)
+        //{
+        //    Application.Quit();
+        //}
     }
 
-    public void StageStart()
-    {
-        player = Instantiate(playerPrefab, DataManager.instance.GetSavePoint(), Quaternion.identity);
-        magnetic = Instantiate(magneticPrefab, DataManager.instance.GetSavePoint()+ Vector3.down * 10.0f, Quaternion.identity);
-        magnetic_FieldMove = this.magnetic.GetComponent<Magnetic_FieldMove>();
-        magnetic_FieldMove.ReSetPosition(player.transform);
-    }
 
-    IEnumerator StageRestart()
+    public void StageStart() // 인 게임 시작 시 캐릭터 생성
     {
-        yield return new WaitForSeconds(reviveTime);
-        player = Instantiate(playerPrefab, DataManager.instance.GetSavePoint(), Quaternion.identity);
-        magnetic_FieldMove.ReSetPosition(player.transform);
+        player = Instantiate(playerPrefab, DataManager.instance.GetSavePos(), Quaternion.identity);
+        playerCharacterControl = player.GetComponent<PlayerCharacterControl>();
     }
-    public void CoroutineStageRestart()
+    private void OnApplicationQuit() // 게임 종료 시, 저장 진행
     {
-        StartCoroutine(nameof(StageRestart));
+        if (DataManager.instance != null)
+        {
+            if (playerCharacterControl != null)
+            {
+                playerCharacterControl.SavePlayerData();
+                DataManager.instance.SaveGameData();
+            }
+            
+        }
     }
-    
-    public void SetMagnetic(GameObject magnetic)
-    {
-        this.magnetic = magnetic;
-    }
+    // 추후 메인 메뉴로 이동 시, 게임 플레이 상황 저장하는 구문 생성할 예정
 }
