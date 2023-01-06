@@ -20,12 +20,12 @@ public class Magnetic_FieldMove : MonoBehaviour
         StartMove();
     }
 
-    public void StartMove()
+    public void StartMove() // rigidbody를 가진 자기장 오브젝트에 속력을 줌
     {
         rigidBody.AddForce(Vector3.up * moveSpeed, ForceMode2D.Force);
     }
 
-    public void ReSetPosition(Transform resetTr)
+    public void ReSetPosition(Transform resetTr) // 캐릭터 부활 시, 캐릭터의 위치에 따라 자기장 위치도 초기화 함
     {
         transform.position = resetTr.position + (Vector3.down * resetDistance);
     }
