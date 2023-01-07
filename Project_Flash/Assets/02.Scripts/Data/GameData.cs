@@ -20,7 +20,7 @@ namespace DataInfo
             _savePos = "0,0,0";
             _velocity = "0,0,0";
             _gravityScale = 0.0f;
-            _linearDrag = 10.0f;
+            _linearDrag = 5.0f;
             _isFallen = false;
             _isMove = false;
         }

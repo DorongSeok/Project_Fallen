@@ -17,10 +17,13 @@ public class PlayerCharacterControl : MonoBehaviour
     public float stopVelocity;
     public float moveSpeed;
     public float delayTime;
+    private float delayTime2;
 
     private float duration;
     public float durationMax;
     public float durationMin;
+
+    public float proportionalFactor;
 
     private void Awake()
     {
@@ -78,6 +81,7 @@ public class PlayerCharacterControl : MonoBehaviour
         directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
 
         // 떨어지고 있을 때 및 이동 중일 때를 제외한 상황에서만 입력을 받음
+        // 이동 전, 충전하는 부분만 isMove가 false일 때도 가능하게 할지 결정할 것
         if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false) 
         {
             Charging();
@@ -143,26 +147,42 @@ public class PlayerCharacterControl : MonoBehaviour
             {
                 rigidBody.AddForce(((Vector2.right + Vector2.down).normalized * moveSpeed * duration), ForceMode2D.Force);
             }
+            StartCoroutine(nameof(CheckIsStop));
         }
-        duration = 0; // 움직인 후 차징 초기화
-        StartCoroutine(nameof(CheckIsStop));
+        
     }
-    IEnumerator CheckIsStop() // 움직인 후, 움직임을 정지했는지 확인하고 정지했을 경우 다시 움직일 수 있게 하는 코루틴
+    IEnumerator CheckIsStop() // 움직인 후, 조건에 따라 다시 움직일 수 있게 하는 코루틴
     {
+        //// 움직임을 멈추는 것이 조건인 경우
+        //isMove = true;
+        //yield return new WaitForSeconds(0.1f);
+        //while(isMove == true)
+        //{
+        //    if (rigidBody.velocity.magnitude <= stopVelocity)
+        //    {
+        //        if (DataManager.instance != null)
+        //        {
+        //            DataManager.instance.SetSavePos(gameObject.transform.position);
+        //        }
+        //        isMove = false;
+        //    }
+        //    yield return new WaitForEndOfFrame();
+        //}
+
+        //// 고정된 시간동안 대기하는 것이 조건인 경우
+        //isMove = true;
+        //yield return new WaitForSeconds(delayTime);
+        //DataManager.instance.SetSavePos(gameObject.transform.position);
+        //isMove = false;
+
+        // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(짧게 이동 시 길게, 길게 이동시 짧게(반비례))
         isMove = true;
-        yield return new WaitForSeconds(0.1f);
-        while(isMove == true)
-        {
-            if (rigidBody.velocity.magnitude <= stopVelocity)
-            {
-                if (DataManager.instance != null)
-                {
-                    DataManager.instance.SetSavePos(gameObject.transform.position);
-                }
-                isMove = false;
-            }
-            yield return new WaitForEndOfFrame();
-        }
+        delayTime2 = (proportionalFactor - duration) * 0.5f;
+        yield return new WaitForSeconds(delayTime2);
+        DataManager.instance.SetSavePos(gameObject.transform.position);
+        isMove = false;
+
+        duration = 0; // 움직인 후 차징 초기화
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -202,6 +222,6 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         isFallen = false;
         rigidBody.gravityScale = 0.0f;
-        rigidBody.drag = 10.0f;
+        rigidBody.drag = 5.0f;
     }
 }
