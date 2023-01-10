@@ -42,4 +42,5 @@ public class GameManager : MonoBehaviour
         }
     }
     // 추후 메인 메뉴로 이동 시, 게임 플레이 상황 저장하는 구문 생성할 예정
+
 }
