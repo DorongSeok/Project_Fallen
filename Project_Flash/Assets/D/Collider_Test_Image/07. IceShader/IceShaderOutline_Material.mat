@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlowShader_Material
+  m_Name: IceShaderOutline_Material
   m_Shader: {fileID: -6465566751694194690, guid: b072780b61341a84a8349ac5c4e3d7e4, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -57,7 +57,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 908.0757, g: 33.177265, b: 0, a: 0}
+    - _Color: {r: 0, g: 34.620205, b: 908.0757, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5364455084865460696
 MonoBehaviour:

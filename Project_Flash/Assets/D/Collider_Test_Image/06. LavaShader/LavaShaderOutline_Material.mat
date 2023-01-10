@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlowShader_Material
+  m_Name: LavaShaderOutline_Material
   m_Shader: {fileID: -6465566751694194690, guid: b072780b61341a84a8349ac5c4e3d7e4, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
