@@ -427,6 +427,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 343499367015127111, guid: 64cfb531e80dbd741a34f246d9a1c76e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477284061366122934, guid: 64cfb531e80dbd741a34f246d9a1c76e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5067676450602974306, guid: 64cfb531e80dbd741a34f246d9a1c76e, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
       value: 0
@@ -510,6 +518,10 @@ PrefabInstance:
     - target: {fileID: 7728377986601242534, guid: 64cfb531e80dbd741a34f246d9a1c76e, type: 3}
       propertyPath: m_Name
       value: Character2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728377986601242534, guid: 64cfb531e80dbd741a34f246d9a1c76e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64cfb531e80dbd741a34f246d9a1c76e, type: 3}
