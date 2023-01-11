@@ -59,6 +59,7 @@ public class PlayerCharacterControl : MonoBehaviour
             DataManager.instance.SetLinearDrag(rigidBody.drag);
             DataManager.instance.SetIsFallen(isFallen);
             DataManager.instance.SetIsMove(isMove);
+            DataManager.instance.SetDuration(duration);
         }
     }
     public void LoadPlayerData() // 게임 재 시작 시 데이터 불러오기
@@ -71,6 +72,7 @@ public class PlayerCharacterControl : MonoBehaviour
             rigidBody.drag = DataManager.instance.GetLinearDrag();
             this.isFallen = DataManager.instance.GetIsFallen();
             this.isMove = DataManager.instance.GetIsMove();
+            //this.duration = DataManager.instance.GetDuration();
 
             if (isFallen == true) // 게임 저장 때 추락 중이였다면, 추락을 멈췄음을 확인하는 코루틴 재 실행
             {
@@ -78,6 +80,7 @@ public class PlayerCharacterControl : MonoBehaviour
             }
             if (isMove == true) // 게임 저장 때 이동 중이였다면, 이동을 멈췄음을 확인하는 코루틴 재 실행
             {
+                this.duration = DataManager.instance.GetDuration();
                 StartCoroutine(nameof(CheckIsStop));
             }
         }
