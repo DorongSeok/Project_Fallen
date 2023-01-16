@@ -26,6 +26,8 @@ public class PlayerCharacterControl : MonoBehaviour
 
     public float proportionalFactor;
 
+    private bool isignoreLayerCollision = false;
+
     //private int playerLayer, groundLayer, obstacleLayer;
 
     private void Awake()
@@ -237,12 +239,25 @@ public class PlayerCharacterControl : MonoBehaviour
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
         isMove = true;
         Physics2D.IgnoreLayerCollision(6, 8, true);
+        isignoreLayerCollision = true;
         delayTime2 = (duration) * 0.6f;
         yield return new WaitForSeconds(delayTime2);
-        Physics2D.IgnoreLayerCollision(6, 8, false);
         DataManager.instance.SetSavePos(gameObject.transform.position);
         isMove = false;
 
+        bool isInsideCollision = transform.GetChild(0).gameObject.GetComponent<PlayerCharacterInsideCollisionCheck>().InsideCollisionCheck();
+        if(isInsideCollision == true)
+        {
+            if (isFallen == false)
+            {
+                Falling();
+            }
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(6, 8, false);
+            isignoreLayerCollision = false;
+        }
         duration = 0; // 움직인 후 차징 초기화
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -253,11 +268,10 @@ public class PlayerCharacterControl : MonoBehaviour
             if (isFallen == false)
             {
                 Falling();
-                StartCoroutine(nameof(CheckIsFalling));
             }
         }
     }
-    private void Falling() // 중력 적용
+    public void Falling() // 중력 적용
     {
         // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
@@ -265,6 +279,7 @@ public class PlayerCharacterControl : MonoBehaviour
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
         rigidBody.drag = 0.0f;
+        StartCoroutine(nameof(CheckIsFalling));
     }
     IEnumerator CheckIsFalling() // 중력이 적용된 후, 멈췄을 때 중력 적용을 취소하고 다시 움직일 수 있게 하는 코루틴
     {
@@ -293,5 +308,14 @@ public class PlayerCharacterControl : MonoBehaviour
     private void ResetPosition()
     {
         transform.position = Vector3.zero;
+    }
+
+    public void InsideCollsionEnd()
+    {
+        if (isignoreLayerCollision == true)
+        {
+            Physics2D.IgnoreLayerCollision(6, 8, false);
+            isignoreLayerCollision = false;
+        }
     }
 }
