@@ -110,6 +110,14 @@ public class DataManager : MonoBehaviour
     {
         return DataManager.instance.data._isMove;
     }
+    public void SetDuration(float duration)
+    {
+        DataManager.instance.data._duration = duration;
+    }
+    public float GetDuration()
+    {
+        return DataManager.instance.data._duration;
+    }
     public void ResetSavePoint() // 저장된 위치를 초기화 함
     {
         SetSavePos(Vector3.zero);

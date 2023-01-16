@@ -14,6 +14,7 @@ namespace DataInfo
         public float _linearDrag;
         public bool _isFallen;
         public bool _isMove;
+        public float _duration;
 
         public GameData() // 생성자(초기값 선언)
         {
@@ -23,6 +24,7 @@ namespace DataInfo
             _linearDrag = 5.0f;
             _isFallen = false;
             _isMove = false;
+            _duration = 0.0f;
         }
 
         // 추가적인 데이터 저장 필요 시 추가하고 생성자에도 추가할 것
