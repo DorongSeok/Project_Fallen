@@ -14,9 +14,8 @@ public class PlayerCharacterControl : MonoBehaviour
     private bool isMove;
     private bool isFallen;
 
-    private float nowCheckStopTime;
 
-    public float maxCheckStopTime;
+    public float stopVelocity;
     public float moveSpeed;
     public float delayTime;
     private float delayTime2;
@@ -27,7 +26,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
     public float proportionalFactor;
 
-    public float stopVelocity;
+    private bool isignoreLayerCollision = false;
 
     //private int playerLayer, groundLayer, obstacleLayer;
 
@@ -243,12 +242,25 @@ public class PlayerCharacterControl : MonoBehaviour
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
         isMove = true;
         Physics2D.IgnoreLayerCollision(6, 8, true);
+        isignoreLayerCollision = true;
         delayTime2 = (duration) * 0.6f;
         yield return new WaitForSeconds(delayTime2);
-        Physics2D.IgnoreLayerCollision(6, 8, false);
         DataManager.instance.SetSavePos(gameObject.transform.position);
         isMove = false;
 
+        bool isInsideCollision = transform.GetChild(0).gameObject.GetComponent<PlayerCharacterInsideCollisionCheck>().InsideCollisionCheck();
+        if(isInsideCollision == true)
+        {
+            if (isFallen == false)
+            {
+                Falling();
+            }
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(6, 8, false);
+            isignoreLayerCollision = false;
+        }
         duration = 0; // 움직인 후 차징 초기화
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -259,11 +271,10 @@ public class PlayerCharacterControl : MonoBehaviour
             if (isFallen == false)
             {
                 Falling();
-                StartCoroutine(nameof(CheckIsFalling));
             }
         }
     }
-    private void Falling() // 중력 적용
+    public void Falling() // 중력 적용
     {
         // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
@@ -271,73 +282,43 @@ public class PlayerCharacterControl : MonoBehaviour
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
         rigidBody.drag = 0.0f;
+        StartCoroutine(nameof(CheckIsFalling));
     }
     IEnumerator CheckIsFalling() // 중력이 적용된 후, 멈췄을 때 중력 적용을 취소하고 다시 움직일 수 있게 하는 코루틴
     {
         isFallen = true;
         yield return new WaitForSeconds(0.1f);
-
-        // 굴러가지 않고, 중력만을 사용하는 방식에서 채용하는 추락 감지
-        // 이 구문 활성화 시, freeze rotation 체크하고, angular drag값을 0.05만 준 후, 각 장애물 오브젝트의 최소 각도를 30도 이상으로 설정해야함
         while (isFallen == true)
         {
-            if (rigidBody.velocity == Vector2.zero) // velocity를 통한 추락감지(== 만 사용 가능)
+            if (rigidBody.velocity.magnitude <= stopVelocity)
             {
-                if (nowCheckStopTime < maxCheckStopTime)
+                if (DataManager.instance != null)
                 {
-                    nowCheckStopTime += Time.deltaTime;
+                    DataManager.instance.SetSavePos(gameObject.transform.position);
                 }
-                else
-                {
-                    if (DataManager.instance != null)
-                    {
-                        DataManager.instance.SetSavePos(gameObject.transform.position);
-                    }
-                    IsGrounded();
-                }
-            }
-            else if (rigidBody.velocity != Vector2.zero && nowCheckStopTime != 0.0f)
-            {
-                nowCheckStopTime = 0.0f;
+                IsGrounded();
             }
             yield return new WaitForEndOfFrame();
         }
-
-        // 중력과 굴러가는 방식을 동시에 채용하는 추락 감지
-        // 이 구문 활성화 시, freeze rotation 언체크하고, angular drag값을 5로 준 후, 각 장애물 오브젝트의 최소 각도를 25도 이상으로 설정해야 함
-        //while (isFallen == true)
-        //{
-        //    if (rigidBody.velocity.magnitude <= stopVelocity)
-        //    {
-        //        if (nowCheckStopTime < maxCheckStopTime)
-        //        {
-        //            nowCheckStopTime += Time.deltaTime;
-        //        }
-        //        else
-        //        {
-        //            if (DataManager.instance != null)
-        //            {
-        //                DataManager.instance.SetSavePos(gameObject.transform.position);
-        //            }
-        //            IsGrounded();
-        //        }
-        //    }
-        //    else if (rigidBody.velocity.magnitude > stopVelocity && nowCheckStopTime != 0.0f)
-        //    {
-        //        nowCheckStopTime = 0.0f;
-        //    }
-        //    yield return new WaitForEndOfFrame();
-        //}
     }
     private void IsGrounded() // 중력 적용 해제
     {
         isFallen = false;
         rigidBody.gravityScale = 0.0f;
         rigidBody.drag = 5.0f;
-        nowCheckStopTime = 0.0f;
     }
+
     private void ResetPosition()
     {
         transform.position = Vector3.zero;
+    }
+
+    public void InsideCollsionEnd()
+    {
+        if (isignoreLayerCollision == true)
+        {
+            Physics2D.IgnoreLayerCollision(6, 8, false);
+            isignoreLayerCollision = false;
+        }
     }
 }

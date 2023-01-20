@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LavaShaderOutline_Material
-  m_Shader: {fileID: -6465566751694194690, guid: b072780b61341a84a8349ac5c4e3d7e4, type: 3}
+  m_Name: BackgoundIceShder_Material
+  m_Shader: {fileID: -6465566751694194690, guid: 342b3f96fd51f3244aa7e40d8d423ef0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,24 +20,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Emission:
-        m_Texture: {fileID: 2800000, guid: 898fd90b18e0bce49ac2da464eb1688a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 899dcae8abebee24ea3bab0d2b544214, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_c622310929cc412abe9d28fdd9229616_Texture_1:
-        m_Texture: {fileID: 2800000, guid: a158b04299f950d4c8dd0eb30b9238a4, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_c9c8fd3e4dac421f9b834e2441e88b7f_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 195e5fee39e9257409a33a086407b925, type: 3}
+    - _SampleTexture2D_2ba4e59680d8496bbb4940f8919f9546_Texture_1:
+        m_Texture: {fileID: 2800000, guid: be220eb55e31d2a40b452adabf228f35, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -54,12 +38,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _GradientNoiseScale: 3
+    - _Lerp: -0.8
+    - _Outline1Size: 0.2
+    - _Outline2Size: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _VoronoiAngle: 10
+    - _VoronoiDensity: 8
     m_Colors:
-    - _Color: {r: 271.17407, g: 19.350735, b: 0, a: 0}
+    - _Layer1Color: {r: 0.52287287, g: 0.57486135, b: 0.8867924, a: 0}
+    - _Layer2Color: {r: 1, g: 1, b: 1, a: 0}
+    - _LayerSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &5364455084865460696
+--- !u!114 &6043100314367575251
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
