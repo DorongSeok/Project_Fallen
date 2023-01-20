@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
+using System;
 
-public class PlayerCharacterControl : MonoBehaviour
+public class PlayerCharacterTest : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private CircleCollider2D coll;
@@ -29,8 +29,6 @@ public class PlayerCharacterControl : MonoBehaviour
 
     public float stopVelocity;
 
-    //private int playerLayer, groundLayer, obstacleLayer;
-
     private void Awake()
     {
         // 카메라 연동 실패 시 예외처리
@@ -42,52 +40,11 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             Debug.Log("Camera is Null");
         }
-        
+
         rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<CircleCollider2D>();
-
-        //playerLayer = LayerMask.NameToLayer("Player");
     }
-    private void Start()
-    {
-        LoadPlayerData();
-    }
-    public void SavePlayerData() // 게임 재 시작 시 불러와야 하는 데이터 저장
-    {
-        if (DataManager.instance != null)
-        {
-            DataManager.instance.SetSavePos(gameObject.transform.position);
-            DataManager.instance.SetVelocity(rigidBody.velocity);
-            DataManager.instance.SetGravityScale(rigidBody.gravityScale);
-            DataManager.instance.SetLinearDrag(rigidBody.drag);
-            DataManager.instance.SetIsFallen(isFallen);
-            DataManager.instance.SetIsMove(isMove);
-            DataManager.instance.SetDuration(duration);
-        }
-    }
-    public void LoadPlayerData() // 게임 재 시작 시 데이터 불러오기
-    {
-        if (DataManager.instance != null)
-        {
-            gameObject.transform.position = DataManager.instance.GetSavePos();
-            rigidBody.velocity = DataManager.instance.GetVelocity();
-            rigidBody.gravityScale = DataManager.instance.GetGravityScale();
-            rigidBody.drag = DataManager.instance.GetLinearDrag();
-            this.isFallen = DataManager.instance.GetIsFallen();
-            this.isMove = DataManager.instance.GetIsMove();
-            //this.duration = DataManager.instance.GetDuration();
-
-            if (isFallen == true) // 게임 저장 때 추락 중이였다면, 추락을 멈췄음을 확인하는 코루틴 재 실행
-            {
-                StartCoroutine(nameof(CheckIsFalling));
-            }
-            if (isMove == true) // 게임 저장 때 이동 중이였다면, 이동을 멈췄음을 확인하는 코루틴 재 실행
-            {
-                this.duration = DataManager.instance.GetDuration();
-                StartCoroutine(nameof(CheckIsStop));
-            }
-        }
-    }
+    
     private void Update()
     {
         directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
@@ -95,7 +52,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
         // 떨어지고 있을 때 및 이동 중일 때를 제외한 상황에서만 입력을 받음
         // 이동 전, 충전하는 부분만 isMove가 false일 때도 가능하게 할지 결정할 것
-        if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false) 
+        if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false)
         {
             Charging();
         }
@@ -103,16 +60,6 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             Move();
         }
-
-        // 위치 리셋
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetPosition();
-        }
-    }
-    private void FixedUpdate()
-    {
-        
     }
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
@@ -130,10 +77,6 @@ public class PlayerCharacterControl : MonoBehaviour
             {
                 duration = durationMax;
             }
-            //else if (duration <= durationMin) // duration이 최소 값을 넘지 못하면 최소값 대입
-            //{
-            //    duration = durationMin;
-            //}
             if (duration <= durationMin)
             {
                 if (directionX == 1 && directionY == 0) // 오른쪽
@@ -211,42 +154,12 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     IEnumerator CheckIsStop() // 움직인 후, 조건에 따라 다시 움직일 수 있게 하는 코루틴
     {
-        //// 움직임을 멈추는 것이 조건인 경우
-        //isMove = true;
-        //yield return new WaitForSeconds(0.1f);
-        //while(isMove == true)
-        //{
-        //    if (rigidBody.velocity.magnitude <= stopVelocity)
-        //    {
-        //        if (DataManager.instance != null)
-        //        {
-        //            DataManager.instance.SetSavePos(gameObject.transform.position);
-        //        }
-        //        isMove = false;
-        //    }
-        //    yield return new WaitForEndOfFrame();
-        //}
-
-        //// 고정된 시간동안 대기하는 것이 조건인 경우
-        //isMove = true;
-        //yield return new WaitForSeconds(delayTime);
-        //DataManager.instance.SetSavePos(gameObject.transform.position);
-        //isMove = false;
-
-        // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(짧게 이동 시 길게, 길게 이동시 짧게(반비례))
-        //isMove = true;
-        //delayTime2 = (proportionalFactor - duration) * 0.5f;
-        //yield return new WaitForSeconds(delayTime2);
-        //DataManager.instance.SetSavePos(gameObject.transform.position);
-        //isMove = false;
-
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
         isMove = true;
         Physics2D.IgnoreLayerCollision(6, 8, true);
         delayTime2 = (duration) * 0.6f;
         yield return new WaitForSeconds(delayTime2);
         Physics2D.IgnoreLayerCollision(6, 8, false);
-        DataManager.instance.SetSavePos(gameObject.transform.position);
         isMove = false;
 
         duration = 0; // 움직인 후 차징 초기화
@@ -268,7 +181,7 @@ public class PlayerCharacterControl : MonoBehaviour
         // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
 
-        rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
+        rigidBody.velocity = Vector2.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
         rigidBody.drag = 0.0f;
     }
@@ -335,9 +248,5 @@ public class PlayerCharacterControl : MonoBehaviour
         rigidBody.gravityScale = 0.0f;
         rigidBody.drag = 5.0f;
         nowCheckStopTime = 0.0f;
-    }
-    private void ResetPosition()
-    {
-        transform.position = Vector3.zero;
     }
 }
