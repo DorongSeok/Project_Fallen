@@ -118,6 +118,14 @@ public class DataManager : MonoBehaviour
     {
         return DataManager.instance.data._duration;
     }
+    public void SetIsignoreLayerCollision(bool isignoreLayerCollision)
+    {
+        DataManager.instance.data._isignoreLayerCollision = isignoreLayerCollision;
+    }
+    public bool GetIsignoreLayerCollision()
+    {
+        return DataManager.instance.data._isignoreLayerCollision;
+    }
     public void ResetSavePoint() // 저장된 위치를 초기화 함
     {
         SetSavePos(Vector3.zero);

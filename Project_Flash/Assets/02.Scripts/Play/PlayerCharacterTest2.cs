@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
+using System;
 
-public class PlayerCharacterControl : MonoBehaviour
+public class PlayerCharacterTest2 : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private CircleCollider2D coll;
@@ -30,8 +30,6 @@ public class PlayerCharacterControl : MonoBehaviour
 
     private bool isignoreLayerCollision = false;
 
-    private PlayerCharacterInsideCollisionCheck playerCharacterInsideCollisionCheck;
-
     //private int playerLayer, groundLayer, obstacleLayer;
 
     private void Awake()
@@ -45,57 +43,11 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             Debug.Log("Camera is Null");
         }
-        
+
         rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<CircleCollider2D>();
-        playerCharacterInsideCollisionCheck = GetComponentInChildren<PlayerCharacterInsideCollisionCheck>();
 
         //playerLayer = LayerMask.NameToLayer("Player");
-    }
-    private void Start()
-    {
-        LoadPlayerData();
-    }
-    public void SavePlayerData() // 게임 재 시작 시 불러와야 하는 데이터 저장
-    {
-        if (DataManager.instance != null)
-        {
-            DataManager.instance.SetSavePos(gameObject.transform.position);
-            DataManager.instance.SetVelocity(rigidBody.velocity);
-            DataManager.instance.SetGravityScale(rigidBody.gravityScale);
-            DataManager.instance.SetLinearDrag(rigidBody.drag);
-            DataManager.instance.SetIsFallen(isFallen);
-            DataManager.instance.SetIsMove(isMove);
-            DataManager.instance.SetDuration(duration);
-            DataManager.instance.SetIsignoreLayerCollision(isignoreLayerCollision);
-        }
-    }
-    public void LoadPlayerData() // 게임 재 시작 시 데이터 불러오기
-    {
-        if (DataManager.instance != null)
-        {
-            gameObject.transform.position = DataManager.instance.GetSavePos();
-            rigidBody.velocity = DataManager.instance.GetVelocity();
-            rigidBody.gravityScale = DataManager.instance.GetGravityScale();
-            rigidBody.drag = DataManager.instance.GetLinearDrag();
-            this.isFallen = DataManager.instance.GetIsFallen();
-            this.isMove = DataManager.instance.GetIsMove();
-            this.isignoreLayerCollision = DataManager.instance.GetIsignoreLayerCollision();
-            if (isignoreLayerCollision == true)
-            {
-                playerCharacterInsideCollisionCheck.SetIsCollision(true);
-            }
-            if (isFallen == true) // 게임 저장 때 추락 중이였다면, 추락을 멈췄음을 확인하는 코루틴 재 실행
-            {
-                StartCoroutine(nameof(CheckIsFalling));
-            }
-            if (isMove == true || isignoreLayerCollision == true) // 게임 저장 때 이동 중이였다면, 이동을 멈췄음을 확인하는 코루틴 재 실행
-            {
-                this.duration = DataManager.instance.GetDuration();
-                StartCoroutine(nameof(CheckIsStop));
-            }
-
-        }
     }
     private void Update()
     {
@@ -104,7 +56,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
         // 떨어지고 있을 때 및 이동 중일 때를 제외한 상황에서만 입력을 받음
         // 이동 전, 충전하는 부분만 isMove가 false일 때도 가능하게 할지 결정할 것
-        if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false) 
+        if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false)
         {
             Charging();
         }
@@ -121,7 +73,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+
     }
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
@@ -251,14 +203,14 @@ public class PlayerCharacterControl : MonoBehaviour
 
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
         isMove = true;
-        Physics2D.IgnoreLayerCollision(6, 8, true); 
+        Physics2D.IgnoreLayerCollision(6, 8, true);
         isignoreLayerCollision = true;
         delayTime2 = (duration) * 0.6f;
         yield return new WaitForSeconds(delayTime2);
-        DataManager.instance.SetSavePos(gameObject.transform.position);
+        isMove = false;
 
-        bool isInsideCollision = playerCharacterInsideCollisionCheck.GetIsCollision();
-        if(isInsideCollision == true)
+        bool isInsideCollision = transform.GetChild(0).gameObject.GetComponent<PlayerCharacterInsideCollisionCheckTest>().GetIsCollision();
+        if (isInsideCollision == true)
         {
             if (isFallen == false)
             {
@@ -270,7 +222,6 @@ public class PlayerCharacterControl : MonoBehaviour
             Physics2D.IgnoreLayerCollision(6, 8, false);
             isignoreLayerCollision = false;
         }
-        isMove = false;
         duration = 0; // 움직인 후 차징 초기화
     }
     private void OnCollisionEnter2D(Collision2D collision)

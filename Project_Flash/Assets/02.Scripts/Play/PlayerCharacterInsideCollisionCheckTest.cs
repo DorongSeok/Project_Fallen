@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
+public class PlayerCharacterInsideCollisionCheckTest : MonoBehaviour
 {
     bool isCollision = false;
 
@@ -26,7 +26,7 @@ public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             isCollision = false;
-            gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterControl>().InsideCollsionEnd();
+            gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterTest2>().InsideCollsionEnd();
         }
     }
 }
