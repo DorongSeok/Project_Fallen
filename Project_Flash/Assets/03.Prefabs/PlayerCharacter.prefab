@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e7989f7be6db84d8425856760a5ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopVelocity: 0
+  maxCheckStopTime: 0.5
   moveSpeed: 800
   delayTime: 0.5
   durationMax: 2
