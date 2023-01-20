@@ -15,7 +15,7 @@ TagManager:
   - Wall
   - Obstacle
   - 
-  - Save
+  - 
   - PlayerCollsion
   - 
   - 
@@ -43,9 +43,6 @@ TagManager:
     locked: 0
   - name: BackgroundObject
     uniqueID: 2107293451
-    locked: 0
-  - name: Frontground
-    uniqueID: 456796341
     locked: 0
   - name: Default
     uniqueID: 0
