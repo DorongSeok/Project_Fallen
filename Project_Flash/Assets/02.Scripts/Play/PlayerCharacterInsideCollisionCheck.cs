@@ -26,7 +26,10 @@ public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             isCollision = false;
-            gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterControl>().InsideCollsionEnd();
+            if (GetComponentInParent<PlayerCharacterControl>().GetIsMove() == false)
+            {
+                gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterControl>().InsideCollsionEnd();
+            }
         }
     }
 }

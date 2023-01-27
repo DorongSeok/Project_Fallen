@@ -323,4 +323,8 @@ public class PlayerCharacterTest2 : MonoBehaviour
             isignoreLayerCollision = false;
         }
     }
+    public bool GetIsMove()
+    {
+        return isMove;
+    }
 }

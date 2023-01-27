@@ -83,13 +83,13 @@ public class PlayerCharacterControl : MonoBehaviour
             this.isignoreLayerCollision = DataManager.instance.GetIsignoreLayerCollision();
             if (isignoreLayerCollision == true)
             {
-                playerCharacterInsideCollisionCheck.SetIsCollision(true);
+                Physics2D.IgnoreLayerCollision(6, 8, true);
             }
             if (isFallen == true) // 게임 저장 때 추락 중이였다면, 추락을 멈췄음을 확인하는 코루틴 재 실행
             {
                 StartCoroutine(nameof(CheckIsFalling));
             }
-            if (isMove == true || isignoreLayerCollision == true) // 게임 저장 때 이동 중이였다면, 이동을 멈췄음을 확인하는 코루틴 재 실행
+            if (isMove == true) // 게임 저장 때 이동 중이였다면, 이동을 멈췄음을 확인하는 코루틴 재 실행
             {
                 this.duration = DataManager.instance.GetDuration();
                 StartCoroutine(nameof(CheckIsStop));
@@ -368,8 +368,12 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         if (isignoreLayerCollision == true)
         {
-            Physics2D.IgnoreLayerCollision(6, 8, false);
             isignoreLayerCollision = false;
+            Physics2D.IgnoreLayerCollision(6, 8, false);
         }
+    }
+    public bool GetIsMove()
+    {
+        return isMove;
     }
 }
