@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: InvisibleObstacle
+    uniqueID: 3095607935
+    locked: 0
   - name: Obstacle
     uniqueID: 1520829159
     locked: 0
