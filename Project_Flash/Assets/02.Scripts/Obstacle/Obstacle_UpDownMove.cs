@@ -12,13 +12,13 @@ public class Obstacle_UpDownMove : MonoBehaviour
 
     private void Start()
     {
-        pos = transform.position;
+        pos = transform.localPosition;
     }
     private void Update()
     {
         Vector3 v = pos;
         v.y += delta * Mathf.Sin(delay + (Time.time * speed));
 
-        transform.position = v;
+        transform.localPosition = v;
     }
 }

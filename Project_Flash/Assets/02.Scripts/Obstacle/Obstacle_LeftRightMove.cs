@@ -11,13 +11,13 @@ public class Obstacle_LeftRightMove : MonoBehaviour
     public float delay;
     private void Start()
     {
-        pos = transform.position;
+        pos = transform.localPosition;
     }
     private void Update()
     {
         Vector3 v = pos;
         v.x += delta * Mathf.Sin(delay + (Time.time * speed));
 
-        transform.position = v;
+        transform.localPosition = v;
     }
 }
