@@ -59,7 +59,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 102.2431, y: 28.947098, z: 10.127854, w: 0}
+      - m_Value: {x: 10.170778, y: 39.841724, z: 102.24307, w: 0}
         m_Name: TwinkleColor
         m_Overridden: 1
     m_Uint:
