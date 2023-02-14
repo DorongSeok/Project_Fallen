@@ -255,6 +255,7 @@ public class PlayerCharacterControl : MonoBehaviour
         isignoreLayerCollision = true;
         delayTime2 = (duration) * 0.6f;
         yield return new WaitForSeconds(delayTime2);
+        isMove = false;
         DataManager.instance.SetSavePos(gameObject.transform.position);
 
         bool isInsideCollision = playerCharacterInsideCollisionCheck.GetIsCollision();
@@ -270,7 +271,6 @@ public class PlayerCharacterControl : MonoBehaviour
             Physics2D.IgnoreLayerCollision(6, 8, false);
             isignoreLayerCollision = false;
         }
-        isMove = false;
         duration = 0; // 움직인 후 차징 초기화
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -288,6 +288,8 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
+
+        duration = 0;
 
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
