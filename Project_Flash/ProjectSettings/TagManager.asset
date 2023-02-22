@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Wall
   - Obstacle
-  - 
+  - OutChecker
   - 
   - PlayerCollsion
   - 
