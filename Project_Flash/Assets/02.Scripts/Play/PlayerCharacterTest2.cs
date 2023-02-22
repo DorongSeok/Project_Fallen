@@ -319,6 +319,7 @@ public class PlayerCharacterTest2 : MonoBehaviour
 
     public void InsideCollsionEnd()
     {
+        Debug.Log("인사이드 콜리전엔드 실행");
         if (isignoreLayerCollision == true)
         {
             Physics2D.IgnoreLayerCollision(6, 8, false);

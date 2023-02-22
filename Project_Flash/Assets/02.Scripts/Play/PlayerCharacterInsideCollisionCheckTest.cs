@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCharacterInsideCollisionCheckTest : MonoBehaviour
 {
     bool isCollision = false;
+    GameObject enterObject;
 
     public bool GetIsCollision()
     {
@@ -14,22 +15,24 @@ public class PlayerCharacterInsideCollisionCheckTest : MonoBehaviour
     {
         this.isCollision = isCollision;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject.layer == 8 && isCollision == false)
         {
             isCollision = true;
+            enterObject = collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject == enterObject)
         {
             isCollision = false;
             if (GetComponentInParent<PlayerCharacterTest2>().GetIsMove() == false)
             {
                 gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterTest2>().InsideCollsionEnd();
             }
+            enterObject = null;
         }
     }
 }
