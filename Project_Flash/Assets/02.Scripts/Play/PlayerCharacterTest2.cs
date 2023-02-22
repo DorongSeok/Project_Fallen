@@ -49,7 +49,15 @@ public class PlayerCharacterTest2 : MonoBehaviour
 
         //playerLayer = LayerMask.NameToLayer("Player");
     }
-    private void Update()
+    void Start()
+    {
+        Managers.Sound.Play("TestBGM", Define.Sound.Bgm);
+
+        Managers.Input.KeyAction -= OnKeyboard;
+        Managers.Input.KeyAction += OnKeyboard;
+    }
+
+    void OnKeyboard()
     {
         directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
         directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
@@ -62,6 +70,7 @@ public class PlayerCharacterTest2 : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space) && isMove == false && isFallen == false)
         {
+            Managers.Sound.Play("TestEffectSound");
             Move();
         }
 

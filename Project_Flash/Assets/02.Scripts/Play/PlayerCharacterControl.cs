@@ -54,6 +54,8 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void Start()
     {
+        Managers.Input.KeyAction -= OnKeyboard;
+        Managers.Input.KeyAction += OnKeyboard;
         LoadPlayerData();
     }
     public void SavePlayerData() // 게임 재 시작 시 불러와야 하는 데이터 저장
@@ -97,7 +99,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
         }
     }
-    private void Update()
+    void OnKeyboard()
     {
         directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
         directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
