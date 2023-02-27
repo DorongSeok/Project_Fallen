@@ -12,12 +12,6 @@ public class InputManager
 
     public void OnUpdate()
     {
-        // 키보드나 마우스 입력이 없었으면 바로 리턴
-        if(Input.anyKey == false)
-        {
-            return;
-        }
-
         // 마우스 입력
         if(MouseAction != null)
         {
