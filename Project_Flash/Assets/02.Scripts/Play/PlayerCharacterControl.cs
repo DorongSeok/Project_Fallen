@@ -280,6 +280,10 @@ public class PlayerCharacterControl : MonoBehaviour
         // 장애물, 벽에 닿았을 경우 처리
         if (collision.gameObject.layer == 7 || collision.gameObject.layer == 8)
         {
+            if (isignoreLayerCollision == true)
+            {
+                Physics2D.IgnoreLayerCollision(6, 8, false);
+            }
             if (isFallen == false)
             {
                 Falling();

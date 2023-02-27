@@ -238,6 +238,10 @@ public class PlayerCharacterTest2 : MonoBehaviour
         // 장애물, 벽에 닿았을 경우 처리
         if (collision.gameObject.layer == 7 || collision.gameObject.layer == 8)
         {
+            if (isignoreLayerCollision == true)
+            {
+                Physics2D.IgnoreLayerCollision(6, 8, false);
+            }
             if (isFallen == false)
             {
                 Falling();
@@ -328,7 +332,6 @@ public class PlayerCharacterTest2 : MonoBehaviour
 
     public void InsideCollsionEnd()
     {
-        Debug.Log("인사이드 콜리전엔드 실행");
         if (isignoreLayerCollision == true)
         {
             Physics2D.IgnoreLayerCollision(6, 8, false);
