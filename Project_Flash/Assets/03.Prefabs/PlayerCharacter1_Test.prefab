@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8975656387480425913}
   - component: {fileID: 6430254604289958367}
   - component: {fileID: 7203114758066330159}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Core2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 212453343579517121}
   - component: {fileID: 2529437655825898387}
   - component: {fileID: 7552578860777104150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Core1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 7308340176615338205}
   - component: {fileID: 7697908380399434996}
   - component: {fileID: 8780368431257287919}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoveEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
