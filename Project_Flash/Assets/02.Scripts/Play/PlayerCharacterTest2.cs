@@ -216,35 +216,49 @@ public class PlayerCharacterTest2 : MonoBehaviour
         isignoreLayerCollision = true;
         delayTime2 = (duration) * 0.6f;
         yield return new WaitForSeconds(delayTime2);
-        isMove = false;
 
-        bool isInsideCollision = transform.GetChild(0).gameObject.GetComponent<PlayerCharacterInsideCollisionCheckTest>().GetIsCollision();
-        if (isInsideCollision == true)
+        CheckChargeMoveEnd();
+    }
+    private void CheckChargeMoveEnd()
+    {
+        if (isMove == true)
         {
-            if (isFallen == false)
+            isMove = false;
+            bool isInsideCollision = transform.GetChild(0).gameObject.GetComponent<PlayerCharacterInsideCollisionCheckTest>().GetIsCollision();
+            if (isInsideCollision == true)
             {
-                Falling();
+                if (isFallen == false)
+                {
+                    Falling();
+                }
             }
+            else
+            {
+                Physics2D.IgnoreLayerCollision(6, 8, false);
+                isignoreLayerCollision = false;
+            }
+            duration = 0; // 움직인 후 차징 초기화
         }
-        else
-        {
-            Physics2D.IgnoreLayerCollision(6, 8, false);
-            isignoreLayerCollision = false;
-        }
-        duration = 0; // 움직인 후 차징 초기화
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // 장애물, 벽에 닿았을 경우 처리
-        if (collision.gameObject.layer == 7 || collision.gameObject.layer == 8)
+        if (collision.gameObject.layer == 8)
         {
-            if (isignoreLayerCollision == true)
-            {
-                Physics2D.IgnoreLayerCollision(6, 8, false);
-            }
             if (isFallen == false)
             {
                 Falling();
+            }
+        }
+        if (collision.gameObject.layer == 7)
+        {
+            if (isFallen == false)
+            {
+                Falling();
+            }
+            if (isignoreLayerCollision == true)
+            {
+                CheckChargeMoveEnd();
             }
         }
     }

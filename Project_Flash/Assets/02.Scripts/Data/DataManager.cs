@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
 
         // 로딩 대기시간
         DataManager.instance.LoadGameData(); // 게임 시작 시, 데이터 로드 진행
-        yield return new WaitForSeconds(waitingTime);
+        yield return new WaitForSeconds(waitingTime); // 연출로 대체할 것
 
         // Main씬 비동기 로드 사용 문법
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Single);
@@ -126,7 +126,7 @@ public class DataManager : MonoBehaviour
     {
         return DataManager.instance.data._isignoreLayerCollision;
     }
-    public void ResetSavePoint() // 저장된 위치를 초기화 함
+    public void ResetSaveData() // 저장된 위치를 초기화 함
     {
         SetSavePos(Vector3.zero);
     }

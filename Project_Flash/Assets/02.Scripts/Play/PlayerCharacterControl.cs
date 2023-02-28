@@ -252,41 +252,56 @@ public class PlayerCharacterControl : MonoBehaviour
         //isMove = false;
 
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
+
+        DataManager.instance.SetSavePos(gameObject.transform.position);
         isMove = true;
         Physics2D.IgnoreLayerCollision(6, 8, true); 
         isignoreLayerCollision = true;
         delayTime2 = (duration) * 0.6f;
         yield return new WaitForSeconds(delayTime2);
-        isMove = false;
-        DataManager.instance.SetSavePos(gameObject.transform.position);
 
-        bool isInsideCollision = playerCharacterInsideCollisionCheck.GetIsCollision();
-        if(isInsideCollision == true)
+        CheckChargeMoveEnd();
+    }
+    private void CheckChargeMoveEnd()
+    {
+        if (isMove == true)
         {
-            if (isFallen == false)
+            isMove = false;
+            bool isInsideCollision = transform.GetChild(0).gameObject.GetComponent<PlayerCharacterInsideCollisionCheck>().GetIsCollision();
+            if (isInsideCollision == true)
             {
-                Falling();
+                if (isFallen == false)
+                {
+                    Falling();
+                }
             }
+            else
+            {
+                Physics2D.IgnoreLayerCollision(6, 8, false);
+                isignoreLayerCollision = false;
+            }
+            duration = 0; // 움직인 후 차징 초기화
         }
-        else
-        {
-            Physics2D.IgnoreLayerCollision(6, 8, false);
-            isignoreLayerCollision = false;
-        }
-        duration = 0; // 움직인 후 차징 초기화
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // 장애물, 벽에 닿았을 경우 처리
-        if (collision.gameObject.layer == 7 || collision.gameObject.layer == 8)
+        if (collision.gameObject.layer == 8)
         {
-            if (isignoreLayerCollision == true)
-            {
-                Physics2D.IgnoreLayerCollision(6, 8, false);
-            }
             if (isFallen == false)
             {
                 Falling();
+            }
+        }
+        if (collision.gameObject.layer == 7)
+        {
+            if (isFallen == false)
+            {
+                Falling();
+            }
+            if (isignoreLayerCollision == true)
+            {
+                CheckChargeMoveEnd();
             }
         }
     }
