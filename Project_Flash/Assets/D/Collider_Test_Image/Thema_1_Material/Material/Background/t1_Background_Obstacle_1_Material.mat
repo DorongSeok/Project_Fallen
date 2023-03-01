@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: e61cd8012f4774943b495f4421756da6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 26641ae5fad00a246ba3903a657a82dd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -59,8 +59,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cell_Lerp: 24.96
-    - _Lerp: -0.9
+    - _Cell_Lerp: 49.97
+    - _Lerp: -0.88
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
