@@ -126,8 +126,8 @@ public class DataManager : MonoBehaviour
     {
         return DataManager.instance.data._isignoreLayerCollision;
     }
-    public void ResetSaveData() // 저장된 위치를 초기화 함
+    public void ResetSaveData() // 저장된 모든 정보를 초기화 함
     {
-        SetSavePos(Vector3.zero);
+        data = new GameData();
     }
 }
