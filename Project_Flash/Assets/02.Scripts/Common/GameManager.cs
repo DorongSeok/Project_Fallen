@@ -15,9 +15,12 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     private bool pauseMenuOpen = false;
 
-    void Start() 
+    void Start()
     {
-        if (DataManager.instance != null) // datamanger가 존재한다면 스테이지 시작 함수 실행(오류 방지)
+        Managers.Input.KeyAction -= OnKeyboard;
+        Managers.Input.KeyAction += OnKeyboard;
+
+        if (Managers.Instance != null) // datamanger가 존재한다면 스테이지 시작 함수 실행(오류 방지)
         {
             StageStart();
         }
@@ -28,7 +31,7 @@ public class GameManager : MonoBehaviour
         //    Application.Quit();
         //}
     }
-    private void Update()
+    private void OnKeyboard()
     {
         // 종료 키 입력 시 메뉴 오픈 여부에 따른 행동 반환
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -46,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void StageStart() // 인 게임 시작 시 캐릭터 생성
     {
-        player = Instantiate(playerPrefab, DataManager.instance.GetSavePos(), Quaternion.identity);
+        player = Instantiate(playerPrefab, Managers.data.GetSavePos(), Quaternion.identity);
         playerCharacterControl = player.GetComponent<PlayerCharacterControl>();
     }
     private void OnApplicationQuit() // 게임 종료 시, 저장 진행
@@ -62,12 +65,12 @@ public class GameManager : MonoBehaviour
     }
     private void SaveData() // 현 데이터 저장
     {
-        if (DataManager.instance != null)
+        if (Managers.data != null)
         {
             if (playerCharacterControl != null)
             {
                 playerCharacterControl.SavePlayerData();
-                DataManager.instance.SaveGameData();
+                Managers.data.SaveGameData();
             }
         }
     }

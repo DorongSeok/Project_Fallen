@@ -291,10 +291,6 @@ public class PlayerCharacterTest2 : MonoBehaviour
                 }
                 else
                 {
-                    if (DataManager.instance != null)
-                    {
-                        DataManager.instance.SetSavePos(gameObject.transform.position);
-                    }
                     IsGrounded();
                 }
             }
