@@ -5,7 +5,7 @@ using UnityEngine;
 public class Managers : MonoBehaviour
 {
     static Managers s_instace;
-    static Managers Instance { get { Init(); return s_instace; } }
+    public static Managers Instance { get { Init(); return s_instace; } }
 
     InputManager _input = new InputManager();
     ResourceManager _resource = new ResourceManager();
@@ -41,7 +41,7 @@ public class Managers : MonoBehaviour
         }
     }
 
-    public static void Clear()
+    public void Clear()
     {
         Input.Clear();
         Sound.Clear();
