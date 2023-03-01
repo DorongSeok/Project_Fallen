@@ -54,6 +54,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void Start()
     {
+        // 인풋 매니저 연동
         Managers.Input.KeyAction -= OnKeyboard;
         Managers.Input.KeyAction += OnKeyboard;
         LoadPlayerData();
@@ -115,11 +116,11 @@ public class PlayerCharacterControl : MonoBehaviour
             Move();
         }
 
-        // 위치 리셋
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetPosition();
-        }
+        //// 위치 리셋
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    ResetPosition();
+        //}
     }
     private void FixedUpdate()
     {
@@ -262,7 +263,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
         CheckChargeMoveEnd();
     }
-    private void CheckChargeMoveEnd()
+    private void CheckChargeMoveEnd() // 차징 이동 종료 후, 장애물 내부에 위치하는지 판단하는 구간
     {
         if (isMove == true)
         {
@@ -285,7 +286,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 장애물, 벽에 닿았을 경우 처리
+        // 장애물에 닿았을 경우
         if (collision.gameObject.layer == 8)
         {
             if (isFallen == false)
@@ -293,6 +294,7 @@ public class PlayerCharacterControl : MonoBehaviour
                 Falling();
             }
         }
+        // 벽에 닿았을 경우
         if (collision.gameObject.layer == 7)
         {
             if (isFallen == false)
@@ -382,12 +384,12 @@ public class PlayerCharacterControl : MonoBehaviour
         nowCheckStopTime = 0.0f;
     }
 
-    private void ResetPosition()
-    {
-        transform.position = Vector3.zero;
-    }
+    //private void ResetPosition()
+    //{
+    //    transform.position = Vector3.zero;
+    //}
 
-    public void InsideCollsionEnd()
+    public void InsideCollsionEnd() // 차징 이동 후, 장애물에 위치해서 추락할 경우, 해당 장애물을 빠져나왔을 때 실행되는 함수
     {
         if (isignoreLayerCollision == true)
         {
