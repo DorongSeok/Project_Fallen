@@ -42,7 +42,7 @@ Material:
     - _DistortNoisePeriod: 18.67
     - _GrainColorBlend: 0.56
     - _GrainPeriod: -44.83
-    - _Lerp: -0.7
+    - _Lerp: -0.9
     - _PolygonSides: 3.15
     - _QueueControl: 0
     - _QueueOffset: 0
