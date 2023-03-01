@@ -24,7 +24,7 @@ public class Managers : MonoBehaviour
         _input.OnUpdate();
     }
 
-    static void Init()
+    static void Init() // ΩÃ±€≈Ê
     {
         if(s_instace == null)
         {
@@ -41,7 +41,7 @@ public class Managers : MonoBehaviour
         }
     }
 
-    public void Clear()
+    public void Clear() // √ ±‚»≠
     {
         Input.Clear();
         Sound.Clear();

@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     {
         if (DataManager.instance != null) // datamanger가 존재한다면 스테이지 시작 함수 실행(오류 방지)
         {
-            Debug.Log("인스턴스 존재!");
             StageStart();
         }
 
@@ -31,9 +30,9 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        // 종료 키 입력 시 메뉴 오픈 여부에 따른 행동 반환
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("종료 누름");
             if (pauseMenuOpen == false)
             {
                 PauseMenuOpen();
@@ -47,7 +46,6 @@ public class GameManager : MonoBehaviour
 
     public void StageStart() // 인 게임 시작 시 캐릭터 생성
     {
-        Debug.Log("스테이지 스타트!");
         player = Instantiate(playerPrefab, DataManager.instance.GetSavePos(), Quaternion.identity);
         playerCharacterControl = player.GetComponent<PlayerCharacterControl>();
     }
@@ -55,19 +53,14 @@ public class GameManager : MonoBehaviour
     {
         SaveData();
     }
-    // 추후 메인 메뉴로 이동 시, 게임 플레이 상황 저장하는 구문 생성할 예정
-    public void ResumeButtonClick()
+    public void ResumeButtonClick() // 일시정지 해제 시
     {
         if (pauseMenuOpen == true)
         {
             PauseMenuClose();
         }
     }
-    //private void PlayerActiveFalse()
-    //{
-    //    player.SetActive(false);
-    //}
-    private void SaveData()
+    private void SaveData() // 현 데이터 저장
     {
         if (DataManager.instance != null)
         {
@@ -78,15 +71,14 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void SaveAndExitButtonClick()
+    public void SaveAndExitButtonClick() // 저장 후 종료에 해당하는 버튼 클릭 시 대응하는 함수
     {
         PauseMenuClose();
         SaveData();
         Managers.Instance.Clear();
-        //PlayerActiveFalse();
         StartCoroutine(nameof(MoveToMainScene));
     }
-    IEnumerator MoveToMainScene()
+    IEnumerator MoveToMainScene() // 종료 시 메인 메뉴로 이동하는 함수
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Single);
         while (!asyncOperation.isDone)
@@ -94,16 +86,14 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
-    private void PauseMenuOpen()
+    private void PauseMenuOpen() // 메뉴 오픈 시 게임 내 시간 정지
     {
-        Debug.Log("메뉴 오픈");
         Time.timeScale = 0;
         pauseMenuOpen = true;
         pauseMenu.SetActive(true);
     }
-    private void PauseMenuClose()
+    private void PauseMenuClose() // 메뉴 오픈 해제 시 게임 내 시간 가동
     {
-        Debug.Log("메뉴 클로즈");
         Time.timeScale = 1; 
         pauseMenuOpen = false;
         pauseMenu.SetActive(false);
