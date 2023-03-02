@@ -84,5 +84,10 @@ public class CameraMove : MonoBehaviour
     public void SetTargetTr(Transform targetTr) // 카메라가 추적할 대상 세팅
     {
         this.targetTr = targetTr;
+        SetCameraStartPos();
+    }
+    public void SetCameraStartPos()
+    {
+        camTr.position = new Vector3(camTr.position.x, targetTr.position.y, camTr.position.z);
     }
 }

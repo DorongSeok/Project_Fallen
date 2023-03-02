@@ -2224,7 +2224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 26044610}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &58862680
@@ -31824,6 +31824,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1827735566}
     m_Modifications:
+    - target: {fileID: 1680730942, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: sceneManager
+      value: 
+      objectReference: {fileID: 1432524132}
+    - target: {fileID: 1680730942, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: mainSceneManager
+      value: 
+      objectReference: {fileID: 1432524132}
     - target: {fileID: 6822304383942312539, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

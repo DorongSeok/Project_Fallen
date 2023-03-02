@@ -103,6 +103,14 @@ public class DataManager
     {
         return data._isignoreLayerCollision;
     }
+    public void SetIsFirstPlay(bool isFirstPlay) // 뉴게임 버튼 눌렀을 때, false를 저장하도록 하고, 게임 클리어 했을 때, true를 저장하도록 함
+    {
+        data._isFirstPlay = isFirstPlay;
+    }
+    public bool GetIsFirstPlay()
+    {
+        return data._isFirstPlay;
+    }
     public void ResetSaveData() // 저장된 모든 정보를 초기화 함
     {
         data = new GameData();

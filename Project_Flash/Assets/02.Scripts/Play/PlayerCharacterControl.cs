@@ -40,6 +40,7 @@ public class PlayerCharacterControl : MonoBehaviour
         try
         {
             GameObject.FindObjectOfType<CameraMove>().SetTargetTr(this.transform);
+
         }
         catch (NullReferenceException)
         {

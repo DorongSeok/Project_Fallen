@@ -36,7 +36,10 @@ public class Managers : MonoBehaviour
     {
         _input.OnUpdate();
     }
-
+    private void OnApplicationQuit()
+    {
+        _data.SaveGameData();
+    }
     static void Init() // ΩÃ±€≈Ê
     {
         if(s_instance == null)

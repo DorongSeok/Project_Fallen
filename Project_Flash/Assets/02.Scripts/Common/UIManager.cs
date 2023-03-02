@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     IEnumerator NewGameButtonClick()
     {
         Managers.data.ResetSaveData();
+        Managers.data.SetIsFirstPlay(false);
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Play", LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
