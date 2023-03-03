@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private PlayerCharacterControl playerCharacterControl;
 
     public GameObject pauseMenu;
+    public OptionCtrl option;
     private bool pauseMenuOpen = false;
 
     void Start()
@@ -36,13 +37,16 @@ public class GameManager : MonoBehaviour
         // 종료 키 입력 시 메뉴 오픈 여부에 따른 행동 반환
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseMenuOpen == false)
+            if (option.GetIsOptionOpen() == false)
             {
-                PauseMenuOpen();
-            }
-            else if (pauseMenuOpen == true)
-            {
-                PauseMenuClose();
+                if (pauseMenuOpen == false)
+                {
+                    PauseMenuOpen();
+                }
+                else if (pauseMenuOpen == true)
+                {
+                    PauseMenuClose();
+                }
             }
         }
     }
