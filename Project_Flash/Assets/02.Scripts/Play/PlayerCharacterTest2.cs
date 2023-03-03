@@ -53,11 +53,9 @@ public class PlayerCharacterTest2 : MonoBehaviour
     {
         //Managers.Sound.Play("TestBGM", Define.Sound.Bgm);
 
-        Managers.Input.KeyAction -= OnKeyboard;
-        Managers.Input.KeyAction += OnKeyboard;
     }
 
-    void OnKeyboard()
+    void Update()
     {
         directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
         directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
