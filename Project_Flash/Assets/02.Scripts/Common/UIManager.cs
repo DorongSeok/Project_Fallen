@@ -17,7 +17,8 @@ public class UIManager : MonoBehaviour
     }
     IEnumerator NewGameButtonClick()
     {
-        DataManager.instance.ResetSaveData();
+        Managers.data.ResetSaveData();
+        Managers.data.SetIsFirstPlay(false);
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Play", LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
@@ -53,6 +54,7 @@ public class UIManager : MonoBehaviour
     public void OptionButtonClick()
     {
         option.SetActive(true);
+        option.GetComponent<OptionCtrl>().SetIsOptionOpen(true);
     }
     public void CoroutineCreditButtonClick()
     {
@@ -68,6 +70,7 @@ public class UIManager : MonoBehaviour
     }
     public void OptionExitButtonClick()
     {
+        option.GetComponent<OptionCtrl>().SetIsOptionOpen(false);
         option.SetActive(false);
     }
 }

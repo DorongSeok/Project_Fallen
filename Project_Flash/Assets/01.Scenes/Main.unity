@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1558855220}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1162024007
@@ -948,6 +948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337658169}
   - component: {fileID: 1337658168}
+  - component: {fileID: 1337658170}
   m_Layer: 0
   m_Name: MainSceneManager
   m_TagString: Untagged
@@ -983,6 +984,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337658170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337658167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250c62805c715e84da36a5cbd0fb11e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  continueButton: {fileID: 678611986}
 --- !u!1 &1400657113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,14 +1526,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 192593082}
     m_Modifications:
+    - target: {fileID: 1680730942, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: sceneManager
+      value: 
+      objectReference: {fileID: 1337658168}
+    - target: {fileID: 1680730942, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: mainSceneManager
+      value: 
+      objectReference: {fileID: 1337658168}
     - target: {fileID: 6822304383942312539, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1337658168}
-    - target: {fileID: 6822304383942312539, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OptionExitButtonClick
-      objectReference: {fileID: 0}
     - target: {fileID: 6822304384113951136, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

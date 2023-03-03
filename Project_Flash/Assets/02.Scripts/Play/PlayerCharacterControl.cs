@@ -40,6 +40,7 @@ public class PlayerCharacterControl : MonoBehaviour
         try
         {
             GameObject.FindObjectOfType<CameraMove>().SetTargetTr(this.transform);
+
         }
         catch (NullReferenceException)
         {
@@ -61,29 +62,29 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     public void SavePlayerData() // 게임 재 시작 시 불러와야 하는 데이터 저장
     {
-        if (DataManager.instance != null)
+        if (Managers.data != null)
         {
-            DataManager.instance.SetSavePos(gameObject.transform.position);
-            DataManager.instance.SetVelocity(rigidBody.velocity);
-            DataManager.instance.SetGravityScale(rigidBody.gravityScale);
-            DataManager.instance.SetLinearDrag(rigidBody.drag);
-            DataManager.instance.SetIsFallen(isFallen);
-            DataManager.instance.SetIsMove(isMove);
-            DataManager.instance.SetDuration(duration);
-            DataManager.instance.SetIsignoreLayerCollision(isignoreLayerCollision);
+            Managers.data.SetSavePos(gameObject.transform.position);
+            Managers.data.SetVelocity(rigidBody.velocity);
+            Managers.data.SetGravityScale(rigidBody.gravityScale);
+            Managers.data.SetLinearDrag(rigidBody.drag);
+            Managers.data.SetIsFallen(isFallen);
+            Managers.data.SetIsMove(isMove);
+            Managers.data.SetDuration(duration);
+            Managers.data.SetIsignoreLayerCollision(isignoreLayerCollision);
         }
     }
     public void LoadPlayerData() // 게임 재 시작 시 데이터 불러오기
     {
-        if (DataManager.instance != null)
+        if (Managers.data != null)
         {
-            gameObject.transform.position = DataManager.instance.GetSavePos();
-            rigidBody.velocity = DataManager.instance.GetVelocity();
-            rigidBody.gravityScale = DataManager.instance.GetGravityScale();
-            rigidBody.drag = DataManager.instance.GetLinearDrag();
-            this.isFallen = DataManager.instance.GetIsFallen();
-            this.isMove = DataManager.instance.GetIsMove();
-            this.isignoreLayerCollision = DataManager.instance.GetIsignoreLayerCollision();
+            gameObject.transform.position = Managers.data.GetSavePos();
+            rigidBody.velocity = Managers.data.GetVelocity();
+            rigidBody.gravityScale = Managers.data.GetGravityScale();
+            rigidBody.drag = Managers.data.GetLinearDrag();
+            this.isFallen = Managers.data.GetIsFallen();
+            this.isMove = Managers.data.GetIsMove();
+            this.isignoreLayerCollision = Managers.data.GetIsignoreLayerCollision();
             if (isignoreLayerCollision == true)
             {
                 Physics2D.IgnoreLayerCollision(6, 8, true);
@@ -94,7 +95,7 @@ public class PlayerCharacterControl : MonoBehaviour
             }
             if (isMove == true) // 게임 저장 때 이동 중이였다면, 이동을 멈췄음을 확인하는 코루틴 재 실행
             {
-                this.duration = DataManager.instance.GetDuration();
+                this.duration = Managers.data.GetDuration();
                 StartCoroutine(nameof(CheckIsStop));
             }
 
@@ -254,7 +255,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
 
-        DataManager.instance.SetSavePos(gameObject.transform.position);
+        Managers.data.SetSavePos(gameObject.transform.position);
         isMove = true;
         Physics2D.IgnoreLayerCollision(6, 8, true); 
         isignoreLayerCollision = true;
@@ -336,9 +337,9 @@ public class PlayerCharacterControl : MonoBehaviour
                 }
                 else
                 {
-                    if (DataManager.instance != null)
+                    if (Managers.data != null)
                     {
-                        DataManager.instance.SetSavePos(gameObject.transform.position);
+                        Managers.data.SetSavePos(gameObject.transform.position);
                     }
                     IsGrounded();
                 }

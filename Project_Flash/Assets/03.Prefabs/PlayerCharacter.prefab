@@ -225,7 +225,7 @@ VFXRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -679858791
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 2
 --- !u!1 &2681825792099946259
 GameObject:
@@ -347,7 +347,7 @@ VFXRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -679858791
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 3
 --- !u!1 &6416831189632413331
 GameObject:
@@ -508,7 +508,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!50 &7420342636612875839
 Rigidbody2D:
   serializedVersion: 4

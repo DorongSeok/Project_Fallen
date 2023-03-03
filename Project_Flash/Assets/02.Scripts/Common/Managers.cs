@@ -1,32 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
-    static Managers s_instace;
-    public static Managers Instance { get { Init(); return s_instace; } }
+    public float waitingTime = 1.0f;
 
+    static Managers s_instance;
+    public static Managers Instance { get { Init(); return s_instance; } }
+
+    DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     ResourceManager _resource = new ResourceManager();
     SoundManager _sound = new SoundManager();
 
+    public static DataManager data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SoundManager Sound { get { return Instance._sound; } }
 
-    private void Start()
+    IEnumerator Start()
     {
         Init();
+        yield return new WaitForSeconds(waitingTime); // 연출로 대체할 것
+
+        // Main씬 비동기 로드 사용 문법
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Single);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
     }
     private void Update()
     {
         _input.OnUpdate();
     }
-
+    private void OnApplicationQuit()
+    {
+        _data.SaveGameData();
+    }
     static void Init() // 싱글톤
     {
-        if(s_instace == null)
+        if(s_instance == null)
         {
             GameObject obj = GameObject.Find("@Managers");
             if (obj == null)
@@ -36,8 +52,9 @@ public class Managers : MonoBehaviour
             }
 
             DontDestroyOnLoad(obj);
-            s_instace = obj.GetComponent<Managers>();
-            s_instace._sound.Init();
+            s_instance = obj.GetComponent<Managers>();
+            s_instance._sound.Init();
+            s_instance._data.LoadGameData();
         }
     }
 
