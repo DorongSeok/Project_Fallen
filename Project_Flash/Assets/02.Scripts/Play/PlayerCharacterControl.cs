@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class PlayerCharacterControl : MonoBehaviour
 {
+    public delegate void PlayerFallingStart();
+    public static event PlayerFallingStart onPlayerFallingStart;
+
+    public delegate void PlayerFallingEnd();
+    public static event PlayerFallingEnd onPlayerFallingEnd;
+
     private Rigidbody2D rigidBody;
     private CircleCollider2D coll;
 
@@ -312,7 +318,7 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
-
+        onPlayerFallingStart();
         duration = 0;
 
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
@@ -379,6 +385,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void IsGrounded() // 중력 적용 해제
     {
+        onPlayerFallingEnd();
         isFallen = false;
         rigidBody.gravityScale = 0.0f;
         rigidBody.drag = 5.0f;
