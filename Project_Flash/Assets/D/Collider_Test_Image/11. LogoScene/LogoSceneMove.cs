@@ -9,6 +9,15 @@ public class LogoSceneMove : MonoBehaviour
     public float endY = 0;
     public float posZ = 0;
 
+    public GameObject logoSceneCamera;
+
+    private bool isCameraMove = false;
+    private Vector3 basePos;
+
+    private void Start()
+    {
+        basePos = logoSceneCamera.transform.localPosition;
+    }
 
     void Update()
     {
@@ -19,6 +28,10 @@ public class LogoSceneMove : MonoBehaviour
             this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             this.GetComponent<Rigidbody2D>().isKinematic = true;
         }
+        if (isCameraMove == true)
+        {
+            logoSceneCamera.transform.localPosition = Vector3.Slerp(logoSceneCamera.transform.localPosition, basePos + (Vector3.down * 2.0f), Time.deltaTime * 0.5f);
+        }
     }
 
     public void MoveReset()
@@ -28,10 +41,13 @@ public class LogoSceneMove : MonoBehaviour
         this.transform.position = newPosition;
         this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         this.GetComponent<Rigidbody2D>().isKinematic = true;
+
+        isCameraMove = false;
     }
 
     public void MoveStart()
     {
         this.GetComponent<Rigidbody2D>().isKinematic = false;
+        isCameraMove = true;
     }
 }

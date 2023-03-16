@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LogoAMove : MonoBehaviour
 {
-    public float waitCount = 1.0f;
+    public float waitCount = 0.5f;
     private int count = 0;
     private float angle = 0;
     public float maxAngle = 3;
@@ -58,10 +58,12 @@ public class LogoAMove : MonoBehaviour
         isMove = true;
 
         yield return new WaitForSeconds(waitCount);
+        StartFalling();
 
         isMove = false;
 
-        StartFalling();
+        yield return new WaitForSeconds(waitCount * 0.5f);
+
     }
 
     private void StartFalling()
