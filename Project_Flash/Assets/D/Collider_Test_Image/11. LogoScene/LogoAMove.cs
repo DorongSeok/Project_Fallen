@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LogoAMove : MonoBehaviour
 {
+    public float waitCount = 1.0f;
     private int count = 0;
     private float angle = 0;
-    public float maxAngle = 4;
-    public float minAngle = -4;
-    public float moveSpeed = 0.1f;
+    public float maxAngle = 3;
+    public float minAngle = -3;
+    public float moveSpeed = 1f;
     public int moveCount = 4;
     private float rotationZ = 0;
     private bool isMove = false;
@@ -31,29 +32,36 @@ public class LogoAMove : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
-            isMove = true;
+            StartCoroutine(nameof(ShakingA));
         }
-
-        if(isMove == true)
+        if (isMove == true)
         {
-            rotationZ += moveSpeed;
+            rotationZ += Time.deltaTime * moveSpeed * 100.0f;
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
-            if(rotationZ >=maxAngle || rotationZ<=minAngle)
+            if (rotationZ >= maxAngle || rotationZ <= minAngle)
             {
                 moveSpeed *= -1;
-                count++;
-            }
-
-            if (count >= moveCount && moveSpeed < 0 && rotationZ < 0)
-            {
-                StartFalling();
-            }
-            else if (count >= moveCount && moveSpeed > 0 && rotationZ > 0)
-            {
-                StartFalling();
             }
         }
+    }
+    IEnumerator ShakingA()
+    {
+        isMove = true;
+        
+        yield return new WaitForSeconds(waitCount);
+
+        isMove = false;
+
+        yield return new WaitForSeconds(waitCount);
+
+        isMove = true;
+
+        yield return new WaitForSeconds(waitCount);
+
+        isMove = false;
+
+        StartFalling();
     }
 
     private void StartFalling()
