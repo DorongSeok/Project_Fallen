@@ -23,6 +23,9 @@
         },
         {
             "m_Id": "00605098e79d4c36a0eff22c5b109665"
+        },
+        {
+            "m_Id": "cc3ae692277d4a7ca1caa9272a86ccd3"
         }
     ],
     "m_Keywords": [],
@@ -125,6 +128,9 @@
         },
         {
             "m_Id": "188604163ac04a63b102194c0467ec71"
+        },
+        {
+            "m_Id": "d5d0be0f618446649e750990b26f43e3"
         }
     ],
     "m_GroupDatas": [
@@ -433,6 +439,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "02042cb669064e79b2fc1f243cc0bc98"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "d5d0be0f618446649e750990b26f43e3"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "2ba4e59680d8496bbb4940f8919f9546"
                 },
                 "m_SlotId": 1
             }
@@ -946,8 +966,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 741.0,
-            "y": 355.0,
+            "x": 721.0,
+            "y": 325.0,
             "width": 99.0,
             "height": 34.0
         }
@@ -2370,6 +2390,19 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
+    "m_ObjectId": "84fd19fc3bbe4992b9ba5240829aebe8",
+    "m_Id": 0,
+    "m_DisplayName": "Texture2D",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "8840400523d04ef2aa41fa582d15c5f2",
     "m_Id": 0,
@@ -2669,7 +2702,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "AlphaClipThreshold",
     "m_StageCapability": 2,
-    "m_Value": 0.10000000149011612,
+    "m_Value": 0.009999999776482582,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
@@ -3200,6 +3233,35 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "cc3ae692277d4a7ca1caa9272a86ccd3",
+    "m_Guid": {
+        "m_GuidSerialized": "853cf5ac-b007-4396-afb2-d539a098a622"
+    },
+    "m_Name": "Texture2D",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Texture2D",
+    "m_DefaultReferenceName": "_Texture2D",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "cdb4d74d0c6d465ebf08c18be073b8d5",
     "m_Id": 4,
@@ -3241,6 +3303,41 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "d5d0be0f618446649e750990b26f43e3",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 172.0,
+            "y": 221.0,
+            "width": 139.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "84fd19fc3bbe4992b9ba5240829aebe8"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "cc3ae692277d4a7ca1caa9272a86ccd3"
+    }
 }
 
 {
@@ -3411,6 +3508,9 @@
         },
         {
             "m_Id": "00605098e79d4c36a0eff22c5b109665"
+        },
+        {
+            "m_Id": "cc3ae692277d4a7ca1caa9272a86ccd3"
         }
     ]
 }
