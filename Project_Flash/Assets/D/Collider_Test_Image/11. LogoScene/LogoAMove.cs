@@ -5,8 +5,8 @@ using UnityEngine;
 public class LogoAMove : MonoBehaviour
 {
     public float waitCount = 0.5f;
-    private int count = 0;
-    private float angle = 0;
+    // private int count = 0;
+    // private float angle = 0;
     public float maxAngle = 3;
     public float minAngle = -3;
     public float moveSpeed = 1f;
@@ -19,7 +19,7 @@ public class LogoAMove : MonoBehaviour
 
     void Start()
     {
-        count = 0;
+        // count = 0;
     }
 
     void Update()
@@ -76,7 +76,7 @@ public class LogoAMove : MonoBehaviour
     {
         rotationZ = 0;
         isMove = false;
-        count = 0;
+        // count = 0;
         if (moveSpeed < 0)
         {
             moveSpeed *= -1;
