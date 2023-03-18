@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4283956143534995005}
   - component: {fileID: 4283956143534995004}
   - component: {fileID: 4283956143534995003}
+  - component: {fileID: -4555606754941766926}
   m_Layer: 8
-  m_Name: Obstacle_Square
+  m_Name: Obstacle_3_LeftRightSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,3 +112,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-4555606754941766926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283956143534995001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b269a643c26c6a4890ac5391abcb834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delta: 3
+  speed: 2
+  delay: 0
