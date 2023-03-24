@@ -8651,6 +8651,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7125399241698568873, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: chargeCore
+      value: 
+      objectReference: {fileID: 1003428171}
+    - target: {fileID: -7125399241698568873, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: chargeEffect
+      value: 
+      objectReference: {fileID: 1300020106}
+    - target: {fileID: 920037621412373327, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1390659325747438337, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8703,6 +8715,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1703753268284719286, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529437655825898387, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529437655825898387, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 29.577621
+      objectReference: {fileID: 0}
+    - target: {fileID: 5361348482547343121, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589539554912632597, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[6].m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721822097383181294, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_Name
+      value: ChargeCore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721822097383181294, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7203114758066330159, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -8713,7 +8753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7552578860777104150, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7697908380399434996, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[4].m_Value
@@ -40572,6 +40612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa350f8deef117a4b99681014429b24f, type: 3}
+--- !u!1 &1003428171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6721822097383181294, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+  m_PrefabInstance: {fileID: 168630094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1003636236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54107,6 +54152,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7764533330576668231, guid: 9c8541a62fb218047b67abb8354c99af, type: 3}
   m_PrefabInstance: {fileID: 1299895435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &1300020106 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 5589539554912632597, guid: 5713845e3f01f664ab0d0711f2fac46a, type: 3}
+  m_PrefabInstance: {fileID: 168630094}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1301937467
 GameObject:

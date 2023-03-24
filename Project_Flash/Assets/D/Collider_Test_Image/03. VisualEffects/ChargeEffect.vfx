@@ -371,7 +371,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614713}
   m_ExposedName: ChargeEffectSizeMin
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:
@@ -451,7 +451,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614756}
   m_ExposedName: ChargeEffectSizeMax
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 2
   m_Category: 
   m_Min:
     m_Type:
@@ -2619,7 +2619,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614920}
   m_ExposedName: ChargeGage
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 3
   m_Category: 
   m_Min:
     m_Type:

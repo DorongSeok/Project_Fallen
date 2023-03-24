@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.VFX;
 
 public class PlayerCharacterTest2 : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class PlayerCharacterTest2 : MonoBehaviour
     public float proportionalFactor;
 
     private bool isignoreLayerCollision = false;
+
+    public GameObject chargeCore;
+    public VisualEffect chargeEffect;
 
     //private int playerLayer, groundLayer, obstacleLayer;
 
@@ -91,12 +95,22 @@ public class PlayerCharacterTest2 : MonoBehaviour
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
         duration += Time.deltaTime;
+        if (chargeCore.activeSelf == false && duration >= durationMin)
+        {
+            chargeCore.SetActive(true);
+        }
+        if (chargeCore.activeSelf == true)
+        {
+            chargeEffect.SetFloat("ChargeGage", duration * 0.5f);
+        }
     }
     private void Move() // 입력에 따른 이동
     {
+        chargeEffect.SetFloat("ChargeGage", 0.0f);
         if (directionX == 0 && directionY == 0) // 방향이 없을 경우 차징 초기화
         {
             duration = 0;
+            chargeCore.SetActive(false);
         }
         else
         {
@@ -242,6 +256,7 @@ public class PlayerCharacterTest2 : MonoBehaviour
                 isignoreLayerCollision = false;
             }
             duration = 0; // 움직인 후 차징 초기화
+            chargeCore.SetActive(false);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
