@@ -98,6 +98,8 @@ MonoBehaviour:
   durationMax: 2
   durationMin: 0.5
   proportionalFactor: 4
+  chargeCore: {fileID: 0}
+  chargeEffect: {fileID: 0}
 --- !u!1 &1703753268284719286
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &212453343579517121
 Transform:
   m_ObjectHideFlags: 0
@@ -645,7 +647,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6721822097383181294}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 031240df40b3e8f48bb854e7322f090c, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 5df501552e2fa48419296e323a69c70b, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -703,7 +705,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6721822097383181294}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerCharacterControl : MonoBehaviour
 {
@@ -36,7 +37,10 @@ public class PlayerCharacterControl : MonoBehaviour
 
     private bool isignoreLayerCollision = false;
 
-    private PlayerCharacterInsideCollisionCheck playerCharacterInsideCollisionCheck;
+    //private PlayerCharacterInsideCollisionCheck playerCharacterInsideCollisionCheck;
+
+    public GameObject chargeCore;
+    public VisualEffect chargeEffect;
 
     //private int playerLayer, groundLayer, obstacleLayer;
 
@@ -55,7 +59,8 @@ public class PlayerCharacterControl : MonoBehaviour
         
         rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<CircleCollider2D>();
-        playerCharacterInsideCollisionCheck = GetComponentInChildren<PlayerCharacterInsideCollisionCheck>();
+        //playerCharacterInsideCollisionCheck = GetComponentInChildren<PlayerCharacterInsideCollisionCheck>();
+
 
         //playerLayer = LayerMask.NameToLayer("Player");
     }
@@ -122,12 +127,6 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             Move();
         }
-
-        //// 위치 리셋
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    ResetPosition();
-        //}
     }
     private void FixedUpdate()
     {
@@ -136,12 +135,29 @@ public class PlayerCharacterControl : MonoBehaviour
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
         duration += Time.deltaTime;
+        if (chargeCore.activeSelf == false && duration >= durationMin)
+        {
+            Debug.Log("차징 시작!");
+            chargeCore.SetActive(true);
+        }
+        if (duration > 0.4f)
+        {
+            float chargeGage;
+            chargeGage = 0.3f + (duration * 0.5f);
+            if (chargeGage > 1.0f)
+            {
+                chargeGage = 1.0f;
+            }
+            chargeEffect.SetFloat("ChargeGage", chargeGage);
+        }
     }
     private void Move() // 입력에 따른 이동
     {
+        chargeEffect.SetFloat("ChargeGage", 0.0f);
         if (directionX == 0 && directionY == 0) // 방향이 없을 경우 차징 초기화
         {
             duration = 0;
+            chargeCore.SetActive(false);
         }
         else
         {
@@ -289,6 +305,7 @@ public class PlayerCharacterControl : MonoBehaviour
                 isignoreLayerCollision = false;
             }
             duration = 0; // 움직인 후 차징 초기화
+            chargeCore.SetActive(false);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

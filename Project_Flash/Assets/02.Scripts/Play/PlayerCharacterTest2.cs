@@ -95,11 +95,11 @@ public class PlayerCharacterTest2 : MonoBehaviour
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
         duration += Time.deltaTime;
-        if (chargeCore.activeSelf == false && duration >= 0.4f)
+        if (chargeCore.activeSelf == false && duration >= durationMin)
         {
             chargeCore.SetActive(true);
         }
-        if (chargeCore.activeSelf == true)
+        if (duration > 0.4f)
         {
             float chargeGage;
             chargeGage = 0.3f + (duration * 0.5f);
