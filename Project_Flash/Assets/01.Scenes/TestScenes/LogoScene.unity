@@ -1795,7 +1795,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1119185081, guid: fa76a25e5ce2e684084b6fb6374fbdb5, type: 3}
       propertyPath: startY
-      value: -22.8
+      value: -23.11
       objectReference: {fileID: 0}
     - target: {fileID: 1119185081, guid: fa76a25e5ce2e684084b6fb6374fbdb5, type: 3}
       propertyPath: logoSceneCamera

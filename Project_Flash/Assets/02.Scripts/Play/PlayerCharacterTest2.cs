@@ -112,6 +112,9 @@ public class PlayerCharacterTest2 : MonoBehaviour
     }
     private void Move() // 입력에 따른 이동
     {
+        chargeCore.SetActive(false);
+        chargeEffect.SetFloat("ChargeGage", 0);
+
         chargeEffect.SetFloat("ChargeGage", 0.0f);
         if (directionX == 0 && directionY == 0) // 방향이 없을 경우 차징 초기화
         {
@@ -293,6 +296,9 @@ public class PlayerCharacterTest2 : MonoBehaviour
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
         onPlayerFallingStart();
         duration = 0;
+
+        chargeCore.SetActive(false);
+        chargeEffect.SetFloat("ChargeGage", 0);
 
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
