@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 122736f8174a436419d6ca01695c8fd2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 04c819f410c501e44bb260870fcdf01b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -69,7 +69,7 @@ Material:
     - _VoronoiAngle: 3.8
     - _VoronoiDensity: 23
     m_Colors:
-    - _Layer1Color: {r: 0.12156863, g: 0.29411766, b: 0.50980395, a: 0}
+    - _Layer1Color: {r: 0.11774654, g: 0.29182982, b: 0.509434, a: 0}
     - _Layer2Color: {r: 1.8307477, g: 5.7300024, b: 4.8740687, a: 0}
     - _LayerSpeed: {r: 0.02, g: 0.02, b: 0, a: 0}
   m_BuildTextureStacks: []
