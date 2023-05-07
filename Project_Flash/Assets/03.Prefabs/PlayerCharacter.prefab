@@ -100,7 +100,6 @@ MonoBehaviour:
   proportionalFactor: 4
   chargeCore: {fileID: 6721822097383181294}
   chargeEffect: {fileID: 5589539554912632597}
-  maxChargeGage: 100
 --- !u!1 &1703753268284719286
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +543,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.4
+  m_FalloffIntensity: 0.1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1

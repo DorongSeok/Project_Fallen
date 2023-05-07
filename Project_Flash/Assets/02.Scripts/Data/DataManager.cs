@@ -111,6 +111,14 @@ public class DataManager
     {
         return data._isFirstPlay;
     }
+    public void SetLevel(int level)
+    {
+        data._level = level;
+    }
+    public int GetLevel()
+    {
+        return data._level;
+    }
     public void ResetSaveData() // 저장된 모든 정보를 초기화 함
     {
         data = new GameData();

@@ -6,10 +6,20 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public GameObject option;
+    public GameObject level;
 
     IEnumerator ContinueButtonClick()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Play", LoadSceneMode.Single);
+        AsyncOperation asyncOperation;
+        if (Managers.data.GetLevel() == 1)
+        {
+            asyncOperation = SceneManager.LoadSceneAsync("Play", LoadSceneMode.Single);
+        }
+        else
+        {
+            asyncOperation = null;
+        }
+        
         while (!asyncOperation.isDone)
         {
             yield return null;
@@ -19,6 +29,7 @@ public class UIManager : MonoBehaviour
     {
         Managers.data.ResetSaveData();
         Managers.data.SetIsFirstPlay(false);
+        Managers.data.SetLevel(1);
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Play", LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
