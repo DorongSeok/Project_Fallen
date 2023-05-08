@@ -16,21 +16,39 @@ public class GameManager : MonoBehaviour
     public OptionCtrl option;
     private bool pauseMenuOpen = false;
 
+    private float second = 0.0f;
+
     void Start()
     {
-        Managers.Input.KeyAction -= OnKeyboard;
-        Managers.Input.KeyAction += OnKeyboard;
-
         if (Managers.Instance != null) // datamanger가 존재한다면 스테이지 시작 함수 실행(오류 방지)
         {
             StageStart();
         }
+        Managers.Input.KeyAction -= OnKeyboard;
+        Managers.Input.KeyAction += OnKeyboard;
+
+
+        second = Managers.data.GetSecond();
+
+        StartCoroutine(nameof(TimerCoroutine));
+
+
 
         // 존재하지 않는다면 종료하는 구문 필요 시 추가할 것
         //else if (DataManager.instance == null)
         //{
         //    Application.Quit();
         //}
+    }
+    IEnumerator TimerCoroutine()
+    {
+        // 추후 생성 코루틴 호출 중 오류가 생길 경우, 코루틴 종료 함수 실행할 것(혹은 while 조건으로)
+        while(true)
+        {
+            yield return new WaitForSeconds(1.0f);
+
+            second += 1;
+        }
     }
     private void OnKeyboard()
     {
@@ -74,9 +92,14 @@ public class GameManager : MonoBehaviour
             if (playerCharacterControl != null)
             {
                 playerCharacterControl.SavePlayerData();
+                SaveGameManagerData();
                 Managers.data.SaveGameData();
             }
         }
+    }
+    private void SaveGameManagerData()
+    {
+        Managers.data.SetSecond(second);
     }
     public void SaveAndExitButtonClick() // 저장 후 종료에 해당하는 버튼 클릭 시 대응하는 함수
     {
@@ -105,4 +128,14 @@ public class GameManager : MonoBehaviour
         pauseMenuOpen = false;
         pauseMenu.SetActive(false);
     }
+    
+    public void SetSecond(float second)
+    {
+        this.second = second;
+    }
+    public float GetSecond()
+    {
+        return second;
+    }
+    
 }

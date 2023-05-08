@@ -18,6 +18,8 @@ namespace DataInfo
         public bool _isignoreLayerCollision;
         public bool _isFirstPlay;
         public int _level;
+        public int _fallenCount;
+        public float _second;
 
         public GameData() // 생성자(초기값 선언)
         {
@@ -31,6 +33,8 @@ namespace DataInfo
             _isignoreLayerCollision = false;
             _isFirstPlay = true;
             _level = 1;
+            _fallenCount = 0;
+            _second = 0.0f;
         }
 
         // 추가적인 데이터 저장 필요 시 추가하고 생성자에도 추가할 것

@@ -33,6 +33,9 @@ public class PlayerCharacterControl : MonoBehaviour
     public float durationMax;
     public float durationMin;
 
+
+    private int fallenCount = 0;
+
     public float proportionalFactor;
 
     private bool isignoreLayerCollision = false;
@@ -59,6 +62,8 @@ public class PlayerCharacterControl : MonoBehaviour
         
         rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<CircleCollider2D>();
+
+        fallenCount = Managers.data.GetFallenCount();
         //playerCharacterInsideCollisionCheck = GetComponentInChildren<PlayerCharacterInsideCollisionCheck>();
 
 
@@ -83,6 +88,7 @@ public class PlayerCharacterControl : MonoBehaviour
             Managers.data.SetIsMove(isMove);
             Managers.data.SetDuration(duration);
             Managers.data.SetIsignoreLayerCollision(isignoreLayerCollision);
+            Managers.data.SetFallenCount(fallenCount);
         }
     }
     public void LoadPlayerData() // 게임 재 시작 시 데이터 불러오기
@@ -335,8 +341,10 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
+        
         onPlayerFallingStart();
         duration = 0;
+        fallenCount += 1;
 
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
@@ -425,5 +433,10 @@ public class PlayerCharacterControl : MonoBehaviour
     public bool GetIsMove()
     {
         return isMove;
+    }
+
+    public int GetFallenCount()
+    {
+        return fallenCount;
     }
 }

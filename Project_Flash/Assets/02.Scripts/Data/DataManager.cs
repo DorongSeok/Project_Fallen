@@ -119,6 +119,22 @@ public class DataManager
     {
         return data._level;
     }
+    public void SetFallenCount(int fallenCount)
+    {
+        data._fallenCount = fallenCount;
+    }
+    public int GetFallenCount()
+    {
+        return data._fallenCount;
+    }
+    public void SetSecond(float second)
+    {
+        data._second = second;
+    }
+    public float GetSecond()
+    {
+        return data._second;
+    }
     public void ResetSaveData() // 저장된 모든 정보를 초기화 함
     {
         data = new GameData();
