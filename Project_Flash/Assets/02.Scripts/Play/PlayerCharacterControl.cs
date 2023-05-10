@@ -39,6 +39,7 @@ public class PlayerCharacterControl : MonoBehaviour
     public float proportionalFactor;
 
     private bool isignoreLayerCollision = false;
+    private bool isGameStop = false;
 
     //private PlayerCharacterInsideCollisionCheck playerCharacterInsideCollisionCheck;
 
@@ -120,19 +121,27 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     void OnKeyboard()
     {
-        directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
-        directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
+        if (isGameStop == false)
+        {
+            directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
+            directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
 
-        // 떨어지고 있을 때 및 이동 중일 때를 제외한 상황에서만 입력을 받음
-        // 이동 전, 충전하는 부분만 isMove가 false일 때도 가능하게 할지 결정할 것
-        if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false) 
-        {
-            Charging();
+            // 떨어지고 있을 때 및 이동 중일 때를 제외한 상황에서만 입력을 받음
+            // 이동 전, 충전하는 부분만 isMove가 false일 때도 가능하게 할지 결정할 것
+            if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false)
+            {
+                Charging();
+            }
+            if (Input.GetKeyUp(KeyCode.Space) && isMove == false && isFallen == false)
+            {
+                Move();
+            }
         }
-        if (Input.GetKeyUp(KeyCode.Space) && isMove == false && isFallen == false)
-        {
-            Move();
-        }
+        
+    }
+    public void SetIsGameStop(bool isGameStop)
+    {
+        this.isGameStop = isGameStop;
     }
     private void FixedUpdate()
     {

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject option;
     public GameObject level;
+    public EventSystem eventSystem;
 
     IEnumerator ContinueButtonClick()
     {
@@ -66,6 +68,7 @@ public class UIManager : MonoBehaviour
     {
         option.SetActive(true);
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(true);
+        eventSystem.sendNavigationEvents = false;
     }
     public void CoroutineCreditButtonClick()
     {
@@ -81,6 +84,7 @@ public class UIManager : MonoBehaviour
     }
     public void OptionExitButtonClick()
     {
+        eventSystem.sendNavigationEvents = true;
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(false);
         option.SetActive(false);
     }

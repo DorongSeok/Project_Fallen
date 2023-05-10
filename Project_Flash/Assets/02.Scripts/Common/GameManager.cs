@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour
     }
     private void PauseMenuOpen() // 메뉴 오픈 시 게임 내 시간 정지
     {
+        playerCharacterControl.SetIsGameStop(true);
         Time.timeScale = 0;
         pauseMenuOpen = true;
         pauseMenu.SetActive(true);
@@ -127,6 +128,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1; 
         pauseMenuOpen = false;
         pauseMenu.SetActive(false);
+        playerCharacterControl.SetIsGameStop(false);
     }
     
     public void SetSecond(float second)
