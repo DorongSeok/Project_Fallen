@@ -64,7 +64,7 @@ Material:
     m_Colors:
     - _Color: {r: 0.54568, g: 0, b: 1, a: 0}
     - _Color1: {r: 0.11320752, g: 0.08123562, b: 0.065681726, a: 0}
-    - _Color2: {r: 0.21698111, g: 0.14680743, b: 0.12793697, a: 1}
+    - _Color2: {r: 0.21568628, g: 0.14509805, b: 0.12941177, a: 1}
     - _Speed: {r: 0, g: 0, b: 0, a: 0}
     - _UVTiling: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
