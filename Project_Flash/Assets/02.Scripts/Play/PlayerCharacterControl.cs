@@ -152,7 +152,6 @@ public class PlayerCharacterControl : MonoBehaviour
         duration += Time.deltaTime;
         if (chargeCore.activeSelf == false && duration >= durationMin)
         {
-            Debug.Log("차징 시작!");
             chargeCore.SetActive(true);
         }
         if (duration > 0.4f)
@@ -351,7 +350,6 @@ public class PlayerCharacterControl : MonoBehaviour
         // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
         
-        onPlayerFallingStart();
         duration = 0;
         fallenCount += 1;
 
@@ -362,6 +360,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     IEnumerator CheckIsFalling() // 중력이 적용된 후, 멈췄을 때 중력 적용을 취소하고 다시 움직일 수 있게 하는 코루틴
     {
+        onPlayerFallingStart();
         isFallen = true;
         yield return new WaitForSeconds(0.1f);
 
