@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _GradientNoiseScale: 2
-    - _Lerp: 0.15
+    - _Lerp: 0.25
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
