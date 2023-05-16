@@ -353,6 +353,9 @@ public class PlayerCharacterControl : MonoBehaviour
         duration = 0;
         fallenCount += 1;
 
+        chargeCore.SetActive(false);
+        chargeEffect.SetFloat("ChargeGage", 0);
+
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
         rigidBody.drag = 0.0f;
