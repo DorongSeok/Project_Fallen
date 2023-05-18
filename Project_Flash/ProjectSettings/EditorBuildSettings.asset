@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Initializing.unity
     guid: d40722ea8bc9aab4a9f4f1c4b4861ecc
   - enabled: 1
-    path: Assets/01.Scenes/Main.unity
+    path: Assets/01.Scenes/Main_UIScene.unity
     guid: 861388538c96b97419d76892cb9c63ca
   - enabled: 1
     path: Assets/01.Scenes/Play.unity
