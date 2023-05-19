@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
         AsyncOperation asyncOperation;
         if (Managers.data.GetLevel() == 1)
         {
-            asyncOperation = SceneManager.LoadSceneAsync("Play", LoadSceneMode.Single);
+            asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
         }
         else
         {
@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
         Managers.data.ResetSaveData();
         Managers.data.SetIsFirstPlay(false);
         Managers.data.SetLevel(1);
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Play", LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
             yield return null;
@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     }
     IEnumerator CreditButtonClick()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Credit", LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(4, LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
             yield return null;
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     }
     IEnumerator MoveToMainScene()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
             yield return null;

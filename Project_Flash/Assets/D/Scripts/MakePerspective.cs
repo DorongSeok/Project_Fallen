@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MakePerspective : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public float perspectiveDegreeX = 0.01f;
     public float perspectiveDegreeY = 0.1f;
     public float maxHeight = 300.0f;
@@ -45,5 +45,9 @@ public class MakePerspective : MonoBehaviour
         playerPos.y = playerY;
 
         this.transform.position = playerPos;
+    }
+    public void SetPlayer(GameObject player)
+    {
+        this.player = player;
     }
 }

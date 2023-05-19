@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
+    public MakePerspective makePerspective;
 
     private GameObject player;
     
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         }
         Managers.Input.KeyAction -= OnKeyboard;
         Managers.Input.KeyAction += OnKeyboard;
+
 
 
         second = Managers.data.GetSecond();
@@ -73,6 +75,8 @@ public class GameManager : MonoBehaviour
     {
         player = Instantiate(playerPrefab, Managers.data.GetSavePos(), Quaternion.identity);
         playerCharacterControl = player.GetComponent<PlayerCharacterControl>();
+
+        makePerspective.SetPlayer(player);
     }
     private void OnApplicationQuit() // 게임 종료 시, 저장 진행
     {
@@ -110,7 +114,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator MoveToMainScene() // 종료 시 메인 메뉴로 이동하는 함수
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
             yield return null;

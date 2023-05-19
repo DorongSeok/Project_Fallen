@@ -26,7 +26,7 @@ public class Managers : MonoBehaviour
         yield return new WaitForSeconds(waitingTime); // 연출로 대체할 것
 
         // Main씬 비동기 로드 사용 문법
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
             yield return null;
