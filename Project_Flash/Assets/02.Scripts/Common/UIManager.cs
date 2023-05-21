@@ -10,48 +10,62 @@ public class UIManager : MonoBehaviour
     public GameObject level;
     public EventSystem eventSystem;
 
+    private AsyncOperation asyncOperation;
+
     IEnumerator ContinueButtonClick()
     {
-        AsyncOperation asyncOperation;
-        if (Managers.data.GetLevel() == 1)
+        if (asyncOperation == null)
         {
-            asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
-        }
-        else
-        {
-            asyncOperation = null;
-        }
-        
-        while (!asyncOperation.isDone)
-        {
-            yield return null;
+            //AsyncOperation asyncOperation;
+            if (Managers.data.GetLevel() == 1)
+            {
+                asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
+            }
+            else
+            {
+                asyncOperation = null;
+            }
+
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
         }
     }
     IEnumerator NewGameButtonClick()
     {
-        Managers.data.ResetSaveData();
-        Managers.data.SetIsFirstPlay(false);
-        Managers.data.SetLevel(1);
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
-        while (!asyncOperation.isDone)
+        if (asyncOperation == null)
         {
-            yield return null;
+            Managers.data.ResetSaveData();
+            Managers.data.SetIsFirstPlay(false);
+            Managers.data.SetLevel(1);
+            asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
         }
     }
     IEnumerator CreditButtonClick()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(4, LoadSceneMode.Single);
-        while (!asyncOperation.isDone)
+        if (asyncOperation == null)
         {
-            yield return null;
+            asyncOperation = SceneManager.LoadSceneAsync(4, LoadSceneMode.Single);
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
         }
     }
     IEnumerator MoveToMainScene()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
-        while (!asyncOperation.isDone)
+        if (asyncOperation == null)
         {
-            yield return null;
+            asyncOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
         }
     }
     
@@ -68,7 +82,7 @@ public class UIManager : MonoBehaviour
     {
         option.SetActive(true);
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(true);
-        eventSystem.sendNavigationEvents = false;
+        //eventSystem.sendNavigationEvents = false;
     }
     public void CoroutineCreditButtonClick()
     {
@@ -84,7 +98,7 @@ public class UIManager : MonoBehaviour
     }
     public void OptionExitButtonClick()
     {
-        eventSystem.sendNavigationEvents = true;
+        //eventSystem.sendNavigationEvents = true; // 추후 네비게이션 기능 사용할 때 활성화할 것
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(false);
         option.SetActive(false);
     }

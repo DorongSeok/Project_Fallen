@@ -39,10 +39,11 @@ public class Managers : MonoBehaviour
     private void OnApplicationQuit()
     {
         _data.SaveGameData();
+        Time.timeScale = 0.0f;
     }
     static void Init() // ΩÃ±€≈Ê
     {
-        if(s_instance == null)
+        if (s_instance == null && Time.timeScale != 0.0f)
         {
             GameObject obj = GameObject.Find("@Managers");
             if (obj == null)

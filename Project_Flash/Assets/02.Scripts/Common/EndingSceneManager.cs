@@ -7,8 +7,15 @@ public class EndingSceneManager : MonoBehaviour
 {
     private void Start()
     {
-        Debug.Log("게임 클리어 ㅊㅋㅊㅋ");
-        StartCoroutine(nameof(Main_UISceneOpen));
+        ShowRecord();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Managers.data.ResetSaveData();
+            StartCoroutine(nameof(Main_UISceneOpen));
+        }
     }
 
     IEnumerator Main_UISceneOpen()
@@ -18,5 +25,10 @@ public class EndingSceneManager : MonoBehaviour
         {
             yield return null;
         }
+    }
+    private void ShowRecord()
+    {
+        Debug.Log("Clear Time : " + Managers.data.GetSecond());
+        Debug.Log("Falling Count : " + Managers.data.GetFallenCount());
     }
 }

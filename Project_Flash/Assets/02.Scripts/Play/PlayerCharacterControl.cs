@@ -77,6 +77,10 @@ public class PlayerCharacterControl : MonoBehaviour
         Managers.Input.KeyAction += OnKeyboard;
         LoadPlayerData();
     }
+    private void OnDisable()
+    {
+        Managers.Input.KeyAction -= OnKeyboard;
+    }
     public void SavePlayerData() // 게임 재 시작 시 불러와야 하는 데이터 저장
     {
         if (Managers.data != null)

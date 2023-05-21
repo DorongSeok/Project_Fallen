@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
         //    Application.Quit();
         //}
     }
+    private void OnDisable()
+    {
+        Managers.Input.KeyAction -= OnKeyboard;
+    }
     IEnumerator TimerCoroutine()
     {
         // 추후 생성 코루틴 호출 중 오류가 생길 경우, 코루틴 종료 함수 실행할 것(혹은 while 조건으로)
@@ -119,6 +123,19 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+    }
+    IEnumerator EndingSceneOpen()
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(6, LoadSceneMode.Single);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
+    }
+    public void GameClear()
+    {
+        SaveData();
+        StartCoroutine(nameof(EndingSceneOpen));
     }
     private void PauseMenuOpen() // 메뉴 오픈 시 게임 내 시간 정지
     {

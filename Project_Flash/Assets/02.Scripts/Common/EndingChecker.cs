@@ -5,19 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class EndingChecker : MonoBehaviour
 {
+    public GameManager gameManager;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 6)
         {
-            StartCoroutine(nameof(EndingSceneOpen));
+            gameManager.GameClear();
         }
     }
-    IEnumerator EndingSceneOpen()
-    {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(6, LoadSceneMode.Single);
-        while (!asyncOperation.isDone)
-        {
-            yield return null;
-        }
-    }
+    
 }

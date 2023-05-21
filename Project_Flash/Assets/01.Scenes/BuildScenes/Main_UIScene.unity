@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -726,8 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1047222294}
-  m_sendNavigationEvents: 1
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 0
   m_DragThreshold: 10
 --- !u!114 &616198387
 MonoBehaviour:
@@ -877,6 +877,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 628700965}
     m_Modifications:
+    - target: {fileID: 2119880657089399415, guid: d9c7f56024bf67141bfdf00921e6e2b7, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4311016672591213356, guid: d9c7f56024bf67141bfdf00921e6e2b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -967,6 +971,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4311016672591213357, guid: d9c7f56024bf67141bfdf00921e6e2b7, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311016672621162711, guid: d9c7f56024bf67141bfdf00921e6e2b7, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398062484850334021, guid: d9c7f56024bf67141bfdf00921e6e2b7, type: 3}
+      propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1217,7 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1532,7 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2227,7 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2678,7 +2690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
