@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class EndingSceneManager : MonoBehaviour
 {
+    private float clearTime;
+    private float fallingCount;
     private void Start()
     {
+        clearTime = Managers.data.GetSecond();
+        fallingCount = Managers.data.GetFallenCount();
         ShowRecord();
     }
     private void Update()
@@ -28,7 +33,13 @@ public class EndingSceneManager : MonoBehaviour
     }
     private void ShowRecord()
     {
-        Debug.Log("Clear Time : " + Managers.data.GetSecond());
-        Debug.Log("Falling Count : " + Managers.data.GetFallenCount());
+        Debug.Log("Falling Count : " + fallingCount);
+        Debug.Log(getParseTime(clearTime));
+    }
+    private string getParseTime(float time)
+    {
+        string t = TimeSpan.FromSeconds(time).ToString("hh\\:mm\\:ss");
+        string[] tokens = t.Split(':');
+        return tokens[0] + "h " + tokens[1] + "m " + tokens[2] + "s";
     }
 }
