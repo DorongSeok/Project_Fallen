@@ -55,7 +55,7 @@ Material:
     - _Layer1Speed: {r: 0.1, g: 0, b: 0, a: 0}
     - _Layer2Color: {r: 1, g: 0.4142865, b: 0, a: 0}
     - _Layer2Speed: {r: 0.2, g: 0.2, b: 0, a: 0}
-    - _LayerColor: {r: 0.082352936, g: 0.3882353, b: 0.36078876, a: 0}
+    - _LayerColor: {r: 0.33807126, g: 0.28577787, b: 0.3584906, a: 0}
     - _LayerSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _OutlineColor: {r: 0.9921569, g: 0.5570974, b: 0, a: 0}
   m_BuildTextureStacks: []
