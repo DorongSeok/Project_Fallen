@@ -42,8 +42,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _GradientLerp: 1
     - _GradientNoiseScale: 3
-    - _Lerp: 0.18
+    - _Lerp: 0.66
     - _Outline1Size: 0.2
     - _Outline2Size: 0.1
     - _QueueControl: 0
@@ -55,7 +56,7 @@ Material:
     - _Layer1Speed: {r: 0.1, g: 0, b: 0, a: 0}
     - _Layer2Color: {r: 1, g: 0.4142865, b: 0, a: 0}
     - _Layer2Speed: {r: 0.2, g: 0.2, b: 0, a: 0}
-    - _LayerColor: {r: 0.33807126, g: 0.28577787, b: 0.3584906, a: 0}
+    - _LayerColor: {r: 0.32501584, g: 0.19446424, b: 0.3584906, a: 0}
     - _LayerSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _OutlineColor: {r: 0.9921569, g: 0.5570974, b: 0, a: 0}
   m_BuildTextureStacks: []
