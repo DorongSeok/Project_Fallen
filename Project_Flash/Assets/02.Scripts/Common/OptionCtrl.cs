@@ -60,15 +60,21 @@ public class OptionCtrl : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
 
         fullScreenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
+
+        BGMSlider.value = Managers.data.GetBGMSound();
+        SFXSlider.value = Managers.data.GetSFXSound();
     }
     public void FullScreenBtn(bool isFull)
     {
         screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+        Managers.data.SetIsFullScreen(isFull);
         ChangeResolution();
     }
     public void DropboxOptionChange(int x)
     {
         resolutionNum = x;
+        Managers.data.SetScreenWidth(resolutions[resolutionNum].width);
+        Managers.data.SetScreenHeight(resolutions[resolutionNum].height);
         ChangeResolution();
     }
     public void ChangeResolution()
@@ -77,31 +83,31 @@ public class OptionCtrl : MonoBehaviour
     }
     public void BGMControl()
     {
-        Debug.Log("BGM 컨트롤");
         float sound = BGMSlider.value;
 
-        if (sound <= -40f) 
+        if (sound <= -40.0f) 
         {
-            masterMixer.SetFloat("BGM", -80);
+            masterMixer.SetFloat("BGM", -80.0f);
         }
         else
         {
             masterMixer.SetFloat("BGM", sound);
         }
+        Managers.data.SetBGMSound(sound);
     }
     public void SFXControl()
     {
-        Debug.Log("SFX 컨트롤");
         float sound = SFXSlider.value;
 
         if (sound <= -40f)
         {
-            masterMixer.SetFloat("SFX", -80);
+            masterMixer.SetFloat("SFX", -80.0f);
         }
         else
         {
             masterMixer.SetFloat("SFX", sound);
         }
+        Managers.data.SetSFXSound(sound);
     }
     public void SetIsOptionOpen(bool isOptionOpen)
     {

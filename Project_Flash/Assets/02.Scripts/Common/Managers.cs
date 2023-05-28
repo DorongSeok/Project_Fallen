@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class Managers : MonoBehaviour
 {
     public float waitingTime = 1.0f;
+    public AudioMixer masterMixer;
 
     static Managers s_instance;
     public static Managers Instance { get { Init(); return s_instance; } }
@@ -23,6 +25,8 @@ public class Managers : MonoBehaviour
     IEnumerator Start()
     {
         Init();
+        OptionSetting();
+        ViewTeamLogo();
         yield return new WaitForSeconds(waitingTime); // 연출로 대체할 것
 
         // Main씬 비동기 로드 사용 문법
@@ -39,6 +43,7 @@ public class Managers : MonoBehaviour
     private void OnApplicationQuit()
     {
         _data.SaveGameData();
+        _data.SaveOptionData();
         Time.timeScale = 0.0f;
     }
     static void Init() // 싱글톤
@@ -56,12 +61,38 @@ public class Managers : MonoBehaviour
             s_instance = obj.GetComponent<Managers>();
             s_instance._sound.Init();
             s_instance._data.LoadGameData();
+            s_instance._data.LoadOptionData();
         }
     }
-
+    private void ViewTeamLogo()
+    {
+        //팀로고 연출 입력
+    }
     public void Clear() // 초기화
     {
         Input.Clear();
         Sound.Clear();
+    }
+    private void OptionSetting()
+    {
+        Screen.SetResolution(Managers.data.GetScreenWidth(), Managers.data.GetScreenHeight(), 
+            Managers.data.GetIsFullScreen() ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed);
+        if (Managers.data.GetBGMSound() <= -40.0f)
+        {
+            masterMixer.SetFloat("BGM", -80.0f);
+        }
+        else
+        {
+            masterMixer.SetFloat("BGM", Managers.data.GetBGMSound());
+        }
+        if (Managers.data.GetSFXSound() <= -40f)
+        {
+            masterMixer.SetFloat("SFX", -80.0f);
+        }
+        else
+        {
+            masterMixer.SetFloat("SFX", Managers.data.GetSFXSound());
+        }
+        
     }
 }

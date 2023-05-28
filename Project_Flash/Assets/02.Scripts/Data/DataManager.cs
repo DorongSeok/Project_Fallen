@@ -8,8 +8,10 @@ using DataInfo;
 public class DataManager
 {
     string GameDataFileName = "GameData.json";
+    string OptionDataFileName = "OptionData.json";
 
-    public GameData data = new GameData(); // 스크립트 내에 data 저장 공간 생성
+    public GameData gData = new GameData(); // 스크립트 내에 data 저장 공간 생성
+    public OptionData oData = new OptionData();
 
     public void LoadGameData() // 로컬 파일 경로에 저장된 데이터를 불러옴
     {
@@ -18,26 +20,42 @@ public class DataManager
         {
             string FromJsonData = File.ReadAllText(filePath);
 
-            data = JsonUtility.FromJson<GameData>(FromJsonData);
+            gData = JsonUtility.FromJson<GameData>(FromJsonData);
         }
     }
-
     public void SaveGameData() // data형태로 존재하는 저장 필요 데이터를, 로컬 파일로 저장함
     {
-        string ToJsonData = JsonUtility.ToJson(data, true); // 데이터 보기 좋게 정리
+        string ToJsonData = JsonUtility.ToJson(gData, true); // 데이터 보기 좋게 정리
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
 
         File.WriteAllText(filePath, ToJsonData); // 파일이 존재한다면 덮어 씌우기, 존재하지 않는다면 새로 만들기
     }
+    public void LoadOptionData()
+    {
+        string filePath = Application.persistentDataPath + "/" + OptionDataFileName;
+        if (File.Exists(filePath) == true)
+        {
+            string FromJsonData = File.ReadAllText(filePath);
+
+            oData = JsonUtility.FromJson<OptionData>(FromJsonData);
+        }
+    }
+    public void SaveOptionData()
+    {
+        string ToJsonData = JsonUtility.ToJson(oData, true);
+        string filePath = Application.persistentDataPath + "/" + OptionDataFileName;
+
+        File.WriteAllText(filePath, ToJsonData);
+    }
 
     public void SetSavePos(Vector3 savePoint) // 데이터 로컬 파일 저장과는 별개로, savepoint의 위치정보를 data에 저장함
     {
-        data._savePos = savePoint.x + "," + savePoint.y + "," + savePoint.z;
+        gData._savePos = savePoint.x + "," + savePoint.y + "," + savePoint.z;
     }
 
     public Vector3 GetSavePos() // 저장된 로컬 파일과는 별개로, savepoint의 위치정보를 불러옴
     {
-        string[] savePosArray = data._savePos.Split(',');
+        string[] savePosArray = gData._savePos.Split(',');
         Vector3 pos = new Vector3(float.Parse(savePosArray[0]), float.Parse(savePosArray[1]), float.Parse(savePosArray[2]));
 
         return pos;
@@ -46,97 +64,138 @@ public class DataManager
     // 이하 get/set문은 위 savePos 구문과 같은 구조를 가짐
     public void SetVelocity(Vector3 velocity)
     {
-        data._velocity = velocity.x + "," + velocity.y + "," + velocity.z;
+        gData._velocity = velocity.x + "," + velocity.y + "," + velocity.z;
     }
     public Vector3 GetVelocity()
     {
-        string[] velocityArray = data._velocity.Split(',');
+        string[] velocityArray = gData._velocity.Split(',');
         Vector3 velocity = new Vector3(float.Parse(velocityArray[0]), float.Parse(velocityArray[1]), float.Parse(velocityArray[2]));
 
         return velocity;
     }
     public void SetGravityScale(float gravityScale)
     {
-        data._gravityScale = gravityScale;
+        gData._gravityScale = gravityScale;
     }
     public float GetGravityScale()
     {
-        return data._gravityScale;
+        return gData._gravityScale;
     }
     public void SetLinearDrag(float linearDrag)
     {
-        data._linearDrag = linearDrag;
+        gData._linearDrag = linearDrag;
     }
     public float GetLinearDrag()
     {
-        return data._linearDrag;
+        return gData._linearDrag;
     }
     public void SetIsFallen(bool isFallen)
     {
-        data._isFallen = isFallen;
+        gData._isFallen = isFallen;
     }
     public bool GetIsFallen()
     {
-        return data._isFallen;
+        return gData._isFallen;
     }
     public void SetIsMove(bool isMove)
     {
-        data._isMove = isMove;
+        gData._isMove = isMove;
     }
     public bool GetIsMove()
     {
-        return data._isMove;
+        return gData._isMove;
     }
     public void SetDuration(float duration)
     {
-        data._duration = duration;
+        gData._duration = duration;
     }
     public float GetDuration()
     {
-        return data._duration;
+        return gData._duration;
     }
     public void SetIsignoreLayerCollision(bool isignoreLayerCollision)
     {
-        data._isignoreLayerCollision = isignoreLayerCollision;
+        gData._isignoreLayerCollision = isignoreLayerCollision;
     }
     public bool GetIsignoreLayerCollision()
     {
-        return data._isignoreLayerCollision;
+        return gData._isignoreLayerCollision;
     }
     public void SetIsFirstPlay(bool isFirstPlay) // 뉴게임 버튼 눌렀을 때, false를 저장하도록 하고, 게임 클리어 했을 때, true를 저장하도록 함
     {
-        data._isFirstPlay = isFirstPlay;
+        gData._isFirstPlay = isFirstPlay;
     }
     public bool GetIsFirstPlay()
     {
-        return data._isFirstPlay;
+        return gData._isFirstPlay;
     }
     public void SetLevel(int level)
     {
-        data._level = level;
+        gData._level = level;
     }
     public int GetLevel()
     {
-        return data._level;
+        return gData._level;
     }
     public void SetFallenCount(int fallenCount)
     {
-        data._fallenCount = fallenCount;
+        gData._fallenCount = fallenCount;
     }
     public int GetFallenCount()
     {
-        return data._fallenCount;
+        return gData._fallenCount;
     }
     public void SetSecond(float second)
     {
-        data._second = second;
+        gData._second = second;
     }
     public float GetSecond()
     {
-        return data._second;
+        return gData._second;
     }
-    public void ResetSaveData() // 저장된 모든 정보를 초기화 함
+    public void SetScreenWidth(int screenWidth)
     {
-        data = new GameData();
+        oData._screenWidth = screenWidth;
     }
+    public int GetScreenWidth()
+    {
+        return oData._screenWidth;
+    }
+    public void SetScreenHeight(int screenHeight)
+    {
+        oData._screenHeight = screenHeight;
+    }
+    public int GetScreenHeight()
+    {
+        return oData._screenHeight;
+    }
+    public void SetIsFullScreen(bool isFullScreen)
+    {
+        oData._isFullScreen = isFullScreen;
+    }
+    public bool GetIsFullScreen()
+    {
+        return oData._isFullScreen;
+    }
+    public void SetBGMSound(float bgmSound)
+    {
+        oData._bgmSound = bgmSound;
+    }
+    public float GetBGMSound()
+    {
+        return oData._bgmSound;
+    }
+    public void SetSFXSound(float sfxSound)
+    {
+        oData._sfxSound = sfxSound;
+    }
+    public float GetSFXSound()
+    {
+        return oData._sfxSound;
+    }
+    public void ResetSaveGameData() // 저장된 모든 정보를 초기화 함
+    {
+        gData = new GameData();
+    }
+    
 }
