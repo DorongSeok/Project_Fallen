@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitingTime: 1
+  masterMixer: {fileID: 24100000, guid: 0e15e7efe04205a4791ec3f47c616110, type: 2}
 --- !u!1 &1465080596
 GameObject:
   m_ObjectHideFlags: 0

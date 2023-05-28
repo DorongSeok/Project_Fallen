@@ -18,7 +18,7 @@ public class EndingSceneManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Managers.data.ResetSaveData();
+            Managers.data.ResetSaveGameData();
             StartCoroutine(nameof(Main_UISceneOpen));
         }
     }

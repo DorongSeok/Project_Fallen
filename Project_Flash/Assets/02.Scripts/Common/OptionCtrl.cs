@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class OptionCtrl : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class OptionCtrl : MonoBehaviour
     public Dropdown resolutionDropdown;
     public Toggle fullScreenBtn;
     public UIManager sceneManager;
+
+    public AudioMixer masterMixer;
+    public Slider BGMSlider;
+    public Slider SFXSlider;
 
     private void Start()
     {
@@ -55,21 +60,54 @@ public class OptionCtrl : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
 
         fullScreenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
+
+        BGMSlider.value = Managers.data.GetBGMSound();
+        SFXSlider.value = Managers.data.GetSFXSound();
     }
     public void FullScreenBtn(bool isFull)
     {
         screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+        Managers.data.SetIsFullScreen(isFull);
         ChangeResolution();
     }
     public void DropboxOptionChange(int x)
     {
         resolutionNum = x;
+        Managers.data.SetScreenWidth(resolutions[resolutionNum].width);
+        Managers.data.SetScreenHeight(resolutions[resolutionNum].height);
         ChangeResolution();
     }
     public void ChangeResolution()
     {
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
-        Debug.Log("해상도 변경 완료");
+    }
+    public void BGMControl()
+    {
+        float sound = BGMSlider.value;
+
+        if (sound <= -40.0f) 
+        {
+            masterMixer.SetFloat("BGM", -80.0f);
+        }
+        else
+        {
+            masterMixer.SetFloat("BGM", sound);
+        }
+        Managers.data.SetBGMSound(sound);
+    }
+    public void SFXControl()
+    {
+        float sound = SFXSlider.value;
+
+        if (sound <= -40f)
+        {
+            masterMixer.SetFloat("SFX", -80.0f);
+        }
+        else
+        {
+            masterMixer.SetFloat("SFX", sound);
+        }
+        Managers.data.SetSFXSound(sound);
     }
     public void SetIsOptionOpen(bool isOptionOpen)
     {
