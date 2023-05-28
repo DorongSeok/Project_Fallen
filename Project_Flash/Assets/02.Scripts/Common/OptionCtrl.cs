@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class OptionCtrl : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class OptionCtrl : MonoBehaviour
     public Dropdown resolutionDropdown;
     public Toggle fullScreenBtn;
     public UIManager sceneManager;
+
+    public AudioMixer masterMixer;
+    public Slider BGMSlider;
+    public Slider SFXSlider;
 
     private void Start()
     {
@@ -69,7 +74,34 @@ public class OptionCtrl : MonoBehaviour
     public void ChangeResolution()
     {
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
-        Debug.Log("해상도 변경 완료");
+    }
+    public void BGMControl()
+    {
+        Debug.Log("BGM 컨트롤");
+        float sound = BGMSlider.value;
+
+        if (sound <= -40f) 
+        {
+            masterMixer.SetFloat("BGM", -80);
+        }
+        else
+        {
+            masterMixer.SetFloat("BGM", sound);
+        }
+    }
+    public void SFXControl()
+    {
+        Debug.Log("SFX 컨트롤");
+        float sound = SFXSlider.value;
+
+        if (sound <= -40f)
+        {
+            masterMixer.SetFloat("SFX", -80);
+        }
+        else
+        {
+            masterMixer.SetFloat("SFX", sound);
+        }
     }
     public void SetIsOptionOpen(bool isOptionOpen)
     {
