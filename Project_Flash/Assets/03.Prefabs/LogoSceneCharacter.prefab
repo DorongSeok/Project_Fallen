@@ -483,7 +483,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8710691534779423695}
   - component: {fileID: 4022406572093290244}
-  - component: {fileID: 1119185081}
   - component: {fileID: 3033524142362752984}
   m_Layer: 6
   m_Name: LogoSceneCharacter
@@ -533,22 +532,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!114 &1119185081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6443346044146626049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c16a10fc2222fc418c4767ed462e0e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posX: -3.05
-  startY: -7.74
-  endY: -78.96
-  posZ: 0
 --- !u!58 &3033524142362752984
 CircleCollider2D:
   m_ObjectHideFlags: 0

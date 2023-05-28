@@ -61,7 +61,7 @@ public class PlayerCharacterTest2 : MonoBehaviour
     }
     void Start()
     {
-        //Managers.Sound.Play("TestBGM", Define.Sound.Bgm);
+    //    Managers.Sound.Play("TestBGM", Define.Sound.Bgm);
 
     }
 
@@ -78,7 +78,7 @@ public class PlayerCharacterTest2 : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space) && isMove == false && isFallen == false)
         {
-            //Managers.Sound.Play("TestEffectSound");
+        //    Managers.Sound.Play("TestEffectSound");
             Move();
         }
 
