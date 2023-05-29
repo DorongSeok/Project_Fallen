@@ -7,7 +7,7 @@ public class LogoSceneMainContorller : MonoBehaviour
     public GameObject logoCamera = null;
     public GameObject logoCharacter = null;
 
-    public float waitCount = 0.5f;
+    public float waitCount = 1.1f;
     void Start()
     {
     }
@@ -29,7 +29,7 @@ public class LogoSceneMainContorller : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         logoCharacter.GetComponent<LogoSceneCharacterController>().StartShake();
 
-        yield return new WaitForSeconds(waitCount);
+        yield return new WaitForSeconds(waitCount * 0.5f);
         logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
 
         yield return new WaitForSeconds(waitCount);
@@ -45,6 +45,7 @@ public class LogoSceneMainContorller : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         logoCamera.GetComponent<LogoSceneCameraController>().StartZoom();
 
-        yield return new WaitForSeconds(waitCount * 0.5f);
+        yield return new WaitForSeconds(3.0f);
+
     }
 }

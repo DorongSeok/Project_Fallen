@@ -49,8 +49,13 @@ public class LogoSceneCameraController : MonoBehaviour
     private void Zoom()
     {
         float smoothZoomSize = nowCameraSize - (Time.deltaTime * zoomSpeed * 100.0f);
+        if (smoothZoomSize <= lastCameraSize)
+        {
+            smoothZoomSize = lastCameraSize;
+        }
         this.GetComponent<Camera>().orthographicSize = smoothZoomSize;
         nowCameraSize = smoothZoomSize;
+        
     }
     public void CameraReset()
     {
