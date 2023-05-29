@@ -1302,7 +1302,7 @@ MonoBehaviour:
   endPositionY: -77.9
   startCameraSize: 15
   lastCameraSize: 5
-  zoomSpeed: 0.015
+  zoomSpeed: 0.06
 --- !u!1 &529475584
 GameObject:
   m_ObjectHideFlags: 0

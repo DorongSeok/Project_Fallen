@@ -26,23 +26,24 @@ public class LogoSceneMainContorller : MonoBehaviour
     }
     IEnumerator LogoCutSceneStart()
     {
+        yield return new WaitForSeconds(0.7f);
+        logoCharacter.GetComponent<LogoSceneCharacterController>().StartShake();
+
+        yield return new WaitForSeconds(waitCount);
+        logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
+
+        yield return new WaitForSeconds(waitCount);
+        logoCharacter.GetComponent<LogoSceneCharacterController>().StartShake();
+
+        yield return new WaitForSeconds(waitCount);
+        logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
+
         yield return new WaitForSeconds(1.0f);
-        logoCamera.GetComponent<LogoSceneCameraController>().StartZoom();
-
-        yield return new WaitForSeconds(2.5f);
-        logoCharacter.GetComponent<LogoSceneCharacterController>().StartShake();
-
-        yield return new WaitForSeconds(waitCount);
-        logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
-
-        yield return new WaitForSeconds(waitCount);
-        logoCharacter.GetComponent<LogoSceneCharacterController>().StartShake();
-
-        yield return new WaitForSeconds(waitCount);
-        logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
-
         logoCharacter.GetComponent<LogoSceneCharacterController>().StartFalling();
         logoCamera.GetComponent<LogoSceneCameraController>().StartFalling();
+
+        yield return new WaitForSeconds(0.1f);
+        logoCamera.GetComponent<LogoSceneCameraController>().StartZoom();
 
         yield return new WaitForSeconds(waitCount * 0.5f);
     }
