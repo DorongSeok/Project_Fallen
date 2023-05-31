@@ -27,6 +27,7 @@ public class CameraMove : MonoBehaviour
     }
     private void Start()
     {
+        Camera.main.aspect = 16f / 9f;
         PlayerCharacterControl.onPlayerFallingStart += this.StartFalling;
         PlayerCharacterControl.onPlayerFallingEnd += this.EndFalling;
 

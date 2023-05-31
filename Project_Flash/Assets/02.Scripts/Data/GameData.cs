@@ -43,11 +43,13 @@ namespace DataInfo
     {
         public float _bgmSound;
         public float _sfxSound;
+        public bool _isStarted;
 
         public OptionData()
         {
             _bgmSound = -20.0f;
             _sfxSound = -20.0f;
+            _isStarted = false;
         }
     }
 }

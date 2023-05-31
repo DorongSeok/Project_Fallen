@@ -37,7 +37,9 @@ public class OptionCtrl : MonoBehaviour
     {
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
-            if (Screen.resolutions[i].refreshRate == 60)
+            if (Screen.resolutions[i].refreshRate == 60
+                && (float)Screen.resolutions[i].height/(float)Screen.resolutions[i].width >= 0.562f
+                && (float)Screen.resolutions[i].height / (float)Screen.resolutions[i].width <= 0.563f)
             {
                 resolutions.Add(Screen.resolutions[i]);
             }

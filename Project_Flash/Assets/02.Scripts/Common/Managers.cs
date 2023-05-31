@@ -75,6 +75,11 @@ public class Managers : MonoBehaviour
     }
     private void OptionSetting()
     {
+        if (Managers.data.GetIsStarted() == false)
+        {
+            Screen.SetResolution(1920, 1080, true);
+            Managers.data.SetIsStarted(true);
+        }
         if (Managers.data.GetBGMSound() <= -40.0f)
         {
             masterMixer.SetFloat("BGM", -80.0f);

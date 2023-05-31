@@ -169,6 +169,14 @@ public class DataManager
     {
         return oData._sfxSound;
     }
+    public void SetIsStarted(bool isStarted)
+    {
+        oData._isStarted = isStarted;
+    }
+    public bool GetIsStarted()
+    {
+        return oData._isStarted;
+    }
     public void ResetSaveGameData() // 저장된 모든 정보를 초기화 함
     {
         gData = new GameData();
