@@ -153,30 +153,6 @@ public class DataManager
     {
         return gData._second;
     }
-    public void SetScreenWidth(int screenWidth)
-    {
-        oData._screenWidth = screenWidth;
-    }
-    public int GetScreenWidth()
-    {
-        return oData._screenWidth;
-    }
-    public void SetScreenHeight(int screenHeight)
-    {
-        oData._screenHeight = screenHeight;
-    }
-    public int GetScreenHeight()
-    {
-        return oData._screenHeight;
-    }
-    public void SetIsFullScreen(bool isFullScreen)
-    {
-        oData._isFullScreen = isFullScreen;
-    }
-    public bool GetIsFullScreen()
-    {
-        return oData._isFullScreen;
-    }
     public void SetBGMSound(float bgmSound)
     {
         oData._bgmSound = bgmSound;

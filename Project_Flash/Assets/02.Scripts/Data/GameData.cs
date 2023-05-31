@@ -41,17 +41,11 @@ namespace DataInfo
     }
     public class OptionData
     {
-        public int _screenWidth;
-        public int _screenHeight;
-        public bool _isFullScreen;
         public float _bgmSound;
         public float _sfxSound;
 
         public OptionData()
         {
-            _screenWidth = 1920;
-            _screenHeight = 1080;
-            _isFullScreen = true;
             _bgmSound = -20.0f;
             _sfxSound = -20.0f;
         }

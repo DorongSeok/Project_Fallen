@@ -75,8 +75,6 @@ public class Managers : MonoBehaviour
     }
     private void OptionSetting()
     {
-        Screen.SetResolution(Managers.data.GetScreenWidth(), Managers.data.GetScreenHeight(), 
-            Managers.data.GetIsFullScreen() ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed);
         if (Managers.data.GetBGMSound() <= -40.0f)
         {
             masterMixer.SetFloat("BGM", -80.0f);

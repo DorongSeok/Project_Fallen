@@ -9,7 +9,7 @@ public class OptionCtrl : MonoBehaviour
     private List<Resolution> resolutions = new List<Resolution>();
     private FullScreenMode screenMode;
     private int resolutionNum;
-
+    private bool firstOpen = true;
 
     private bool isOptionOpen = false;
 
@@ -63,51 +63,59 @@ public class OptionCtrl : MonoBehaviour
 
         BGMSlider.value = Managers.data.GetBGMSound();
         SFXSlider.value = Managers.data.GetSFXSound();
+
+        firstOpen = false;
     }
     public void FullScreenBtn(bool isFull)
     {
         screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
-        Managers.data.SetIsFullScreen(isFull);
         ChangeResolution();
     }
     public void DropboxOptionChange(int x)
     {
         resolutionNum = x;
-        Managers.data.SetScreenWidth(resolutions[resolutionNum].width);
-        Managers.data.SetScreenHeight(resolutions[resolutionNum].height);
         ChangeResolution();
     }
     public void ChangeResolution()
     {
-        Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
+        if (firstOpen == false)
+        {
+            Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
+        }
     }
     public void BGMControl()
     {
-        float sound = BGMSlider.value;
+        if (firstOpen == false)
+        {
+            float sound = BGMSlider.value;
 
-        if (sound <= -40.0f) 
-        {
-            masterMixer.SetFloat("BGM", -80.0f);
+            if (sound <= -40.0f)
+            {
+                masterMixer.SetFloat("BGM", -80.0f);
+            }
+            else
+            {
+                masterMixer.SetFloat("BGM", sound);
+            }
+            Managers.data.SetBGMSound(sound);
         }
-        else
-        {
-            masterMixer.SetFloat("BGM", sound);
-        }
-        Managers.data.SetBGMSound(sound);
     }
     public void SFXControl()
     {
-        float sound = SFXSlider.value;
+        if (firstOpen == false)
+        {
+            float sound = SFXSlider.value;
 
-        if (sound <= -40f)
-        {
-            masterMixer.SetFloat("SFX", -80.0f);
+            if (sound <= -40f)
+            {
+                masterMixer.SetFloat("SFX", -80.0f);
+            }
+            else
+            {
+                masterMixer.SetFloat("SFX", sound);
+            }
+            Managers.data.SetSFXSound(sound);
         }
-        else
-        {
-            masterMixer.SetFloat("SFX", sound);
-        }
-        Managers.data.SetSFXSound(sound);
     }
     public void SetIsOptionOpen(bool isOptionOpen)
     {

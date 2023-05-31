@@ -43,7 +43,7 @@ public class CameraMove : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.B))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             isCameraUp = true;
         }
