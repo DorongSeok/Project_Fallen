@@ -33,8 +33,7 @@ public class EndingSceneManager : MonoBehaviour
     }
     private void ShowRecord()
     {
-        Debug.Log("Falling Count : " + fallingCount);
-        Debug.Log(getParseTime(clearTime));
+
     }
     private string getParseTime(float time)
     {
