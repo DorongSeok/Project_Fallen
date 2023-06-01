@@ -302,6 +302,26 @@ PrefabInstance:
       propertyPath: sceneManager
       value: 
       objectReference: {fileID: 1533614846}
+    - target: {fileID: 102102988114654983, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 102102988114654983, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 102102988114654983, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738003703963504689, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738003703963504689, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6822304383942312539, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -397,6 +417,26 @@ PrefabInstance:
     - target: {fileID: 6822304384113951137, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819154638479453635, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819154638479453635, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819154638479453635, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131359502943609551, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131359502943609551, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134804e5c3f24004fbd0bc467a7c885c, type: 3}
@@ -2150,7 +2190,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1600, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
