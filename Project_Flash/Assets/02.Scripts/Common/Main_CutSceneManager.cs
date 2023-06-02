@@ -18,6 +18,8 @@ public class Main_CutSceneManager : MonoBehaviour
     {
         CheckSceneCoroutine = LogoCutSceneStart();
         StartCoroutine(CheckSceneCoroutine);
+
+        Managers.Sound.Play("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
     }
     private void Update()
     {
@@ -35,14 +37,16 @@ public class Main_CutSceneManager : MonoBehaviour
     }
     IEnumerator LogoCutSceneStart()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(2.0f);
         logoCharacter.GetComponent<LogoSceneCharacterController>().StartShake();
-
-        yield return new WaitForSeconds(waitCount * 0.5f);
-        logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
+        Managers.Sound.Play("Effect/LogoScene_ShakeEffect");
 
         yield return new WaitForSeconds(waitCount);
+        logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
+
+        yield return new WaitForSeconds(waitCount * 1.5f);
         logoCharacter.GetComponent<LogoSceneCharacterController>().StartShake();
+        Managers.Sound.Play("Effect/LogoScene_ShakeEffect");
 
         yield return new WaitForSeconds(waitCount);
         logoCharacter.GetComponent<LogoSceneCharacterController>().StopShake();
@@ -50,6 +54,7 @@ public class Main_CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         logoCharacter.GetComponent<LogoSceneCharacterController>().StartFalling();
         logoCamera.GetComponent<LogoSceneCameraController>().StartFalling();
+        Managers.Sound.Play("Effect/LogoScene_FallingEffect");
 
         yield return new WaitForSeconds(0.1f);
         logoCamera.GetComponent<LogoSceneCameraController>().StartZoom();
