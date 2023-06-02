@@ -16,7 +16,6 @@ public class UIManager : MonoBehaviour
     {
         if (asyncOperation == null)
         {
-            //AsyncOperation asyncOperation;
             if (Managers.data.GetLevel() == 1)
             {
                 asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
@@ -82,7 +81,6 @@ public class UIManager : MonoBehaviour
     {
         option.SetActive(true);
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(true);
-        //eventSystem.sendNavigationEvents = false;
     }
     public void CoroutineCreditButtonClick()
     {
@@ -98,7 +96,6 @@ public class UIManager : MonoBehaviour
     }
     public void OptionExitButtonClick()
     {
-        //eventSystem.sendNavigationEvents = true; // 추후 네비게이션 기능 사용할 때 활성화할 것
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(false);
         option.SetActive(false);
     }

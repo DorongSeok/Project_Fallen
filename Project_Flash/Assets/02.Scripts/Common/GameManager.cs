@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
     private GameObject player;
     
-    // public GameObject player;
     private PlayerCharacterControl playerCharacterControl;
 
     public GameObject pauseMenu;
@@ -33,14 +32,6 @@ public class GameManager : MonoBehaviour
         second = Managers.data.GetSecond();
 
         StartCoroutine(nameof(TimerCoroutine));
-
-
-
-        // 존재하지 않는다면 종료하는 구문 필요 시 추가할 것
-        //else if (DataManager.instance == null)
-        //{
-        //    Application.Quit();
-        //}
     }
     private void OnDisable()
     {
@@ -126,7 +117,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator EndingSceneOpen()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(6, LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(5, LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
             yield return null;

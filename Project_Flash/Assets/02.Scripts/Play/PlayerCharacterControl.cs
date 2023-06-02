@@ -41,12 +41,10 @@ public class PlayerCharacterControl : MonoBehaviour
     private bool isignoreLayerCollision = false;
     private bool isGameStop = false;
 
-    //private PlayerCharacterInsideCollisionCheck playerCharacterInsideCollisionCheck;
 
     public GameObject chargeCore;
     public VisualEffect chargeEffect;
 
-    //private int playerLayer, groundLayer, obstacleLayer;
 
     private void Awake()
     {
@@ -58,17 +56,13 @@ public class PlayerCharacterControl : MonoBehaviour
         }
         catch (NullReferenceException)
         {
-            Debug.Log("Camera is Null");
+            
         }
         
         rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<CircleCollider2D>();
 
         fallenCount = Managers.data.GetFallenCount();
-        //playerCharacterInsideCollisionCheck = GetComponentInChildren<PlayerCharacterInsideCollisionCheck>();
-
-
-        //playerLayer = LayerMask.NameToLayer("Player");
     }
     private void Start()
     {
@@ -147,10 +141,6 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         this.isGameStop = isGameStop;
     }
-    private void FixedUpdate()
-    {
-        
-    }
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
         duration += Time.deltaTime;
@@ -183,10 +173,6 @@ public class PlayerCharacterControl : MonoBehaviour
             {
                 duration = durationMax;
             }
-            //else if (duration <= durationMin) // duration이 최소 값을 넘지 못하면 최소값 대입
-            //{
-            //    duration = durationMin;
-            //}
             if (duration <= durationMin)
             {
                 if (directionX == 1 && directionY == 0) // 오른쪽
@@ -264,35 +250,6 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     IEnumerator CheckIsStop() // 움직인 후, 조건에 따라 다시 움직일 수 있게 하는 코루틴
     {
-        //// 움직임을 멈추는 것이 조건인 경우
-        //isMove = true;
-        //yield return new WaitForSeconds(0.1f);
-        //while(isMove == true)
-        //{
-        //    if (rigidBody.velocity.magnitude <= stopVelocity)
-        //    {
-        //        if (DataManager.instance != null)
-        //        {
-        //            DataManager.instance.SetSavePos(gameObject.transform.position);
-        //        }
-        //        isMove = false;
-        //    }
-        //    yield return new WaitForEndOfFrame();
-        //}
-
-        //// 고정된 시간동안 대기하는 것이 조건인 경우
-        //isMove = true;
-        //yield return new WaitForSeconds(delayTime);
-        //DataManager.instance.SetSavePos(gameObject.transform.position);
-        //isMove = false;
-
-        // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(짧게 이동 시 길게, 길게 이동시 짧게(반비례))
-        //isMove = true;
-        //delayTime2 = (proportionalFactor - duration) * 0.5f;
-        //yield return new WaitForSeconds(delayTime2);
-        //DataManager.instance.SetSavePos(gameObject.transform.position);
-        //isMove = false;
-
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
 
         Managers.data.SetSavePos(gameObject.transform.position);
@@ -351,7 +308,6 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     public void Falling() // 중력 적용
     {
-        // 살짝 튕겨났다가 중력 적용되는 연출은 어떨지 생각해볼 것
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
         
         duration = 0;
@@ -396,32 +352,6 @@ public class PlayerCharacterControl : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
-
-        // 중력과 굴러가는 방식을 동시에 채용하는 추락 감지
-        // 이 구문 활성화 시, freeze rotation 언체크하고, angular drag값을 5로 준 후, 각 장애물 오브젝트의 최소 각도를 25도 이상으로 설정해야 함
-        //while (isFallen == true)
-        //{
-        //    if (rigidBody.velocity.magnitude <= stopVelocity)
-        //    {
-        //        if (nowCheckStopTime < maxCheckStopTime)
-        //        {
-        //            nowCheckStopTime += Time.deltaTime;
-        //        }
-        //        else
-        //        {
-        //            if (DataManager.instance != null)
-        //            {
-        //                DataManager.instance.SetSavePos(gameObject.transform.position);
-        //            }
-        //            IsGrounded();
-        //        }
-        //    }
-        //    else if (rigidBody.velocity.magnitude > stopVelocity && nowCheckStopTime != 0.0f)
-        //    {
-        //        nowCheckStopTime = 0.0f;
-        //    }
-        //    yield return new WaitForEndOfFrame();
-        //}
     }
     private void IsGrounded() // 중력 적용 해제
     {
@@ -431,12 +361,6 @@ public class PlayerCharacterControl : MonoBehaviour
         rigidBody.drag = 5.0f;
         nowCheckStopTime = 0.0f;
     }
-
-    //private void ResetPosition()
-    //{
-    //    transform.position = Vector3.zero;
-    //}
-
     public void InsideCollsionEnd() // 차징 이동 후, 장애물에 위치해서 추락할 경우, 해당 장애물을 빠져나왔을 때 실행되는 함수
     {
         if (isignoreLayerCollision == true)

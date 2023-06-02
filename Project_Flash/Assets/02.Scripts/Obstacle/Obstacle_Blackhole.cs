@@ -13,17 +13,17 @@ public class Obstacle_Blackhole : MonoBehaviour
 
     private void Start()
     {
-        // 테스트 버전 종료되면 지워도 됨
-        PlayerCharacterTest2.onPlayerFallingStart += this.EffectorOff;
-        PlayerCharacterTest2.onPlayerFallingEnd += this.EffectorOn;
+        //// 테스트 버전 종료되면 지워도 됨
+        //PlayerCharacterTest2.onPlayerFallingStart += this.EffectorOff;
+        //PlayerCharacterTest2.onPlayerFallingEnd += this.EffectorOn;
 
         PlayerCharacterControl.onPlayerFallingStart += this.EffectorOff;
         PlayerCharacterControl.onPlayerFallingEnd += this.EffectorOn;
     }
     private void OnDisable()
     {
-        PlayerCharacterTest2.onPlayerFallingStart -= this.EffectorOff;
-        PlayerCharacterTest2.onPlayerFallingEnd -= this.EffectorOn;
+        //PlayerCharacterTest2.onPlayerFallingStart -= this.EffectorOff;
+        //PlayerCharacterTest2.onPlayerFallingEnd -= this.EffectorOn;
 
         PlayerCharacterControl.onPlayerFallingStart -= this.EffectorOff;
         PlayerCharacterControl.onPlayerFallingEnd -= this.EffectorOn;

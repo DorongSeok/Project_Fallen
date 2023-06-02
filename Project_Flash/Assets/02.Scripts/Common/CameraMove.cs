@@ -13,7 +13,6 @@ public class CameraMove : MonoBehaviour
     
     public float camHeight = -10.0f;
 
-    // public float upDownDamping;
     public float moveDamping;
 
     public float waitingTime;
