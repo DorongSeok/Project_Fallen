@@ -73,4 +73,9 @@ public class Main_CutSceneManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ChangeBGM()
+    {
+        Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
+    }
 }

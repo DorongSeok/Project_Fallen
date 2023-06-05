@@ -13,7 +13,6 @@ public class LogoSceneCharacterController : MonoBehaviour
     public float rotationZSpeed = 1.0f;
 
     private bool isShaking = false;
-    private bool isFalling = false;
 
     void Start()
     {
@@ -27,11 +26,6 @@ public class LogoSceneCharacterController : MonoBehaviour
             rotationZ += Time.deltaTime * rotationZSpeed * 100.0f;
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         }
-        if(isFalling == true && this.transform.position.y <= endPositionY)
-        {
-            isFalling = false;
-            Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
-        }
     }
 
     public void CharacterReset()
@@ -39,7 +33,6 @@ public class LogoSceneCharacterController : MonoBehaviour
         Vector3 newPosition = new Vector3(startPositionX, startPositionY, startPositionZ);
         this.transform.position = newPosition;
         isShaking = false;
-        isFalling = false;
         rotationZ = 0;
         this.GetComponent<Rigidbody2D>().isKinematic = false;
         this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
@@ -57,7 +50,6 @@ public class LogoSceneCharacterController : MonoBehaviour
     public void StartFalling()
     {
         rotationZ = 0;
-        isFalling = true;
         this.GetComponent<Rigidbody2D>().isKinematic = false;
     }
 }
