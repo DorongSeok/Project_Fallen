@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-67563144659127008
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: t2_Obstacles_2_Material
+  m_Shader: {fileID: -6465566751694194690, guid: aef076d121e67774ea0da9285ca3811e, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: 448a8d014922ced428b4a060232edf80, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _DistortAmplitude: -0.69
+    - _DistortNoisePeriod: 1.5
+    - _Lerp: 0
+    - _PolygonSides: 4
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _SineAmplitude: 0.72
+    - _SineFrequency: 1
+    - _SineRotation: 0.68
+    - _UVScale: -3.45
+    m_Colors:
+    - _Color: {r: 0.54568, g: 0, b: 1, a: 0}
+    - _Color1: {r: 0.11320752, g: 0.08123562, b: 0.065681726, a: 0}
+    - _Color2: {r: 0.21568628, g: 0.14509805, b: 0.12941177, a: 1}
+    - _Speed: {r: 0, g: 0, b: 0, a: 0}
+    - _UVTiling: {r: 2, g: 2, b: 0, a: 0}
+  m_BuildTextureStacks: []
