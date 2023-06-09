@@ -52,7 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _DistortAmplitude: -0.69
-    - _DistortNoisePeriod: 1.5
+    - _DistortNoisePeriod: 1.62
     - _Lerp: 0
     - _PolygonSides: 4
     - _QueueControl: 0
