@@ -15,6 +15,7 @@ public class Obstacle_BigAndSmall : MonoBehaviour
     }
     private void Update()
     {
+        
         Vector3 v = scale;
         v.x += Mathf.Abs(delta * Mathf.Sin(delay + (Time.time * speed)));
         v.y += Mathf.Abs(delta * Mathf.Sin(delay + (Time.time * speed)));
