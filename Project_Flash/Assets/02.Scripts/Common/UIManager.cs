@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject option;
     public GameObject level;
     public EventSystem eventSystem;
+    public GameObject warning;
 
     private AsyncOperation asyncOperation;
 
@@ -31,7 +32,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    IEnumerator NewGameButtonClick()
+    IEnumerator NewGameStart()
     {
         if (asyncOperation == null)
         {
@@ -68,14 +69,24 @@ public class UIManager : MonoBehaviour
         }
     }
     
-    
+    public void NewGameButtonClick()
+    {
+        StartCoroutine(nameof(NewGameStart));
+    }
     public void CoroutineContinueButtonClick()
     {
         StartCoroutine(nameof(ContinueButtonClick));
     }
     public void CoroutineNewGameButtonClick()
     {
-        StartCoroutine(nameof(NewGameButtonClick));
+        if (Managers.data.GetIsFirstPlay())
+        {
+            NewGameButtonClick();
+        }
+        else if (!Managers.data.GetIsFirstPlay())
+        {
+            warning.SetActive(true);
+        }
     }
     public void OptionButtonClick()
     {
@@ -98,5 +109,9 @@ public class UIManager : MonoBehaviour
     {
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(false);
         option.SetActive(false);
+    }
+    public void CloseWarning()
+    {
+        warning.SetActive(false);
     }
 }
