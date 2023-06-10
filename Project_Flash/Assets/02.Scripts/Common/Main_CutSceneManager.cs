@@ -23,7 +23,7 @@ public class Main_CutSceneManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.anyKeyDown)
         {
             if (isCutSceneEnd == false)
             {
