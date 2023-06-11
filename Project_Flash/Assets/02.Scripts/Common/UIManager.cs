@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject level;
     public EventSystem eventSystem;
     public GameObject warning;
+    public GameObject panel;
 
     private AsyncOperation asyncOperation;
 
@@ -85,11 +86,13 @@ public class UIManager : MonoBehaviour
         }
         else if (!Managers.data.GetIsFirstPlay())
         {
+            panel.SetActive(true);
             warning.SetActive(true);
         }
     }
     public void OptionButtonClick()
     {
+        panel.SetActive(true);
         option.SetActive(true);
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(true);
     }
@@ -109,9 +112,11 @@ public class UIManager : MonoBehaviour
     {
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(false);
         option.SetActive(false);
+        panel.SetActive(false);
     }
     public void CloseWarning()
     {
+        panel.SetActive(false);
         warning.SetActive(false);
     }
 }
