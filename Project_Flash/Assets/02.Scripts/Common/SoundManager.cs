@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager
 {
@@ -10,8 +11,11 @@ public class SoundManager
     public void Init()
     {
         GameObject root = GameObject.Find("@Sound");
-    
-        if(root == null)
+        AudioMixer audioMixer = Resources.Load<AudioMixer>("Sounds/MyMixer");
+        Debug.Log(audioMixer);
+        AudioMixerGroup[] audioMixerGroups = audioMixer.FindMatchingGroups("Master");
+
+        if (root == null)
         {
             root = new GameObject { name = "@Sound" };
             Object.DontDestroyOnLoad(root);
@@ -25,6 +29,8 @@ public class SoundManager
             }
     
             _audioSources[(int)Define.Sound.Bgm].loop = true;
+            _audioSources[(int)Define.Sound.Bgm].outputAudioMixerGroup = audioMixerGroups[1];
+            _audioSources[(int)Define.Sound.Effect].outputAudioMixerGroup = audioMixerGroups[2];
         }
     }
     
