@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 6822304384113951138}
   - component: {fileID: 6822304384113951139}
   m_Layer: 5
-  m_Name: EndingCredit
+  m_Name: EndingResult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

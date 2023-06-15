@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
 using UnityEngine.UI;
 
-public class EndingSceneManager : MonoBehaviour
+public class EndingCreditCtrl : MonoBehaviour
 {
     public GameObject result;
     public GameObject endingCredit;
@@ -17,13 +15,8 @@ public class EndingSceneManager : MonoBehaviour
 
     public float fadeSpeed = 0.01f;
     private float fadeCount;
-
-    private float clearTime;
-    private float fallingCount;
     private void Start()
     {
-        clearTime = Managers.data.GetSecond();
-        fallingCount = Managers.data.GetFallenCount();
         EndingCreditStart();
     }
     private void EndingCreditStart()
@@ -38,7 +31,7 @@ public class EndingSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
 
         fadeCount = 0;
-        while (fadeCount < 1.0f)
+        while(fadeCount < 1.0f)
         {
             fadeCount += fadeSpeed;
             yield return new WaitForSeconds(fadeSpeed);
@@ -154,28 +147,8 @@ public class EndingSceneManager : MonoBehaviour
     }
     private void ShowResult()
     {
-        text_PlayTime.text = "playtime\n" + getParseTime(clearTime);
-        text_FallingCount.text = "fallingcount\n" + fallingCount.ToString();
+        text_PlayTime.text = "playtime\ndddd";
+        text_FallingCount.text = "fallingcount\ndddd";
         result.SetActive(true);
-    }
-    public void GameClear()
-    {
-        Managers.data.ResetSaveGameData();
-        StartCoroutine(nameof(Main_UISceneOpen));
-    }
-
-    IEnumerator Main_UISceneOpen()
-    {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
-        while (!asyncOperation.isDone)
-        {
-            yield return null;
-        }
-    }
-    private string getParseTime(float time)
-    {
-        string t = TimeSpan.FromSeconds(time).ToString("hh\\:mm\\:ss");
-        string[] tokens = t.Split(':');
-        return tokens[0] + "h " + tokens[1] + "m " + tokens[2] + "s";
     }
 }
