@@ -51,6 +51,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_4_LeftRightSquare
       objectReference: {fileID: 0}
+    - target: {fileID: 4283956143534995004, guid: 2eb44a5f25d2692439bb6ce84a969968, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283956143534995004, guid: 2eb44a5f25d2692439bb6ce84a969968, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283956143534995004, guid: 2eb44a5f25d2692439bb6ce84a969968, type: 3}
+      propertyPath: m_Color.r
+      value: 0.99607843
+      objectReference: {fileID: 0}
     - target: {fileID: 4283956143534995005, guid: 2eb44a5f25d2692439bb6ce84a969968, type: 3}
       propertyPath: m_RootOrder
       value: 0
