@@ -160,7 +160,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1713537355879527991}
   - component: {fileID: 4089735465166685611}
-  - component: {fileID: 1177446390962983794}
   m_Layer: 8
   m_Name: Outline
   m_TagString: Untagged
@@ -177,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 8252426041893650981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.38, y: 0.38, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1088710819489126891}
@@ -203,7 +202,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4f50588140e4224897c7be6dddd72d2, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +223,7 @@ SpriteRenderer:
   m_SortingLayerID: 1520829159
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eec20853b7e59d0468391497cd59f547, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -235,19 +234,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1177446390962983794
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8252426041893650981}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: deda25ce57072334794b1b456578d511, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
