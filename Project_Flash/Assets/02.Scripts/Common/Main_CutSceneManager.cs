@@ -19,7 +19,7 @@ public class Main_CutSceneManager : MonoBehaviour
         CheckSceneCoroutine = LogoCutSceneStart();
         StartCoroutine(CheckSceneCoroutine);
 
-        Managers.Sound.Play("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
+        //Managers.Sound.Play("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
     }
     private void Update()
     {
@@ -76,6 +76,6 @@ public class Main_CutSceneManager : MonoBehaviour
 
     public void ChangeBGM()
     {
-        Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
+        //Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
     }
 }
