@@ -76,23 +76,27 @@ public class UIManager : MonoBehaviour
     }
     public void CoroutineContinueButtonClick()
     {
+        panel.SetActive(true);
         StartCoroutine(nameof(ContinueButtonClick));
     }
     public void CoroutineNewGameButtonClick()
     {
+        panel.SetActive(true);
         if (Managers.data.GetIsFirstPlay())
         {
             NewGameButtonClick();
         }
         else if (!Managers.data.GetIsFirstPlay())
         {
-            panel.SetActive(true);
             warning.SetActive(true);
         }
     }
     public void OptionButtonClick()
     {
-        panel.SetActive(true);
+        if (panel != null)
+        {
+            panel.SetActive(true);
+        }
         option.SetActive(true);
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(true);
     }
@@ -112,7 +116,10 @@ public class UIManager : MonoBehaviour
     {
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(false);
         option.SetActive(false);
-        panel.SetActive(false);
+        if (panel != null)
+        {
+            panel.SetActive(false);
+        }
     }
     public void CloseWarning()
     {

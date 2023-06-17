@@ -304,6 +304,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6ebb95177597c4c827fac1949f0f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  result: {fileID: 791319288}
+  endingCredit: {fileID: 1892489888}
+  endingCreditList:
+  - {fileID: 577093614}
+  - {fileID: 120428193}
+  - {fileID: 169305356}
+  - {fileID: 636133552}
+  - {fileID: 1599034452}
+  - {fileID: 2006930708}
+  curtain: {fileID: 389982221}
+  text_PlayTime: {fileID: 1566028349}
+  text_FallingCount: {fileID: 1576774126}
+  endingCameraMove: {fileID: 697989667}
+  fadeSpeed: 0.01
 --- !u!4 &209763722
 Transform:
   m_ObjectHideFlags: 0
