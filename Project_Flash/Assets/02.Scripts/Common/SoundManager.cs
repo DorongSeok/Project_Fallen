@@ -12,7 +12,6 @@ public class SoundManager
     {
         GameObject root = GameObject.Find("@Sound");
         AudioMixer audioMixer = Resources.Load<AudioMixer>("Sounds/MyMixer");
-        Debug.Log(audioMixer);
         AudioMixerGroup[] audioMixerGroups = audioMixer.FindMatchingGroups("Master");
 
         if (root == null)
