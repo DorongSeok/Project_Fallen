@@ -19,6 +19,7 @@ public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
     {
         if (collision.gameObject.layer == 8 && isCollision == false) // 차징 이동 중, 최초 접촉한 대상으로부터 exit를 체크하기 위한 구조
         {
+            Debug.Log(collision.gameObject.name);
             isCollision = true;
             enterObject = collision.gameObject;
         }

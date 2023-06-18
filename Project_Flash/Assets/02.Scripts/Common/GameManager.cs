@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Steamworks.Data;
 
 public class GameManager : MonoBehaviour
 {
@@ -125,6 +126,15 @@ public class GameManager : MonoBehaviour
     }
     public void GameClear()
     {
+        try
+        {
+            var ach = new Achievement("CLEAR_ALL_THEMA");
+            ach.Trigger();
+        }
+        catch
+        {
+            
+        }
         SaveData();
         StartCoroutine(nameof(EndingSceneOpen));
     }
