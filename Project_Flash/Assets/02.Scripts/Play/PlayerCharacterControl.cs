@@ -43,7 +43,8 @@ public class PlayerCharacterControl : MonoBehaviour
 
 
     public GameObject chargeCore;
-    public VisualEffect chargeEffect;
+    public GameObject chargeEffectObject;
+    private ParticleSystem chargeEffect;
 
 
     private void Awake()
@@ -63,6 +64,7 @@ public class PlayerCharacterControl : MonoBehaviour
         coll = GetComponent<CircleCollider2D>();
 
         fallenCount = Managers.data.GetFallenCount();
+        chargeEffect = chargeEffectObject.GetComponent<ParticleSystem>();
     }
     private void Start()
     {
@@ -151,17 +153,19 @@ public class PlayerCharacterControl : MonoBehaviour
         if (duration > 0.4f)
         {
             float chargeGage;
-            chargeGage = 0.3f + (duration * 0.5f);
-            if (chargeGage > 1.0f)
+            chargeGage = 10.0f + (duration * 30.0f);
+            if (chargeGage > 70.0f)
             {
-                chargeGage = 1.0f;
+                chargeGage = 70.0f;
             }
-            chargeEffect.SetFloat("ChargeGage", chargeGage);
+            var setParticle = chargeEffect.emission;
+            setParticle.rateOverTime = chargeGage;
         }
     }
     private void Move() // 입력에 따른 이동
     {
-        chargeEffect.SetFloat("ChargeGage", 0.0f);
+        var setParticle = chargeEffect.emission;
+        setParticle.rateOverTime = 0.0f;
         if (directionX == 0 && directionY == 0) // 방향이 없을 경우 차징 초기화
         {
             duration = 0;
@@ -314,7 +318,8 @@ public class PlayerCharacterControl : MonoBehaviour
         fallenCount += 1;
 
         chargeCore.SetActive(false);
-        chargeEffect.SetFloat("ChargeGage", 0);
+        var setParticle = chargeEffect.emission;
+        setParticle.rateOverTime = 0.0f;
 
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
