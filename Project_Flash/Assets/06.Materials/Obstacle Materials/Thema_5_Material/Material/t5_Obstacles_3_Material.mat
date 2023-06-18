@@ -38,6 +38,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
     - _NoiseFrequency: 0.15
     - _NoiseScale: 70
     - _NoiseSpeed: 0.1

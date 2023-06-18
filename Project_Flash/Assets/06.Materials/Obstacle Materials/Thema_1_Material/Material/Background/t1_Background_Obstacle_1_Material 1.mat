@@ -59,6 +59,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
     - _Cell_Lerp: 49.97
     - _Lerp: -0.88
     - _QueueControl: 0
