@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Steamworks;
 
 public class SteamManager : MonoBehaviour
 {
-    public uint appid = 2365680;
+    const uint appid = 2365680;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
-
+        
         try
         {
-            Steamworks.SteamClient.Init(appid, true);
+            SteamClient.Init(appid, true);
+        }
+        catch
+        {
+            
+        }
+    }
+    private void Start()
+    {
+        try
+        {
+            foreach (var a in SteamUserStats.Achievements)
+            {
+                Debug.Log($"{a.Name}({a.State})");
+            }
         }
         catch
         {
@@ -24,7 +39,7 @@ public class SteamManager : MonoBehaviour
     {
         try
         {
-            Steamworks.SteamClient.Shutdown();
+            SteamClient.Shutdown();
         }
         catch
         {
