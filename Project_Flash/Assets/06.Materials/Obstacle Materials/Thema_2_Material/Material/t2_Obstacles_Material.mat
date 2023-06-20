@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: t2_Obstacles_7_Material
+  m_Name: t2_Obstacles_Material
   m_Shader: {fileID: -6465566751694194690, guid: aef076d121e67774ea0da9285ca3811e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 106fcbf15f0ac2a43ac8132043dc1e58, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0ed436a70179a9949a8c93cd2f05cbe6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -52,7 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _DistortAmplitude: -0.69
-    - _DistortNoisePeriod: 1.5
+    - _DistortNoisePeriod: 1.83
     - _Lerp: 0
     - _PolygonSides: 4
     - _QueueControl: 0
