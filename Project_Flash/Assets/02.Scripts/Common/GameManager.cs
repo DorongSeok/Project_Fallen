@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private float second = 0.0f;
 
+    private int nowThemaNum = 0;
     void Start()
     {
         if (Managers.Instance != null) // datamanger가 존재한다면 스테이지 시작 함수 실행(오류 방지)
@@ -152,7 +153,32 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         playerCharacterControl.SetIsGameStop(false);
     }
-    
+    public void ThemaChange(int Thema_Num)
+    {
+        nowThemaNum = Thema_Num;
+        switch (nowThemaNum) // 여기 브금 입력해주면 됨
+        {
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                break;
+
+            default:
+                break;
+        }
+        // 이 부분에 브금 변환 입력해주면 됨
+    }
+
     public void SetSecond(float second)
     {
         this.second = second;

@@ -12,6 +12,8 @@ public class PlayerCharacterControl : MonoBehaviour
     public delegate void PlayerFallingEnd();
     public static event PlayerFallingEnd onPlayerFallingEnd;
 
+    public GameObject realTimeLight;
+
     private Rigidbody2D rigidBody;
     private CircleCollider2D coll;
 
@@ -44,6 +46,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
     public GameObject chargeCore;
     public GameObject chargeEffectObject;
+    public GameObject insideCollsionChecker;
     private ParticleSystem chargeEffect;
 
 
@@ -256,6 +259,7 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         // 입력 시간에 대응해서 재 입력 대기시간이 변하는 경우(정비례)
 
+        insideCollsionChecker.SetActive(true);
         Managers.data.SetSavePos(gameObject.transform.position);
         isMove = true;
         Physics2D.IgnoreLayerCollision(6, 8, true); 
@@ -270,7 +274,7 @@ public class PlayerCharacterControl : MonoBehaviour
         if (isMove == true)
         {
             isMove = false;
-            bool isInsideCollision = transform.GetChild(0).gameObject.GetComponent<PlayerCharacterInsideCollisionCheck>().GetIsCollision();
+            bool isInsideCollision = insideCollsionChecker.GetComponent<PlayerCharacterInsideCollisionCheck>().GetIsCollision();
             if (isInsideCollision == true)
             {
                 if (isFallen == false)
@@ -280,6 +284,7 @@ public class PlayerCharacterControl : MonoBehaviour
             }
             else
             {
+                insideCollsionChecker.SetActive(false);
                 Physics2D.IgnoreLayerCollision(6, 8, false);
                 isignoreLayerCollision = false;
             }
@@ -370,9 +375,14 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         if (isignoreLayerCollision == true)
         {
+            insideCollsionChecker.SetActive(false);
             isignoreLayerCollision = false;
             Physics2D.IgnoreLayerCollision(6, 8, false);
         }
+    }
+    public void LightOn()
+    {
+        realTimeLight.SetActive(true);
     }
     public bool GetIsMove()
     {

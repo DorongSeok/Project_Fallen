@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
 {
     bool isCollision = false;
-    GameObject enterObject;
+    List<GameObject> enterObject = new List<GameObject>();
 
     public bool GetIsCollision()
     {
@@ -15,25 +15,27 @@ public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
     {
         this.isCollision = isCollision;
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8 && isCollision == false) // 차징 이동 중, 최초 접촉한 대상으로부터 exit를 체크하기 위한 구조
+        if (collision.gameObject.layer == 8) // 차징 이동 중, 접촉한 모든 대상으로부터 exit를 체크하기 위한 구조
         {
-            Debug.Log(collision.gameObject.name);
             isCollision = true;
-            enterObject = collision.gameObject;
+            enterObject.Add(collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == enterObject) // 추락 중, 최초 접촉한 대상이 아닌 경우 반응하지 않도록 함
+        if (enterObject.Contains(collision.gameObject)) // 추락 중, 접촉한 대상이 아닌 경우 반응하지 않도록 함
         {
-            isCollision = false;
-            if (GetComponentInParent<PlayerCharacterControl>().GetIsMove() == false)
+            enterObject.Remove(collision.gameObject);
+            if (enterObject.Count == 0)
             {
-                gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterControl>().InsideCollsionEnd();
+                isCollision = false;
+                if (GetComponentInParent<PlayerCharacterControl>().GetIsMove() == false)
+                {
+                    gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterControl>().InsideCollsionEnd();
+                }
             }
-            enterObject = null;
         }
     }
 }

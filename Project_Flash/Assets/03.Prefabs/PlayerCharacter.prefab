@@ -5007,6 +5007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e7989f7be6db84d8425856760a5ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  realTimeLight: {fileID: 4494412659565680261}
   maxCheckStopTime: 0.5
   stopVelocity: 0.2
   moveSpeed: 800
@@ -5016,6 +5017,7 @@ MonoBehaviour:
   proportionalFactor: 4
   chargeCore: {fileID: 4060584455617213430}
   chargeEffectObject: {fileID: 844905656470442414}
+  insideCollsionChecker: {fileID: 8931722125000715948}
 --- !u!1 &4060584455617213430
 GameObject:
   m_ObjectHideFlags: 0
@@ -5137,7 +5139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8166977195878854389
 Transform:
   m_ObjectHideFlags: 0
@@ -14873,7 +14875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2079592946522843896
 Transform:
   m_ObjectHideFlags: 0

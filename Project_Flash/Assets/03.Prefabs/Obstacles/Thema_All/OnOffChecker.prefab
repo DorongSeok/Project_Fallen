@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7458967039093331950}
   - component: {fileID: 7458967039093331951}
   - component: {fileID: 4085363589092133467}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: OnOffChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

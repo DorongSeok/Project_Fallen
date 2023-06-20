@@ -17,7 +17,7 @@ TagManager:
   - OutChecker
   - ObstacleTexture
   - PlayerCollsion
-  - 
+  - CheckTrigger
   - 
   - 
   - 
