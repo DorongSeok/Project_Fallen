@@ -156,10 +156,10 @@ public class PlayerCharacterControl : MonoBehaviour
         if (duration > 0.4f)
         {
             float chargeGage;
-            chargeGage = 10.0f + (duration * 30.0f);
-            if (chargeGage > 70.0f)
+            chargeGage = 10.0f + (duration * 25.0f);
+            if (chargeGage > 60.0f)
             {
-                chargeGage = 70.0f;
+                chargeGage = 60.0f;
             }
             var setParticle = chargeEffect.emission;
             setParticle.rateOverTime = chargeGage;
