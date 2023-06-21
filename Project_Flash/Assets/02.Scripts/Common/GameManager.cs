@@ -159,18 +159,23 @@ public class GameManager : MonoBehaviour
         switch (nowThemaNum) // 여기 브금 입력해주면 됨
         {
             case 1:
+                Managers.Sound.Play("BGM/t1_BGM", Define.Sound.Bgm);
                 break;
 
             case 2:
+                Managers.Sound.Play("BGM/t2_BGM", Define.Sound.Bgm);
                 break;
 
             case 3:
+                Managers.Sound.Play("BGM/t3_BGM", Define.Sound.Bgm);
                 break;
 
             case 4:
+                Managers.Sound.Play("BGM/t4_BGM", Define.Sound.Bgm);
                 break;
 
             case 5:
+                Managers.Sound.Play("BGM/t5_BGM", Define.Sound.Bgm);
                 break;
 
             default:
