@@ -153,6 +153,14 @@ public class DataManager
     {
         return gData._second;
     }
+    public void SetIsBugCheckerActive(bool isBugCheckerActive)
+    {
+        gData._isBugCheckerActive = isBugCheckerActive;
+    }
+    public bool GetIsBugCheckerActive()
+    {
+        return gData._isBugCheckerActive;
+    }
     public void SetBGMSound(float bgmSound)
     {
         oData._bgmSound = bgmSound;
@@ -177,6 +185,7 @@ public class DataManager
     {
         return oData._isStarted;
     }
+    
     public void ResetSaveGameData() // 저장된 모든 정보를 초기화 함
     {
         gData = new GameData();

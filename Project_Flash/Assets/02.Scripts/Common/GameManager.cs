@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     private float second = 0.0f;
 
     private int nowThemaNum = 0;
+
+    private void Awake()
+    {
+        Physics2D.IgnoreLayerCollision(6, 8, false);
+    }
     void Start()
     {
         if (Managers.Instance != null) // datamanger가 존재한다면 스테이지 시작 함수 실행(오류 방지)

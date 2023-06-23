@@ -20,6 +20,7 @@ namespace DataInfo
         public int _level;
         public int _fallenCount;
         public float _second;
+        public bool _isBugCheckerActive;
 
         public GameData() // 생성자(초기값 선언)
         {
@@ -35,6 +36,7 @@ namespace DataInfo
             _level = 1;
             _fallenCount = 0;
             _second = 0.0f;
+            _isBugCheckerActive = false;
         }
 
         // 추가적인 데이터 저장 필요 시 추가하고 생성자에도 추가할 것

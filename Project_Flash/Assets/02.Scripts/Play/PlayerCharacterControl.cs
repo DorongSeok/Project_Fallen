@@ -42,11 +42,13 @@ public class PlayerCharacterControl : MonoBehaviour
 
     private bool isignoreLayerCollision = false;
     private bool isGameStop = false;
+    private bool isBugCheckerActive = false;
 
 
     public GameObject chargeCore;
     public GameObject chargeEffectObject;
     public GameObject insideCollsionChecker;
+    public GameObject bugChecker;
     private ParticleSystem chargeEffect;
 
 
@@ -93,6 +95,7 @@ public class PlayerCharacterControl : MonoBehaviour
             Managers.data.SetDuration(duration);
             Managers.data.SetIsignoreLayerCollision(isignoreLayerCollision);
             Managers.data.SetFallenCount(fallenCount);
+            Managers.data.SetIsBugCheckerActive(isBugCheckerActive);
         }
     }
     public void LoadPlayerData() // 게임 재 시작 시 데이터 불러오기
@@ -106,8 +109,10 @@ public class PlayerCharacterControl : MonoBehaviour
             this.isFallen = Managers.data.GetIsFallen();
             this.isMove = Managers.data.GetIsMove();
             this.isignoreLayerCollision = Managers.data.GetIsignoreLayerCollision();
+            this.isBugCheckerActive = Managers.data.GetIsBugCheckerActive();
             if (isignoreLayerCollision == true)
             {
+                insideCollsionChecker.SetActive(true);
                 Physics2D.IgnoreLayerCollision(6, 8, true);
             }
             if (isFallen == true) // 게임 저장 때 추락 중이였다면, 추락을 멈췄음을 확인하는 코루틴 재 실행
@@ -119,7 +124,10 @@ public class PlayerCharacterControl : MonoBehaviour
                 this.duration = Managers.data.GetDuration();
                 StartCoroutine(nameof(CheckIsStop));
             }
-
+            if (isBugCheckerActive == true)
+            {
+                bugChecker.SetActive(true);
+            }
         }
     }
     void OnKeyboard()
@@ -219,6 +227,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
             else
             {
+                StartCoroutine(nameof(CheckIsStop));
                 if (directionX == 1 && directionY == 0) // 오른쪽
                 {
                     rigidBody.AddForce((Vector2.right.normalized * moveSpeed * duration), ForceMode2D.Force);
@@ -251,7 +260,6 @@ public class PlayerCharacterControl : MonoBehaviour
                 {
                     rigidBody.AddForce(((Vector2.right + Vector2.down).normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                StartCoroutine(nameof(CheckIsStop));
             }
         }
     }
@@ -299,6 +307,8 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             if (isFallen == false)
             {
+                bugChecker.SetActive(true);
+                isBugCheckerActive = true;
                 Falling();
             }
         }
@@ -370,6 +380,11 @@ public class PlayerCharacterControl : MonoBehaviour
         rigidBody.gravityScale = 0.0f;
         rigidBody.drag = 5.0f;
         nowCheckStopTime = 0.0f;
+        if (bugChecker.activeSelf == true)
+        {
+            bugChecker.SetActive(false);
+            isBugCheckerActive = false;
+        }
     }
     public void InsideCollsionEnd() // 차징 이동 후, 장애물에 위치해서 추락할 경우, 해당 장애물을 빠져나왔을 때 실행되는 함수
     {

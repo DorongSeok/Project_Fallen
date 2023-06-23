@@ -15,6 +15,11 @@ public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
     {
         this.isCollision = isCollision;
     }
+    private void OnEnable()
+    {
+        isCollision = false;
+        enterObject.Clear();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 8) // 차징 이동 중, 접촉한 모든 대상으로부터 exit를 체크하기 위한 구조
@@ -25,15 +30,18 @@ public class PlayerCharacterInsideCollisionCheck : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (enterObject.Contains(collision.gameObject)) // 추락 중, 접촉한 대상이 아닌 경우 반응하지 않도록 함
+        if (collision.gameObject.layer == 8)
         {
-            enterObject.Remove(collision.gameObject);
-            if (enterObject.Count == 0)
+            if (enterObject.Contains(collision.gameObject)) // 추락 중, 접촉한 대상이 아닌 경우 반응하지 않도록 함
             {
-                isCollision = false;
-                if (GetComponentInParent<PlayerCharacterControl>().GetIsMove() == false)
+                enterObject.Remove(collision.gameObject);
+                if (enterObject.Count == 0)
                 {
-                    gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterControl>().InsideCollsionEnd();
+                    isCollision = false;
+                    if (GetComponentInParent<PlayerCharacterControl>().GetIsMove() == false)
+                    {
+                        gameObject.transform.parent.gameObject.GetComponent<PlayerCharacterControl>().InsideCollsionEnd();
+                    }
                 }
             }
         }
