@@ -385,6 +385,12 @@ public class PlayerCharacterControl : MonoBehaviour
             bugChecker.SetActive(false);
             isBugCheckerActive = false;
         }
+        if (insideCollsionChecker.activeSelf == true)
+        {
+            insideCollsionChecker.SetActive(false);
+            isignoreLayerCollision = false;
+            Physics2D.IgnoreLayerCollision(6, 8, false);
+        }
     }
     public void InsideCollsionEnd() // 차징 이동 후, 장애물에 위치해서 추락할 경우, 해당 장애물을 빠져나왔을 때 실행되는 함수
     {
