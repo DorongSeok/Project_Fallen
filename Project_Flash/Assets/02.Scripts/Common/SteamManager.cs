@@ -22,17 +22,17 @@ public class SteamManager : MonoBehaviour
     }
     private void Start()
     {
-        try
-        {
-            foreach (var a in SteamUserStats.Achievements)
-            {
-                Debug.Log($"{a.Name}({a.State})");
-            }
-        }
-        catch
-        {
+        //try
+        //{
+        //    foreach (var a in SteamUserStats.Achievements)
+        //    {
+        //        Debug.Log($"{a.Name}({a.State})");
+        //    }
+        //}
+        //catch
+        //{
             
-        }
+        //}
     }
 
     private void OnApplicationQuit()

@@ -317,6 +317,8 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             if (isFallen == false)
             {
+                bugChecker.SetActive(true);
+                isBugCheckerActive = true;
                 Falling();
             }
             if (isignoreLayerCollision == true)
@@ -413,5 +415,9 @@ public class PlayerCharacterControl : MonoBehaviour
     public int GetFallenCount()
     {
         return fallenCount;
+    }
+    public bool GetIsFallen()
+    {
+        return isFallen;
     }
 }

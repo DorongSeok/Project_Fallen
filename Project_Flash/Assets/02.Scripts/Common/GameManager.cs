@@ -169,18 +169,54 @@ public class GameManager : MonoBehaviour
 
             case 2:
                 Managers.Sound.Play("BGM/t2_BGM", Define.Sound.Bgm);
+                try
+                {
+                    var ach = new Achievement("CLEAR_1_THEMA");
+                    ach.Trigger();
+                }
+                catch
+                {
+
+                }
                 break;
 
             case 3:
                 Managers.Sound.Play("BGM/t3_BGM", Define.Sound.Bgm);
+                try
+                {
+                    var ach = new Achievement("CLEAR_2_THEMA");
+                    ach.Trigger();
+                }
+                catch
+                {
+
+                }
                 break;
 
             case 4:
                 Managers.Sound.Play("BGM/t4_BGM", Define.Sound.Bgm);
+                try
+                {
+                    var ach = new Achievement("CLEAR_3_THEMA");
+                    ach.Trigger();
+                }
+                catch
+                {
+
+                }
                 break;
 
             case 5:
                 Managers.Sound.Play("BGM/t5_BGM", Define.Sound.Bgm);
+                try
+                {
+                    var ach = new Achievement("CLEAR_4_THEMA");
+                    ach.Trigger();
+                }
+                catch
+                {
+
+                }
                 break;
 
             default:

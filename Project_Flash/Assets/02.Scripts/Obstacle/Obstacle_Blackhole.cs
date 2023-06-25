@@ -5,16 +5,32 @@ using UnityEngine;
 public class Obstacle_Blackhole : MonoBehaviour
 {
     private PointEffector2D effector;
-
+    private GameObject player;
     private void Awake()
     {
         effector = GetComponent<PointEffector2D>();
     }
-
-    private void Start()
+    private void OnEnable()
     {
         PlayerCharacterControl.onPlayerFallingStart += this.EffectorOff;
         PlayerCharacterControl.onPlayerFallingEnd += this.EffectorOn;
+
+        try
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        catch
+        {
+            Debug.Log("null");
+        }
+        if (player.GetComponent<PlayerCharacterControl>().GetIsFallen() == true)
+        {
+            EffectorOff();
+        }
+        else if (player.GetComponent<PlayerCharacterControl>().GetIsFallen() == false)
+        {
+            EffectorOn();
+        }
     }
     private void OnDisable()
     {
