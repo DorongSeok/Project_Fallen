@@ -56,7 +56,10 @@ public class CameraMove : MonoBehaviour
     {
         if (isCameraUp == true && isFalling == false)
         {
-            camTr.position = Vector3.Slerp(camTr.position, new Vector3(0, targetTr.position.y + upPoint, camHeight), Time.deltaTime * upDamping);
+            if (camTr.position.y < 1590.0f)
+            {
+                camTr.position = Vector3.Slerp(camTr.position, new Vector3(0, targetTr.position.y + upPoint, camHeight), Time.deltaTime * upDamping);
+            }
         }
         else
         {
