@@ -60,6 +60,9 @@ public class Managers : MonoBehaviour
             s_instance._sound.Init();
             s_instance._data.LoadGameData();
             s_instance._data.LoadOptionData();
+            Application.targetFrameRate = 60;
+            QualitySettings.SetQualityLevel(2);
+            QualitySettings.shadows = ShadowQuality.Disable;
         }
     }
     public void Clear() // √ ±‚»≠
