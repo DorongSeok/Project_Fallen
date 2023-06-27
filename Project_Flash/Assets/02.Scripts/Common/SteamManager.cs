@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Steamworks;
+using Steamworks.Data;
 
 public class SteamManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class SteamManager : MonoBehaviour
             
         }
     }
+    
     private void Start()
     {
         //try
@@ -34,7 +36,7 @@ public class SteamManager : MonoBehaviour
             
         //}
     }
-
+    
     private void OnApplicationQuit()
     {
         try

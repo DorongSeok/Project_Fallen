@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 518881223}
   - component: {fileID: 518881225}
   m_Layer: 0
-  m_Name: CreditSceneManager
+  m_Name: LeaderboardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,6 +236,8 @@ MonoBehaviour:
   option: {fileID: 0}
   level: {fileID: 0}
   eventSystem: {fileID: 0}
+  warning: {fileID: 0}
+  panel: {fileID: 0}
 --- !u!4 &518881224
 Transform:
   m_ObjectHideFlags: 0

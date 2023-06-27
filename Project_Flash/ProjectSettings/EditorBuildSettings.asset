@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/01.Scenes/BuildScenes/Play_Normal.unity
     guid: 8bfa0feba9c46874aba2111734a1fead
   - enabled: 1
-    path: Assets/01.Scenes/BuildScenes/Credit.unity
+    path: Assets/01.Scenes/BuildScenes/Leaderboard.unity
     guid: 4d2b6288f1709bf498b1002d5dae6899
   - enabled: 1
     path: Assets/01.Scenes/BuildScenes/Ending.unity

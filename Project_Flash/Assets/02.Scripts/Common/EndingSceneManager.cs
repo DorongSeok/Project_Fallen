@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.UI;
+using Steamworks;
 
 public class EndingSceneManager : MonoBehaviour
 {
@@ -20,11 +21,27 @@ public class EndingSceneManager : MonoBehaviour
 
     private float clearTime;
     private float fallingCount;
+
+    Steamworks.Data.Leaderboard lb;
     private void Start()
     {
         clearTime = Managers.data.GetSecond();
         fallingCount = Managers.data.GetFallenCount();
+        FindLeaderboardAndSetScore();
         EndingCreditStart();
+    }
+    async void FindLeaderboardAndSetScore()
+    {
+        try
+        {
+            var leaderboard = await SteamUserStats.FindLeaderboardAsync("Leaderboard");
+            lb = (Steamworks.Data.Leaderboard)leaderboard;
+            var result = await lb.SubmitScoreAsync((int)clearTime);
+        }
+        catch
+        {
+            Debug.Log("¿¬°á ¾ÈµÊ");
+        }
     }
     private void EndingCreditStart()
     {
@@ -160,6 +177,7 @@ public class EndingSceneManager : MonoBehaviour
     }
     public void GameClear()
     {
+        FindLeaderboardAndSetScore();
         Managers.data.ResetSaveGameData();
         StartCoroutine(nameof(Main_UISceneOpen));
     }
