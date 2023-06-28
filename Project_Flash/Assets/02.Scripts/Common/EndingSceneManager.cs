@@ -15,6 +15,7 @@ public class EndingSceneManager : MonoBehaviour
     public Text text_PlayTime;
     public Text text_FallingCount;
     public EndingCameraMove endingCameraMove;
+    public EndingCharacterMove endingCharacterMove;
 
     public float fadeSpeed = 0.01f;
     private float fadeCount;
@@ -43,6 +44,10 @@ public class EndingSceneManager : MonoBehaviour
             Debug.Log("¿¬°á ¾ÈµÊ");
         }
     }
+    private void CurtainOff()
+    {
+
+    }
     private void EndingCreditStart()
     {
         endingCredit.SetActive(true);
@@ -50,6 +55,20 @@ public class EndingSceneManager : MonoBehaviour
     }
     IEnumerator EndingCreditCoroutine()
     {
+        yield return new WaitForSeconds(1.0f);
+        endingCharacterMove.SetIsMove(true);
+
+        fadeCount = 1.0f;
+        while (fadeCount > 0.0f)
+        {
+            fadeCount -= (fadeSpeed * 0.5f);
+            yield return new WaitForSeconds(fadeSpeed * 0.5f);
+            curtain.color = new Color(0, 0, 0, fadeCount);
+        }
+        curtain.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1.5f);
+
         endingCameraMove.SetIsCamUpTrue();
 
         yield return new WaitForSeconds(2.0f);
@@ -157,6 +176,7 @@ public class EndingSceneManager : MonoBehaviour
         endingCameraMove.SetIsCamDownTrue();
 
         yield return new WaitForSeconds(3.0f);
+
         curtain.gameObject.SetActive(true);
         while (fadeCount < 1.0f)
         {
@@ -166,7 +186,7 @@ public class EndingSceneManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
-
+        endingCharacterMove.SetIsMove(false);
         ShowResult();
     }
     private void ShowResult()

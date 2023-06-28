@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
     public MakePerspective makePerspective;
+    public UnityEngine.UI.Image curtain; 
 
     private GameObject player;
     
@@ -16,10 +17,14 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public OptionCtrl option;
     private bool pauseMenuOpen = false;
+    private bool isGameEnd = false;
 
     private float second = 0.0f;
 
     private int nowThemaNum = 0;
+
+    private float fadeCount = 0.0f;
+    private float fadeSpeed = 0.01f;
 
     private void Awake()
     {
@@ -57,17 +62,20 @@ public class GameManager : MonoBehaviour
     private void OnKeyboard()
     {
         // 종료 키 입력 시 메뉴 오픈 여부에 따른 행동 반환
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isGameEnd == false)
         {
-            if (option.GetIsOptionOpen() == false)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (pauseMenuOpen == false)
+                if (option.GetIsOptionOpen() == false)
                 {
-                    PauseMenuOpen();
-                }
-                else if (pauseMenuOpen == true)
-                {
-                    PauseMenuClose();
+                    if (pauseMenuOpen == false)
+                    {
+                        PauseMenuOpen();
+                    }
+                    else if (pauseMenuOpen == true)
+                    {
+                        PauseMenuClose();
+                    }
                 }
             }
         }
@@ -124,6 +132,15 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator EndingSceneOpen()
     {
+        curtain.gameObject.SetActive(true);
+        playerCharacterControl.SetIsGameStop(true);
+        while (fadeCount < 1.0f)
+        {
+            fadeCount += (fadeSpeed);
+            yield return new WaitForSeconds(fadeSpeed);
+            curtain.color = new UnityEngine.Color(0, 0, 0, fadeCount);
+        }
+
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(5, LoadSceneMode.Single);
         while (!asyncOperation.isDone)
         {
@@ -132,6 +149,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameClear()
     {
+        isGameEnd = true;
         try
         {
             var ach = new Achievement("CLEAR_ALL_THEMA");

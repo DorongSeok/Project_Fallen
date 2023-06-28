@@ -5,6 +5,7 @@ using UnityEngine;
 public class EndingCharacterMove : MonoBehaviour
 {
     private Rigidbody2D rbody;
+    private bool isMove = false;
 
     public float spd;
     void Start()
@@ -13,6 +14,13 @@ public class EndingCharacterMove : MonoBehaviour
     }
     void Update()
     {
-        rbody.AddForce(Vector2.up * spd, ForceMode2D.Force);
+        if (isMove == true)
+        {
+            rbody.AddForce(Vector2.up * spd, ForceMode2D.Force);
+        }
+    }
+    public void SetIsMove(bool isMove)
+    {
+        this.isMove = isMove;
     }
 }
