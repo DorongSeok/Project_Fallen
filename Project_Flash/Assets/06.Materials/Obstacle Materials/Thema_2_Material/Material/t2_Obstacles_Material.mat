@@ -33,6 +33,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_d7fa5092c8f845b18e1b78dbfe46be1a_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 39cdbb36e6bb08240a7e3cdad8338e66, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2D:
         m_Texture: {fileID: 2800000, guid: 0ed436a70179a9949a8c93cd2f05cbe6, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -51,20 +59,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DistortAmplitude: -0.69
-    - _DistortNoisePeriod: 1.83
+    - _DistortAmplitude: -0.92
+    - _DistortNoisePeriod: 1.86
     - _Lerp: 0
-    - _PolygonSides: 4
+    - _PolygonSides: 3.55
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SineAmplitude: 0.72
     - _SineFrequency: 1
     - _SineRotation: 0.68
-    - _UVScale: -3.45
+    - _UVScale: -3.88
     m_Colors:
     - _Color: {r: 0.54568, g: 0, b: 1, a: 0}
     - _Color1: {r: 0.11320752, g: 0.08123562, b: 0.065681726, a: 0}
     - _Color2: {r: 0.21698111, g: 0.14680743, b: 0.12793697, a: 1}
     - _Speed: {r: 0, g: 0, b: 0, a: 0}
-    - _UVTiling: {r: 2, g: 2, b: 0, a: 0}
+    - _UVTiling: {r: 0.81, g: 1.85, b: 0, a: 0}
   m_BuildTextureStacks: []
