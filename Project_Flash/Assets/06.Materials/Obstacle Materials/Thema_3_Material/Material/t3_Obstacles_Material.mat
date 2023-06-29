@@ -33,6 +33,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_21b055d9ca684158bb95b9e6e4d62d59_Texture_1:
         m_Texture: {fileID: 2800000, guid: be220eb55e31d2a40b452adabf228f35, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -61,7 +65,7 @@ Material:
     m_Floats:
     - _Brightness: 0.02
     - _Float: 0.15
-    - _GradientNoiseScale: 5
+    - _GradientNoiseScale: 4.49
     - _Outline1Size: 0.2
     - _Outline2Size: 0.1
     - _QueueControl: 0
