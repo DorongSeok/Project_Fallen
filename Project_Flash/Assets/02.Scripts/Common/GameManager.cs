@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     IEnumerator TimerCoroutine()
     {
         // 추후 생성 코루틴 호출 중 오류가 생길 경우, 코루틴 종료 함수 실행할 것(혹은 while 조건으로)
-        while(true)
+        while(isGameEnd == false)
         {
             yield return new WaitForSeconds(1.0f);
 

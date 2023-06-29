@@ -41,12 +41,8 @@ public class EndingSceneManager : MonoBehaviour
         }
         catch
         {
-            Debug.Log("¿¬°á ¾ÈµÊ");
+            
         }
-    }
-    private void CurtainOff()
-    {
-
     }
     private void EndingCreditStart()
     {
