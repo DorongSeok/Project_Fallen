@@ -134,18 +134,15 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         if (isGameStop == false)
         {
-            directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
-            directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
-
-            // 떨어지고 있을 때 및 이동 중일 때를 제외한 상황에서만 입력을 받음
-            // 이동 전, 충전하는 부분만 isMove가 false일 때도 가능하게 할지 결정할 것
-            if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false)
-            {
-                Charging();
-            }
             if (Input.GetKeyUp(KeyCode.Space) && isMove == false && isFallen == false)
             {
+                directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
+                directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
                 Move();
+            }
+            else if (Input.GetKey(KeyCode.Space) && isMove == false && isFallen == false)
+            {
+                Charging();
             }
         }
         
@@ -157,12 +154,14 @@ public class PlayerCharacterControl : MonoBehaviour
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
         duration += Time.deltaTime;
+        if (duration >= durationMax) // duration이 최대 값을 넘으면 최대값 대입
+        {
+            duration = durationMax;
+        }
         if (chargeCore.activeSelf == false && duration >= durationMin)
         {
             chargeCore.SetActive(true);
-        }
-        if (duration > 0.4f)
-        {
+
             float chargeGage;
             chargeGage = 10.0f + (duration * 25.0f);
             if (chargeGage > 60.0f)
@@ -184,41 +183,37 @@ public class PlayerCharacterControl : MonoBehaviour
         }
         else
         {
-            if (duration >= durationMax) // duration이 최대 값을 넘으면 최대값 대입
-            {
-                duration = durationMax;
-            }
             if (duration <= durationMin)
             {
-                if (directionX == 1 && directionY == 0) // 오른쪽
+                if (directionX > 0 && directionY == 0) // 오른쪽
                 {
                     rigidBody.AddForce((Vector2.right.normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
-                else if (directionX == 1 && directionY == 1) // 오른쪽 위 대각선
+                else if (directionX > 0 && directionY > 0) // 오른쪽 위 대각선
                 {
                     rigidBody.AddForce(((Vector2.right + Vector2.up).normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
-                else if (directionX == 0 && directionY == 1) // 위쪽
+                else if (directionX == 0 && directionY > 0) // 위쪽
                 {
                     rigidBody.AddForce((Vector2.up.normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
-                else if (directionX == -1 && directionY == 1) // 왼쪽 위 대각선
+                else if (directionX < 0 && directionY > 0) // 왼쪽 위 대각선
                 {
                     rigidBody.AddForce(((Vector2.left + Vector2.up).normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
-                else if (directionX == -1 && directionY == 0) // 왼쪽
+                else if (directionX < 0 && directionY == 0) // 왼쪽
                 {
                     rigidBody.AddForce((Vector2.left.normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
-                else if (directionX == -1 && directionY == -1) // 왼쪽 아래 대각선
+                else if (directionX < 0 && directionY < 0) // 왼쪽 아래 대각선
                 {
                     rigidBody.AddForce(((Vector2.left + Vector2.down).normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
-                else if (directionX == 0 && directionY == -1) // 아래쪽
+                else if (directionX == 0 && directionY < 0) // 아래쪽
                 {
                     rigidBody.AddForce((Vector2.down.normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
-                else if (directionX == 1 && directionY == -1) // 오른쪽 아래 대각선
+                else if (directionX > 0 && directionY < 0) // 오른쪽 아래 대각선
                 {
                     rigidBody.AddForce(((Vector2.right + Vector2.down).normalized * moveSpeed * durationMin), ForceMode2D.Force);
                 }
@@ -228,35 +223,35 @@ public class PlayerCharacterControl : MonoBehaviour
             else
             {
                 StartCoroutine(nameof(CheckIsStop));
-                if (directionX == 1 && directionY == 0) // 오른쪽
+                if (directionX > 0 && directionY == 0) // 오른쪽
                 {
                     rigidBody.AddForce((Vector2.right.normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                else if (directionX == 1 && directionY == 1) // 오른쪽 위 대각선
+                else if (directionX > 0 && directionY > 0) // 오른쪽 위 대각선
                 {
                     rigidBody.AddForce(((Vector2.right + Vector2.up).normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                else if (directionX == 0 && directionY == 1) // 위쪽
+                else if (directionX == 0 && directionY > 0) // 위쪽
                 {
                     rigidBody.AddForce((Vector2.up.normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                else if (directionX == -1 && directionY == 1) // 왼쪽 위 대각선
+                else if (directionX < 0 && directionY > 0) // 왼쪽 위 대각선
                 {
                     rigidBody.AddForce(((Vector2.left + Vector2.up).normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                else if (directionX == -1 && directionY == 0) // 왼쪽
+                else if (directionX < 0 && directionY == 0) // 왼쪽
                 {
                     rigidBody.AddForce((Vector2.left.normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                else if (directionX == -1 && directionY == -1) // 왼쪽 아래 대각선
+                else if (directionX < 0 && directionY < 0) // 왼쪽 아래 대각선
                 {
                     rigidBody.AddForce(((Vector2.left + Vector2.down).normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                else if (directionX == 0 && directionY == -1) // 아래쪽
+                else if (directionX == 0 && directionY < 0) // 아래쪽
                 {
                     rigidBody.AddForce((Vector2.down.normalized * moveSpeed * duration), ForceMode2D.Force);
                 }
-                else if (directionX == 1 && directionY == -1) // 오른쪽 아래 대각선
+                else if (directionX > 0 && directionY < 0) // 오른쪽 아래 대각선
                 {
                     rigidBody.AddForce(((Vector2.right + Vector2.down).normalized * moveSpeed * duration), ForceMode2D.Force);
                 }

@@ -12,6 +12,12 @@ public class InputManager
 
     public void OnUpdate()
     {
+        // 키보드 입력
+        if(KeyAction != null)
+        {
+            KeyAction.Invoke();
+        }
+
         // 마우스 입력
         if(MouseAction != null)
         {
@@ -32,12 +38,6 @@ public class InputManager
                 _pressed = false;
             }
             /* 드래그 관련 처리는 나중에 추가할 것 */
-        }
-
-        // 키보드 입력
-        if(KeyAction != null)
-        {
-            KeyAction.Invoke();
         }
     }
     public void Clear()
