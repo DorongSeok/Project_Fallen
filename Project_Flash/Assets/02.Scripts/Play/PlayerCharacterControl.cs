@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 public class PlayerCharacterControl : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class PlayerCharacterControl : MonoBehaviour
     public GameObject bugChecker;
     private ParticleSystem chargeEffect;
 
+    private Text text_Height;
 
     private void Awake()
     {
@@ -340,6 +342,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     IEnumerator CheckIsFalling() // 중력이 적용된 후, 멈췄을 때 중력 적용을 취소하고 다시 움직일 수 있게 하는 코루틴
     {
+        WaitForEndOfFrame waitflag = new WaitForEndOfFrame();
         onPlayerFallingStart();
         isFallen = true;
         yield return new WaitForSeconds(0.1f);
@@ -367,7 +370,7 @@ public class PlayerCharacterControl : MonoBehaviour
             {
                 nowCheckStopTime = 0.0f;
             }
-            yield return new WaitForEndOfFrame();
+            yield return waitflag;
         }
     }
     private void IsGrounded() // 중력 적용 해제
@@ -414,5 +417,19 @@ public class PlayerCharacterControl : MonoBehaviour
     public bool GetIsFallen()
     {
         return isFallen;
+    }
+    public void SetText_Height(Text text_Height)
+    {
+        this.text_Height = text_Height;
+        StartCoroutine(nameof(DisplayNowHeight));
+    }
+    IEnumerator DisplayNowHeight()
+    {
+        WaitForSeconds waitflag = new WaitForSeconds(0.1f);
+        while(isGameStop == false)
+        {
+            text_Height.text = $"{(int)transform.position.y}m";
+            yield return waitflag;
+        }
     }
 }

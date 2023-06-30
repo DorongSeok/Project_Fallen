@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
     public MakePerspective makePerspective;
-    public UnityEngine.UI.Image curtain; 
+    public UnityEngine.UI.Image curtain;
+    public UnityEngine.UI.Text text_Height;
 
     private GameObject player;
     
@@ -51,10 +52,10 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator TimerCoroutine()
     {
-        // 추후 생성 코루틴 호출 중 오류가 생길 경우, 코루틴 종료 함수 실행할 것(혹은 while 조건으로)
+        WaitForSeconds waitflag = new WaitForSeconds(1.0f);
         while(isGameEnd == false)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return waitflag;
 
             second += 1;
         }
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
     {
         player = Instantiate(playerPrefab, Managers.data.GetSavePos(), Quaternion.identity);
         playerCharacterControl = player.GetComponent<PlayerCharacterControl>();
+        playerCharacterControl.SetText_Height(text_Height);
 
         makePerspective.SetPlayer(player);
     }
@@ -132,12 +134,14 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator EndingSceneOpen()
     {
+        WaitForSeconds waitflag = new WaitForSeconds(fadeSpeed);
+
         curtain.gameObject.SetActive(true);
         playerCharacterControl.SetIsGameStop(true);
         while (fadeCount < 1.0f)
         {
             fadeCount += (fadeSpeed);
-            yield return new WaitForSeconds(fadeSpeed);
+            yield return waitflag;
             curtain.color = new UnityEngine.Color(0, 0, 0, fadeCount);
         }
 
