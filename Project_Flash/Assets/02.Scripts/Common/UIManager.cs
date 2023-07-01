@@ -38,7 +38,6 @@ public class UIManager : MonoBehaviour
         if (asyncOperation == null)
         {
             Managers.data.ResetSaveGameData();
-            Managers.data.SetIsFirstPlay(false);
             Managers.data.SetLevel(1);
             asyncOperation = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
             while (!asyncOperation.isDone)

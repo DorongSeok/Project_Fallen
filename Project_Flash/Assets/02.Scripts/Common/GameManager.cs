@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private PlayerCharacterControl playerCharacterControl;
 
     public GameObject pauseMenu;
+    public TutorialCTRL tutorial;
     public OptionCtrl option;
     private bool pauseMenuOpen = false;
     private bool isGameEnd = false;
@@ -45,6 +46,13 @@ public class GameManager : MonoBehaviour
         second = Managers.data.GetSecond();
 
         StartCoroutine(nameof(TimerCoroutine));
+
+        if (Managers.data.GetIsFirstPlay() == true)
+        {
+            PauseMenuOpen();
+            TutorialButtonClick();
+            Managers.data.SetIsFirstPlay(false);
+        }
     }
     private void OnDisable()
     {
@@ -67,7 +75,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (option.GetIsOptionOpen() == false)
+                if (option.GetIsOptionOpen() == false && tutorial.GetIsOpen() == false)
                 {
                     if (pauseMenuOpen == false)
                     {
@@ -100,6 +108,10 @@ public class GameManager : MonoBehaviour
         {
             PauseMenuClose();
         }
+    }
+    public void TutorialButtonClick()
+    {
+        tutorial.gameObject.SetActive(true);
     }
     private void SaveData() // 현 데이터 저장
     {
