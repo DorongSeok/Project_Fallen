@@ -31,6 +31,7 @@ public class SoundManager
             _audioSources[(int)Define.Sound.Bgm].outputAudioMixerGroup = audioMixerGroups[1];
             _audioSources[(int)Define.Sound.Effect].outputAudioMixerGroup = audioMixerGroups[2];
         }
+        AddSoundsToList();
     }
     
     public void Clear()
@@ -77,7 +78,7 @@ public class SoundManager
         Play(audioClip, type, pitch);
     }
     
-    private AudioClip GetOrAddAudioClip(string path, Define.Sound type = Define.Sound.Effect)
+    public AudioClip GetOrAddAudioClip(string path, Define.Sound type = Define.Sound.Effect)
     {
         // path 폴더 설정해야함
         if(path.Contains("Sounds/") == false)
@@ -86,20 +87,17 @@ public class SoundManager
         }
     
         AudioClip audioClip = null;
-    
-        // 배경음악 클립 붙이기
-        if(type == Define.Sound.Bgm)
+
+        // 오디오 클립에 존재하지 않는다면 추가해줌
+        if (_audioClips.TryGetValue(path, out audioClip) == false)
         {
             audioClip = Managers.Resource.Load<AudioClip>(path);
+            _audioClips.Add(path, audioClip);
         }
-        // 효과음 클립 붙이기
+        // 아니라면 그냥 불러옴
         else
         {
-            if(_audioClips.TryGetValue(path, out audioClip) == false)
-            {
-                audioClip = Managers.Resource.Load<AudioClip>(path);
-                _audioClips.Add(path, audioClip);
-            }
+            audioClip = Managers.Resource.Load<AudioClip>(path);
         }
     
         if(audioClip == null)
@@ -108,5 +106,19 @@ public class SoundManager
         }
     
         return audioClip;
+    }
+    private void AddSoundsToList()
+    {
+        // 미리 사운드 리소스들을 리스트에 넣어놔 불러오는데 걸리는 딜레이 방지
+        Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_ShakeEffect");
+        Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_FallingEffect");
+
+        Managers.Sound.GetOrAddAudioClip("BGM/t1_BGM", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("BGM/t2_BGM", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("BGM/t3_BGM", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("BGM/t4_BGM", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("BGM/t5_BGM", Define.Sound.Bgm);
     }
 }

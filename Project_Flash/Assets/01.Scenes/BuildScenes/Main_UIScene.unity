@@ -2767,7 +2767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533614847}
   - component: {fileID: 1533614846}
-  - component: {fileID: 1533614845}
+  - component: {fileID: 1533614848}
   m_Layer: 0
   m_Name: MainSceneManager
   m_TagString: Untagged
@@ -2775,19 +2775,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1533614845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533614844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250c62805c715e84da36a5cbd0fb11e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  continueButton: {fileID: 1047222294}
 --- !u!114 &1533614846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,6 +2807,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533614848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533614844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88b8e68e48b16b498778cde87e81a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  continueButton: {fileID: 1047222294}
 --- !u!1001 &1555943775
 PrefabInstance:
   m_ObjectHideFlags: 0
