@@ -4,47 +4,63 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using DataInfo;
+using AES;
 
 public class DataManager
 {
     string GameDataFileName = "GameData.json";
     string OptionDataFileName = "OptionData.json";
+    string key = "ahskds1576480011";
 
     public GameData gData = new GameData(); // 스크립트 내에 data 저장 공간 생성
     public OptionData oData = new OptionData();
 
     public void LoadGameData() // 로컬 파일 경로에 저장된 데이터를 불러옴
     {
-        string filePath = Application.persistentDataPath + "/" + GameDataFileName;
-        if (File.Exists(filePath) == true) // 저장된 데이터가 있다면, 데이터를 로드하고, 해당 정보를 data에 적용함
+        try
         {
-            string FromJsonData = File.ReadAllText(filePath);
-
-            gData = JsonUtility.FromJson<GameData>(FromJsonData);
+            string filePath = Application.persistentDataPath + "/" + GameDataFileName;
+            if (File.Exists(filePath) == true) // 저장된 데이터가 있다면, 데이터를 로드하고, 해당 정보를 data에 적용함
+            {
+                string FromJsonData = File.ReadAllText(filePath);
+                FromJsonData = Program.Decrypt(FromJsonData, key);
+                gData = JsonUtility.FromJson<GameData>(FromJsonData);
+            }
+        }
+        catch
+        {
+            gData = new GameData();
         }
     }
     public void SaveGameData() // data형태로 존재하는 저장 필요 데이터를, 로컬 파일로 저장함
     {
         string ToJsonData = JsonUtility.ToJson(gData, true); // 데이터 보기 좋게 정리
         string filePath = Application.persistentDataPath + "/" + GameDataFileName;
-
+        ToJsonData = Program.Encrypt(ToJsonData, key);
         File.WriteAllText(filePath, ToJsonData); // 파일이 존재한다면 덮어 씌우기, 존재하지 않는다면 새로 만들기
     }
     public void LoadOptionData()
     {
-        string filePath = Application.persistentDataPath + "/" + OptionDataFileName;
-        if (File.Exists(filePath) == true)
+        try
         {
-            string FromJsonData = File.ReadAllText(filePath);
-
-            oData = JsonUtility.FromJson<OptionData>(FromJsonData);
+            string filePath = Application.persistentDataPath + "/" + OptionDataFileName;
+            if (File.Exists(filePath) == true)
+            {
+                string FromJsonData = File.ReadAllText(filePath);
+                FromJsonData = Program.Decrypt(FromJsonData, key);
+                oData = JsonUtility.FromJson<OptionData>(FromJsonData);
+            }
+        }
+        catch
+        {
+            oData = new OptionData();
         }
     }
     public void SaveOptionData()
     {
         string ToJsonData = JsonUtility.ToJson(oData, true);
         string filePath = Application.persistentDataPath + "/" + OptionDataFileName;
-
+        ToJsonData = Program.Encrypt(ToJsonData, key);
         File.WriteAllText(filePath, ToJsonData);
     }
 
