@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    IEnumerator CreditButtonClick()
+    IEnumerator RankingButtonClick()
     {
         if (asyncOperation == null)
         {
@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     }
     public void CoroutineContinueButtonClick()
     {
-        panel.SetActive(true);
+        panel.SetActive(true); // 씬 로드 중 다른 버튼 터치 불가능하도록 막음
         StartCoroutine(nameof(ContinueButtonClick));
     }
     public void CoroutineNewGameButtonClick()
@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
         }
         else if (!Managers.data.GetIsFirstPlay())
         {
-            warning.SetActive(true);
+            warning.SetActive(true); // 데이터 덮어씌워진다는 경고 문구 출력
         }
     }
     public void OptionButtonClick()
@@ -99,9 +99,9 @@ public class UIManager : MonoBehaviour
         option.SetActive(true);
         option.GetComponent<OptionCtrl>().SetIsOptionOpen(true);
     }
-    public void CoroutineCreditButtonClick()
+    public void CoroutineRankingButtonClick()
     {
-        StartCoroutine(nameof(CreditButtonClick));
+        StartCoroutine(nameof(RankingButtonClick));
     }
     public void ExitButtonClick()
     {

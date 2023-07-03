@@ -7,7 +7,7 @@ public class EndingCharacterMove : MonoBehaviour
     private Rigidbody2D rbody;
     private bool isMove = false;
 
-    public float spd;
+    public float spd = 10.0f;
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
