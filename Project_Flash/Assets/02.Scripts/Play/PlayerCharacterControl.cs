@@ -176,6 +176,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void Move() // 입력에 따른 이동
     {
+        Managers.Sound.Play("Effect/PlayerMove");
         var setParticle = chargeEffect.emission;
         setParticle.rateOverTime = 0.0f;
         if (directionX == 0 && directionY == 0) // 방향이 없을 경우 차징 초기화
