@@ -5,8 +5,8 @@ using UnityEngine;
 public class EndingCameraMove : MonoBehaviour
 {
     //추후 언제 시작할지 시간만 수정하면 됨
-    public float spd;
-    public float damping;
+    public float spd = 1.0f;
+    public float damping = 6.5f;
 
     private Vector3 startPos;
     private Vector3 endPos;

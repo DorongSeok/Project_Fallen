@@ -13,12 +13,12 @@ public class CameraMove : MonoBehaviour
     
     public float camHeight = -10.0f;
 
-    public float moveDamping;
+    public float moveDamping = 10.0f;
 
-    public float waitingTime;
+    public float waitingTime = 0.5f;
 
-    public float upPoint;
-    public float upDamping;
+    public float upPoint = 60.0f;
+    public float upDamping = 0.15f;
 
     private void Awake()
     {

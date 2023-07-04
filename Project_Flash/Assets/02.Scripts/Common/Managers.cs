@@ -6,7 +6,6 @@ using UnityEngine.Audio;
 
 public class Managers : MonoBehaviour
 {
-    public float waitingTime = 1.0f;
     public AudioMixer masterMixer;
 
     static Managers s_instance;
