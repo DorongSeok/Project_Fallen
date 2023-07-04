@@ -29,17 +29,11 @@ public class CameraMove : MonoBehaviour
         Camera.main.aspect = 16f / 9f;
         PlayerCharacterControl.onPlayerFallingStart += this.StartFalling;
         PlayerCharacterControl.onPlayerFallingEnd += this.EndFalling;
-
-        PlayerCharacterTest2.onPlayerFallingStart += this.StartFalling;
-        PlayerCharacterTest2.onPlayerFallingEnd += this.EndFalling;
     }
     private void OnDisable()
     {
         PlayerCharacterControl.onPlayerFallingStart -= this.StartFalling;
         PlayerCharacterControl.onPlayerFallingEnd -= this.EndFalling;
-
-        PlayerCharacterTest2.onPlayerFallingStart -= this.StartFalling;
-        PlayerCharacterTest2.onPlayerFallingEnd -= this.EndFalling;
     }
     private void Update()
     {

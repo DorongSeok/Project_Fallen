@@ -187,8 +187,8 @@ public class EndingSceneManager : MonoBehaviour
     }
     private void ShowResult()
     {
-        text_PlayTime.text = "playtime\n" + getParseTime(clearTime);
-        text_FallingCount.text = "fallingcount\n" + fallingCount.ToString();
+        text_PlayTime.text = "Play Time\n" + "<color=#00ff00>" + getParseTime(clearTime) + "</color>";
+        text_FallingCount.text = "Number of Falling\n" + "<color=#00ff00>" + fallingCount.ToString() + "</color>";
         result.SetActive(true);
     }
     public void GameClear()

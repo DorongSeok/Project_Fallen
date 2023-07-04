@@ -81,7 +81,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'PlayTime
 
-    00h 00m 00s'
+    <color=#00ff00>00h 00m 00s</color>'
 --- !u!1 &5100942575788976506
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Number of Falling
 
-    0000'
+    <color=#00ff00>0000</color>'
 --- !u!1 &6822304382854540121
 GameObject:
   m_ObjectHideFlags: 0
