@@ -7,18 +7,23 @@ public class CameraMove : MonoBehaviour
 {
     private Transform camTr;
     private Transform targetTr;
+    private GameObject player;
+    private PlayerCharacterControl playerCharacterControl;
 
-    private bool isCameraUp = false;
+    private bool isCameraCtrl = false;
     private bool isFalling = false;
-    
+    private float directionY;
+
     public float camHeight = -10.0f;
 
     public float moveDamping = 10.0f;
 
     public float waitingTime = 0.5f;
 
-    public float upPoint = 60.0f;
-    public float upDamping = 0.15f;
+    private float downPoint = 20.0f;
+    private float downDamping = 10.0f;
+    public float upPoint = 50.0f;
+    public float upDamping = 10.0f;
 
     private void Awake()
     {
@@ -37,22 +42,32 @@ public class CameraMove : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            isCameraUp = true;
+            isCameraCtrl = true;
+            playerCharacterControl.SetIsMoveStop(true);
         }
-        else
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            isCameraUp = false;
+            isCameraCtrl = false;
+            playerCharacterControl.SetIsMoveStop(false);
+        }
+        if (isCameraCtrl == true)
+        {
+            directionY = Input.GetAxisRaw("Vertical");
         }
     }
     private void FixedUpdate()
     {
-        if (isCameraUp == true && isFalling == false)
+        if (isCameraCtrl == true && isFalling == false)
         {
-            if (camTr.position.y < 1590.0f)
+            if (camTr.position.y < 1590.0f && directionY > 0)
             {
-                camTr.position = Vector3.Slerp(camTr.position, new Vector3(0, targetTr.position.y + upPoint, camHeight), Time.deltaTime * upDamping);
+                camTr.position = Vector3.MoveTowards(camTr.position, new Vector3(0, targetTr.position.y + upPoint, camHeight), Time.deltaTime * upDamping);
+            }
+            else if (camTr.position.y > 0 && directionY < 0)
+            {
+                camTr.position = Vector3.MoveTowards(camTr.position, new Vector3(0, targetTr.position.y - downPoint, camHeight), Time.deltaTime * downDamping);
             }
         }
         else
@@ -60,13 +75,15 @@ public class CameraMove : MonoBehaviour
             camTr.position = Vector3.Lerp(camTr.position, new Vector3(0, targetTr.position.y, camHeight), Time.deltaTime * moveDamping); // 2. 천천히 따라오기
         }
     }
-    public void SetTargetTr(Transform targetTr) // 카메라가 추적할 대상 세팅
+    public void SetPlayer(GameObject player)
     {
-        this.targetTr = targetTr;
+        this.player = player;
+        playerCharacterControl = player.GetComponent<PlayerCharacterControl>();
         SetCameraStartPos();
     }
     public void SetCameraStartPos()
     {
+        targetTr = player.transform;
         camTr.position = new Vector3(camTr.position.x, targetTr.position.y, camTr.position.z);
     }
     private void StartFalling()

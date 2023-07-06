@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Steamworks.Data;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public MakePerspective makePerspective;
     public UnityEngine.UI.Image curtain;
     public UnityEngine.UI.Text text_Height;
+    public UnityEngine.UI.Text text_Time;
 
     private GameObject player;
     
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
         }
         Managers.Input.KeyAction -= OnKeyboard;
         Managers.Input.KeyAction += OnKeyboard;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
 
 
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
     }
     public void SaveAndExitButtonClick() // 저장 후 종료에 해당하는 버튼 클릭 시 대응하는 함수
     {
-        PauseMenuClose();
+        Time.timeScale = 1;
         SaveData();
         Managers.Instance.Clear();
         StartCoroutine(nameof(MoveToMainScene));
@@ -149,7 +153,8 @@ public class GameManager : MonoBehaviour
         WaitForSeconds waitflag = new WaitForSeconds(fadeSpeed);
 
         curtain.gameObject.SetActive(true);
-        playerCharacterControl.SetIsGameStop(true);
+        playerCharacterControl.SetIsMoveStop(true);
+        playerCharacterControl.SetIsGameEnd(true);
         while (fadeCount < 1.0f)
         {
             fadeCount += (fadeSpeed);
@@ -180,17 +185,22 @@ public class GameManager : MonoBehaviour
     }
     private void PauseMenuOpen() // 메뉴 오픈 시 게임 내 시간 정지
     {
-        playerCharacterControl.SetIsGameStop(true);
+        playerCharacterControl.SetIsMoveStop(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
         pauseMenuOpen = true;
         pauseMenu.SetActive(true);
+        text_Time.text = "Play Time\n" + getParseTime(second);
     }
     private void PauseMenuClose() // 메뉴 오픈 해제 시 게임 내 시간 가동
     {
-        Time.timeScale = 1; 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
         pauseMenuOpen = false;
         pauseMenu.SetActive(false);
-        playerCharacterControl.SetIsGameStop(false);
+        playerCharacterControl.SetIsMoveStop(false);
     }
     public void ThemaChange(int Thema_Num)
     {
@@ -267,5 +277,10 @@ public class GameManager : MonoBehaviour
     {
         return second;
     }
-    
+    private string getParseTime(float time)
+    {
+        string t = TimeSpan.FromSeconds(time).ToString("hh\\:mm\\:ss");
+        string[] tokens = t.Split(':');
+        return tokens[0] + "h " + tokens[1] + "m " + tokens[2] + "s";
+    }
 }

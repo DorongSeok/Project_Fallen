@@ -42,7 +42,8 @@ public class PlayerCharacterControl : MonoBehaviour
     public float proportionalFactor;
 
     private bool isignoreLayerCollision = false;
-    private bool isGameStop = false;
+    private bool isMoveStop = false;
+    private bool isGameEnd = false;
     private bool isBugCheckerActive = false;
 
 
@@ -59,7 +60,7 @@ public class PlayerCharacterControl : MonoBehaviour
         // 카메라 연동 실패 시 예외처리
         try
         {
-            GameObject.FindObjectOfType<CameraMove>().SetTargetTr(this.transform);
+            GameObject.FindObjectOfType<CameraMove>().SetPlayer(gameObject);
 
         }
         catch (NullReferenceException)
@@ -134,7 +135,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     void OnKeyboard()
     {
-        if (isGameStop == false)
+        if (isMoveStop == false)
         {
             if (Input.GetKeyUp(KeyCode.Space) && isMove == false && isFallen == false)
             {
@@ -149,9 +150,9 @@ public class PlayerCharacterControl : MonoBehaviour
         }
         
     }
-    public void SetIsGameStop(bool isGameStop)
+    public void SetIsMoveStop(bool isMoveStop)
     {
-        this.isGameStop = isGameStop;
+        this.isMoveStop = isMoveStop;
     }
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
@@ -419,6 +420,10 @@ public class PlayerCharacterControl : MonoBehaviour
     {
         return isFallen;
     }
+    public void SetIsGameEnd(bool isGameEnd)
+    {
+        this.isGameEnd = isGameEnd;
+    }
     public void SetText_Height(Text text_Height)
     {
         this.text_Height = text_Height;
@@ -427,7 +432,7 @@ public class PlayerCharacterControl : MonoBehaviour
     IEnumerator DisplayNowHeight()
     {
         WaitForSeconds waitflag = new WaitForSeconds(0.1f);
-        while(isGameStop == false)
+        while(isGameEnd == false)
         {
             text_Height.text = $"{(int)transform.position.y}m";
             yield return waitflag;
