@@ -35,6 +35,9 @@ public class PlayerCharacterControl : MonoBehaviour
     private float duration;
     public float durationMax;
     public float durationMin;
+    public float chargingDamping;
+
+    private Vector3 chargingCircleBase;
 
 
     private int fallenCount = 0;
@@ -46,11 +49,13 @@ public class PlayerCharacterControl : MonoBehaviour
     private bool isGameEnd = false;
     private bool isBugCheckerActive = false;
 
+    private float chargeGage = 0.0f;
 
     public GameObject chargeCore;
     public GameObject chargeEffectObject;
     public GameObject insideCollsionChecker;
     public GameObject bugChecker;
+    public GameObject chargingCircle;
     private ParticleSystem chargeEffect;
 
     private Text text_Height;
@@ -80,6 +85,8 @@ public class PlayerCharacterControl : MonoBehaviour
         Managers.Input.KeyAction -= OnKeyboard;
         Managers.Input.KeyAction += OnKeyboard;
         LoadPlayerData();
+
+        chargingCircleBase = chargingCircle.transform.localScale;
     }
     private void OnDisable()
     {
@@ -148,11 +155,24 @@ public class PlayerCharacterControl : MonoBehaviour
                 Charging();
             }
         }
-        
     }
     public void SetIsMoveStop(bool isMoveStop)
     {
+        if (isMoveStop == true)
+        {
+            InitializingCharge();
+        }
         this.isMoveStop = isMoveStop;
+    }
+    private void InitializingCharge()
+    {
+        duration = 0.0f;
+        chargeGage = 0.0f;
+        chargingCircle.transform.localScale = chargingCircleBase;
+        var setParticle = chargeEffect.emission;
+        setParticle.rateOverTime = 0.0f;
+        chargeCore.SetActive(false);
+        chargingCircle.SetActive(false);
     }
     private void Charging() // 키 입력 중, 시간에 따라 duration값을 증가시키고, duration값은 move에 영향을 줌
     {
@@ -161,29 +181,32 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             duration = durationMax;
         }
-        if (chargeCore.activeSelf == false && duration >= durationMin)
+        if (duration > durationMin && chargeGage < 60.0f)
         {
-            chargeCore.SetActive(true);
-
-            float chargeGage;
-            chargeGage = 10.0f + (duration * 25.0f);
-            if (chargeGage > 60.0f)
+            if (chargeCore.activeSelf == false)
             {
-                chargeGage = 60.0f;
+                chargeCore.SetActive(true);
+                chargingCircle.SetActive(true);
             }
+
+            chargeGage = 10.0f + (duration * 25.0f);
             var setParticle = chargeEffect.emission;
             setParticle.rateOverTime = chargeGage;
+            chargingCircle.transform.localScale = chargingCircleBase * (1 + (duration * chargingDamping)); // 원 크기는 이 구간 조정할 것
         }
     }
     private void Move() // 입력에 따른 이동
     {
         Managers.Sound.Play("Effect/PlayerMove");
+        chargeGage = 0.0f;
         var setParticle = chargeEffect.emission;
         setParticle.rateOverTime = 0.0f;
         if (directionX == 0 && directionY == 0) // 방향이 없을 경우 차징 초기화
         {
             duration = 0;
             chargeCore.SetActive(false);
+            chargingCircle.SetActive(false);
+            chargingCircle.transform.localScale = chargingCircleBase;
         }
         else
         {
@@ -227,6 +250,8 @@ public class PlayerCharacterControl : MonoBehaviour
             else
             {
                 StartCoroutine(nameof(CheckIsStop));
+                chargingCircle.SetActive(false);
+                chargingCircle.transform.localScale = chargingCircleBase;
                 if (directionX > 0 && directionY == 0) // 오른쪽
                 {
                     rigidBody.AddForce((Vector2.right.normalized * moveSpeed * duration), ForceMode2D.Force);
