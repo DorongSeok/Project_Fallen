@@ -66,7 +66,7 @@ public class Main_CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         isCutSceneEnd = true;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(4.3f);
         canvas.gameObject.SetActive(true);
     }
     IEnumerator Main_UISceneOpen()

@@ -17,8 +17,12 @@ public class LogoSceneCameraController : MonoBehaviour
     private bool isZooming = false;
     private bool isFalling = false;
 
+    public float maxVelocityY;
+    private Rigidbody2D rbody;
+
     void Start()
     {
+        rbody = this.GetComponent<Rigidbody2D>();
         CameraReset();
     }
 
@@ -38,6 +42,7 @@ public class LogoSceneCameraController : MonoBehaviour
                 this.GetComponent<Rigidbody2D>().isKinematic = true;
                 isFalling = false;
             }
+            limitMoveSpeed();
         }
     }
 
@@ -73,5 +78,16 @@ public class LogoSceneCameraController : MonoBehaviour
     {
         isFalling = true;
         this.GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+    void limitMoveSpeed()
+    {
+        if (rbody.velocity.y > maxVelocityY)
+        {
+            rbody.velocity = new Vector2(rbody.velocity.x, maxVelocityY);
+        }
+        if (rbody.velocity.y < -maxVelocityY)
+        {
+            rbody.velocity = new Vector2(rbody.velocity.y, -maxVelocityY);
+        }
     }
 }
