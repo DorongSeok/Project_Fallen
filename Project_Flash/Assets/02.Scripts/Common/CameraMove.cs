@@ -42,19 +42,28 @@ public class CameraMove : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Time.timeScale != 0)
         {
-            isCameraCtrl = true;
-            playerCharacterControl.SetIsMoveStop(true);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isCameraCtrl = false;
-            playerCharacterControl.SetIsMoveStop(false);
-        }
-        if (isCameraCtrl == true)
-        {
-            directionY = Input.GetAxisRaw("Vertical");
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                if (isCameraCtrl == false)
+                {
+                    isCameraCtrl = true;
+                    playerCharacterControl.SetIsMoveStop(true);
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                if (isCameraCtrl == true)
+                {
+                    isCameraCtrl = false;
+                    playerCharacterControl.SetIsMoveStop(false);
+                }
+            }
+            if (isCameraCtrl == true)
+            {
+                directionY = Input.GetAxisRaw("Vertical");
+            }
         }
     }
     private void FixedUpdate()
@@ -74,6 +83,10 @@ public class CameraMove : MonoBehaviour
         {
             camTr.position = Vector3.Lerp(camTr.position, new Vector3(0, targetTr.position.y, camHeight), Time.deltaTime * moveDamping); // 2. 천천히 따라오기
         }
+    }
+    public void SetIsCameraCtrlFalse()
+    {
+        isCameraCtrl = false;
     }
     public void SetPlayer(GameObject player)
     {

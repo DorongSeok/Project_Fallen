@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public UnityEngine.UI.Image curtain;
     public UnityEngine.UI.Text text_Height;
     public UnityEngine.UI.Text text_Time;
+    public CameraMove mainCmr;
 
     private GameObject player;
     
@@ -185,6 +186,7 @@ public class GameManager : MonoBehaviour
     }
     private void PauseMenuOpen() // 메뉴 오픈 시 게임 내 시간 정지
     {
+        mainCmr.SetIsCameraCtrlFalse();
         playerCharacterControl.SetIsMoveStop(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
