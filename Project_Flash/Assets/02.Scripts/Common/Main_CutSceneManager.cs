@@ -15,7 +15,7 @@ public class Main_CutSceneManager : MonoBehaviour
 
     private bool isCutSceneEnd = false;
 
-    private bool isBgmChanging = false;
+    //private bool isBgmChanging = false;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class Main_CutSceneManager : MonoBehaviour
         StartCoroutine(CheckSceneCoroutine);
 
         Managers.Sound.Play("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
-        isBgmChanging = false;
+        //isBgmChanging = false;
     }
     private void Update()
     {
@@ -67,6 +67,7 @@ public class Main_CutSceneManager : MonoBehaviour
         isCutSceneEnd = true;
 
         yield return new WaitForSeconds(1.9f);
+        Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
         canvas.gameObject.SetActive(true);
     }
     IEnumerator Main_UISceneOpen()
@@ -78,12 +79,17 @@ public class Main_CutSceneManager : MonoBehaviour
         }
     }
 
-    public void ChangeBGM()
+    public void ChangeSFX()
     {
-        if (isBgmChanging == false)
-        {
-            Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
-            isBgmChanging = true;
-        }
+        Managers.Sound.Play("Effect/LogoScene_CrashEffect");
+        //isBgmChanging = true;
     }
+    //public void ChangeBGM()
+    //{
+    //    if (isBgmChanging == false)
+    //    {
+    //        Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
+    //        isBgmChanging = true;
+    //    }
+    //}
 }

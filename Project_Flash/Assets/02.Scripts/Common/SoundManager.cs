@@ -112,6 +112,8 @@ public class SoundManager
         // 미리 사운드 리소스들을 리스트에 넣어놔 불러오는데 걸리는 딜레이 방지
 
         // BGM
+        Managers.Sound.GetOrAddAudioClip("BGM/EndingScene_BGM", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("BGM/LeaderboardScene_BGM", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/t1_BGM", Define.Sound.Bgm);
@@ -121,8 +123,10 @@ public class SoundManager
         Managers.Sound.GetOrAddAudioClip("BGM/t5_BGM", Define.Sound.Bgm);
 
         // Effect
-        Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_ShakeEffect");
+        Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_CrashEffect");
         Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_FallingEffect");
-        Managers.Sound.GetOrAddAudioClip("Effect/PlayerMove");
+        Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_ShakeEffect");
+        Managers.Sound.GetOrAddAudioClip("Effect/PlayerChargeMove");
+        Managers.Sound.GetOrAddAudioClip("Effect/PlayerNormalMove");
     }
 }

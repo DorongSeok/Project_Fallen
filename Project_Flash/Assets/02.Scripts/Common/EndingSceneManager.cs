@@ -26,6 +26,7 @@ public class EndingSceneManager : MonoBehaviour
     Steamworks.Data.Leaderboard lb;
     private void Start()
     {
+        Managers.Sound.Clear();
         clearTime = Managers.data.GetSecond();
         fallingCount = Managers.data.GetFallenCount();
         FindLeaderboardAndSetScore();
@@ -66,7 +67,7 @@ public class EndingSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         endingCameraMove.SetIsCamUpTrue();
-
+        Managers.Sound.Play("BGM/EndingScene_BGM", Define.Sound.Bgm);
         yield return new WaitForSeconds(2.0f);
 
         fadeCount = 0;
@@ -187,6 +188,8 @@ public class EndingSceneManager : MonoBehaviour
     }
     private void ShowResult()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         text_PlayTime.text = "Play Time\n" + "<color=#00ff00>" + getParseTime(clearTime) + "</color>";
         text_FallingCount.text = "Number of Falling\n" + "<color=#00ff00>" + fallingCount.ToString() + "</color>";
         result.SetActive(true);

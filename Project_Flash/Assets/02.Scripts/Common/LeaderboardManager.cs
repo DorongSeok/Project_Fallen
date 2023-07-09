@@ -16,6 +16,7 @@ public class LeaderboardManager : MonoBehaviour
     Leaderboard lb;
     void Start()
     {
+        Managers.Sound.Play("BGM/LeaderboardScene_BGM", Define.Sound.Bgm);
         sceneManager = this.GetComponent<UIManager>();
         DisplayLeaderboard();
     }

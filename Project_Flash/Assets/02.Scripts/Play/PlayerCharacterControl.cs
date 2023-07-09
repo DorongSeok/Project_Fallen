@@ -197,7 +197,6 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void Move() // 입력에 따른 이동
     {
-        Managers.Sound.Play("Effect/PlayerMove");
         chargeGage = 0.0f;
         var setParticle = chargeEffect.emission;
         setParticle.rateOverTime = 0.0f;
@@ -212,6 +211,7 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             if (duration <= durationMin)
             {
+                Managers.Sound.Play("Effect/PlayerNormalMove");
                 if (directionX > 0 && directionY == 0) // 오른쪽
                 {
                     rigidBody.AddForce((Vector2.right.normalized * moveSpeed * durationMin), ForceMode2D.Force);
@@ -249,6 +249,7 @@ public class PlayerCharacterControl : MonoBehaviour
 
             else
             {
+                Managers.Sound.Play("Effect/PlayerChargeMove");
                 StartCoroutine(nameof(CheckIsStop));
                 chargingCircle.SetActive(false);
                 chargingCircle.transform.localScale = chargingCircleBase;

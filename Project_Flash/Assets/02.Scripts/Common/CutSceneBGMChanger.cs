@@ -11,7 +11,7 @@ public class CutSceneBGMChanger : MonoBehaviour
     {
         if (collision.gameObject == player)
         {
-            manager.GetComponent<Main_CutSceneManager>().ChangeBGM();
+            manager.GetComponent<Main_CutSceneManager>().ChangeSFX();
         }   
     }
 }

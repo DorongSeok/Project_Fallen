@@ -8,6 +8,8 @@ public class MainSceneManager : MonoBehaviour
     public GameObject continueButton;
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (Managers.data.GetIsFirstPlay() == true)
         {
             continueButton.GetComponent<Button>().interactable = false;
