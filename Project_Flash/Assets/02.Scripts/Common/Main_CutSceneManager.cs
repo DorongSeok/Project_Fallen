@@ -63,10 +63,10 @@ public class Main_CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         logoCamera.GetComponent<LogoSceneCameraController>().StartZoom();
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(6.0f);
         isCutSceneEnd = true;
 
-        yield return new WaitForSeconds(4.3f);
+        yield return new WaitForSeconds(1.9f);
         canvas.gameObject.SetActive(true);
     }
     IEnumerator Main_UISceneOpen()
