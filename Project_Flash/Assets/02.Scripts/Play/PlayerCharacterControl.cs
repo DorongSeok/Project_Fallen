@@ -359,6 +359,7 @@ public class PlayerCharacterControl : MonoBehaviour
         fallenCount += 1;
 
         chargeCore.SetActive(false);
+        chargingCircle.SetActive(false);
         var setParticle = chargeEffect.emission;
         setParticle.rateOverTime = 0.0f;
 
