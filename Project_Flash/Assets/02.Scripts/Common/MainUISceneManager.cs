@@ -8,7 +8,7 @@ public class MainUISceneManager : MonoBehaviour
     public GameObject continueButton;
     void Start()
     {
-        Managers.Sound.Play("BGM/t1_BGM", Define.Sound.Bgm);
+        Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
 
         if (Managers.data.GetIsFirstPlay() == true)
         {
