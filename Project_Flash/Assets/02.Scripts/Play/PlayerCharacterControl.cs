@@ -181,7 +181,7 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             duration = durationMax;
         }
-        if (duration > durationMin && chargeGage < 60.0f)
+        if (duration > durationMin && chargeGage < 50.0f)
         {
             if (chargeCore.activeSelf == false)
             {
@@ -189,7 +189,7 @@ public class PlayerCharacterControl : MonoBehaviour
                 chargingCircle.SetActive(true);
             }
 
-            chargeGage = 10.0f + (duration * 25.0f);
+            chargeGage = 10.0f + (duration * 20.0f);
             var setParticle = chargeEffect.emission;
             setParticle.rateOverTime = chargeGage;
             chargingCircle.transform.localScale = chargingCircleBase * (1 + (duration * chargingDamping)); // 원 크기는 이 구간 조정할 것
