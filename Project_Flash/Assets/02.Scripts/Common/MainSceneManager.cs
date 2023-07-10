@@ -8,6 +8,7 @@ public class MainSceneManager : MonoBehaviour
     public GameObject continueButton;
     void Start()
     {
+        Managers.Sound.Clear();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         if (Managers.data.GetIsFirstPlay() == true)

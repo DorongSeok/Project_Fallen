@@ -37,7 +37,7 @@ public class PlayerCharacterControl : MonoBehaviour
     public float durationMin;
     public float chargingDamping;
 
-    private Vector3 chargingCircleBase;
+    private Vector3 chargingCircleBase = new Vector3(0.25f, 0.25f, 1.0f);
 
 
     private int fallenCount = 0;
@@ -166,6 +166,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void InitializingCharge()
     {
+        Managers.Sound.ClearSFX();
         duration = 0.0f;
         chargeGage = 0.0f;
         chargingCircle.transform.localScale = chargingCircleBase;
@@ -185,6 +186,7 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             if (chargeCore.activeSelf == false)
             {
+                Managers.Sound.Play("Effect/PlayerChargingEffect");
                 chargeCore.SetActive(true);
                 chargingCircle.SetActive(true);
             }
@@ -197,6 +199,7 @@ public class PlayerCharacterControl : MonoBehaviour
     }
     private void Move() // 입력에 따른 이동
     {
+        Managers.Sound.ClearSFX();
         chargeGage = 0.0f;
         var setParticle = chargeEffect.emission;
         setParticle.rateOverTime = 0.0f;
@@ -336,6 +339,7 @@ public class PlayerCharacterControl : MonoBehaviour
                 isBugCheckerActive = true;
                 Falling();
             }
+            Managers.Sound.Play("Effect/LogoScene_CrashEffect");
         }
         // 벽에 닿았을 경우
         if (collision.gameObject.layer == 7)
@@ -350,19 +354,14 @@ public class PlayerCharacterControl : MonoBehaviour
             {
                 CheckChargeMoveEnd();
             }
+            Managers.Sound.Play("Effect/LogoScene_CrashEffect");
         }
     }
     public void Falling() // 중력 적용
     {
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
-        
-        duration = 0;
+        InitializingCharge();
         fallenCount += 1;
-
-        chargeCore.SetActive(false);
-        chargingCircle.SetActive(false);
-        var setParticle = chargeEffect.emission;
-        setParticle.rateOverTime = 0.0f;
 
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;

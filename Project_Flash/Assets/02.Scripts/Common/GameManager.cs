@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         {
             StageStart();
         }
+        Managers.Sound.Clear();
         Managers.Input.KeyAction -= OnKeyboard;
         Managers.Input.KeyAction += OnKeyboard;
         Cursor.visible = false;

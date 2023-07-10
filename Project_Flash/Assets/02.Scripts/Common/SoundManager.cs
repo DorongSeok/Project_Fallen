@@ -43,7 +43,11 @@ public class SoundManager
         }
         _audioClips.Clear();
     }
-    
+    public void ClearSFX()
+    {
+        AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
+        audioSource.Stop();
+    }
     public void Play(AudioClip audioClip, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
         if (audioClip == null)
