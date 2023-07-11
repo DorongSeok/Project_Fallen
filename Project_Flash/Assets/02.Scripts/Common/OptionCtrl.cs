@@ -91,7 +91,7 @@ public class OptionCtrl : MonoBehaviour
         {
             float sound = BGMSlider.value;
 
-            if (sound <= -40.0f)
+            if (sound <= -20.0f)
             {
                 masterMixer.SetFloat("BGM", -80.0f);
             }
@@ -108,7 +108,7 @@ public class OptionCtrl : MonoBehaviour
         {
             float sound = SFXSlider.value;
 
-            if (sound <= -40f)
+            if (sound <= -20.0f)
             {
                 masterMixer.SetFloat("SFX", -80.0f);
             }

@@ -19,11 +19,11 @@ public class Main_CutSceneManager : MonoBehaviour
 
     void Start()
     {
+        Managers.Sound.Clear();
         CheckSceneCoroutine = LogoCutSceneStart();
         StartCoroutine(CheckSceneCoroutine);
 
         Managers.Sound.Play("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
-        //isBgmChanging = false;
     }
     private void Update()
     {
@@ -82,14 +82,5 @@ public class Main_CutSceneManager : MonoBehaviour
     public void ChangeSFX()
     {
         Managers.Sound.Play("Effect/LogoScene_CrashEffect");
-        //isBgmChanging = true;
     }
-    //public void ChangeBGM()
-    //{
-    //    if (isBgmChanging == false)
-    //    {
-    //        Managers.Sound.Play("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
-    //        isBgmChanging = true;
-    //    }
-    //}
 }

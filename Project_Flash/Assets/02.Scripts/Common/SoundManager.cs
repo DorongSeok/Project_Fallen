@@ -47,6 +47,32 @@ public class SoundManager
     {
         AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
         audioSource.Stop();
+
+
+    }
+    public void PlayBgmOneShot(string path, Define.Sound type = Define.Sound.Bgm, float pitch = 1.0f)
+    {
+        AudioSource audioSource = _audioSources[(int)Define.Sound.Bgm];
+        AudioClip oneShotAudioClip = GetOrAddAudioClip(path, type);
+
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        audioSource.pitch = pitch;
+        audioSource.PlayOneShot(oneShotAudioClip);
+
+
+        CoroutineHelper.StartCoroutine(PlayBgmOneShotEndChecker(audioSource));
+    }
+    IEnumerator PlayBgmOneShotEndChecker(AudioSource audioSource)
+    {
+        while (audioSource.isPlaying)
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+        audioSource.Play();
     }
     public void Play(AudioClip audioClip, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
@@ -117,6 +143,7 @@ public class SoundManager
 
         // BGM
         Managers.Sound.GetOrAddAudioClip("BGM/EndingScene_BGM", Define.Sound.Bgm);
+        Managers.Sound.GetOrAddAudioClip("BGM/FallingEndBGM", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/LeaderboardScene_BGM", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_2", Define.Sound.Bgm);

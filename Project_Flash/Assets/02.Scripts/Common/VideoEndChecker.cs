@@ -11,6 +11,7 @@ public class VideoEndChecker : MonoBehaviour
 
     void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
-        //renderTexture.release();
+        Debug.Log("³¡");
+        //videoPlayer.targetTexture.Release();
     }
 }

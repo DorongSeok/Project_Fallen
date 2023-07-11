@@ -49,8 +49,8 @@ namespace DataInfo
 
         public OptionData()
         {
-            _bgmSound = -20.0f;
-            _sfxSound = -20.0f;
+            _bgmSound = -10.0f;
+            _sfxSound = -10.0f;
             _isStarted = false;
         }
     }

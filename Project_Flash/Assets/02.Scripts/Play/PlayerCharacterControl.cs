@@ -38,7 +38,7 @@ public class PlayerCharacterControl : MonoBehaviour
     public float chargingDamping;
 
     private Vector3 chargingCircleBase = new Vector3(0.25f, 0.25f, 1.0f);
-
+    private float fallingHeight;
 
     private int fallenCount = 0;
 
@@ -362,7 +362,7 @@ public class PlayerCharacterControl : MonoBehaviour
         // 장애물에 닿았을 때 판정은 이 부분 수정해서 하면 됨
         InitializingCharge();
         fallenCount += 1;
-
+        fallingHeight = transform.position.y;
         rigidBody.velocity = Vector3.zero; // 닿자마자 바로 추락함
         rigidBody.gravityScale = 1.0f;
         rigidBody.drag = 0.0f;
@@ -404,6 +404,7 @@ public class PlayerCharacterControl : MonoBehaviour
     private void IsGrounded() // 중력 적용 해제
     {
         onPlayerFallingEnd();
+        CheckFallingDistance();
         isFallen = false;
         rigidBody.gravityScale = 0.0f;
         rigidBody.drag = 5.0f;
@@ -419,6 +420,14 @@ public class PlayerCharacterControl : MonoBehaviour
             isignoreLayerCollision = false;
             Physics2D.IgnoreLayerCollision(6, 8, false);
         }
+    }
+    private void CheckFallingDistance()
+    {
+        if (fallingHeight - transform.position.y > 60.0f)
+        {
+            Managers.Sound.PlayBgmOneShot("BGM/FallingEndBGM");
+        }
+        fallingHeight = 0.0f;
     }
     public void InsideCollsionEnd() // 차징 이동 후, 장애물에 위치해서 추락할 경우, 해당 장애물을 빠져나왔을 때 실행되는 함수
     {
