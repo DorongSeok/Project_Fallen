@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TutorialCTRL : MonoBehaviour
 {
-    public List<Image> tutorialImages = new List<Image>();
+    public List<GameObject> tutorialImages = new List<GameObject>();
 
     private int nowImageNum;
     private bool isOpen;
