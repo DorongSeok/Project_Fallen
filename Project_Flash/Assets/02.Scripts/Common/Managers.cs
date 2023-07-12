@@ -76,7 +76,7 @@ public class Managers : MonoBehaviour
             Screen.SetResolution(1920, 1080, true);
             Managers.data.SetIsStarted(true);
         }
-        if (Managers.data.GetBGMSound() <= -40.0f)
+        if (Managers.data.GetBGMSound() <= -20.0f)
         {
             masterMixer.SetFloat("BGM", -80.0f);
         }
@@ -84,7 +84,7 @@ public class Managers : MonoBehaviour
         {
             masterMixer.SetFloat("BGM", Managers.data.GetBGMSound());
         }
-        if (Managers.data.GetSFXSound() <= -40f)
+        if (Managers.data.GetSFXSound() <= -20.0f)
         {
             masterMixer.SetFloat("SFX", -80.0f);
         }
