@@ -144,7 +144,6 @@ public class SoundManager
         // BGM
         Managers.Sound.GetOrAddAudioClip("BGM/EndingScene_BGM", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/FallingEndBGM", Define.Sound.Bgm);
-        Managers.Sound.GetOrAddAudioClip("BGM/LeaderboardScene_BGM", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_1", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/LogoScene_BGM_2", Define.Sound.Bgm);
         Managers.Sound.GetOrAddAudioClip("BGM/t1_BGM", Define.Sound.Bgm);
@@ -158,6 +157,7 @@ public class SoundManager
         Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_FallingEffect");
         Managers.Sound.GetOrAddAudioClip("Effect/LogoScene_ShakeEffect");
         Managers.Sound.GetOrAddAudioClip("Effect/PlayerChargeMove");
+        Managers.Sound.GetOrAddAudioClip("Effect/PlayerChargingEffect");
         Managers.Sound.GetOrAddAudioClip("Effect/PlayerNormalMove");
     }
 }
