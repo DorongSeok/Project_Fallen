@@ -44,7 +44,7 @@ public class CameraMove : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
             {
                 if (isCameraCtrl == false)
                 {
@@ -52,7 +52,7 @@ public class CameraMove : MonoBehaviour
                     playerCharacterControl.SetIsMoveStop(true);
                 }
             }
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
             {
                 if (isCameraCtrl == true)
                 {
