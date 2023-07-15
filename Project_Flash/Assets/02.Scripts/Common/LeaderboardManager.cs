@@ -16,8 +16,6 @@ public class LeaderboardManager : MonoBehaviour
     Leaderboard lb;
     void Start()
     {
-        //Managers.Sound.Clear();
-        //Managers.Sound.Play("BGM/LeaderboardScene_BGM", Define.Sound.Bgm);
         sceneManager = this.GetComponent<UIManager>();
         DisplayLeaderboard();
     }
@@ -52,7 +50,7 @@ public class LeaderboardManager : MonoBehaviour
                 list_Top10[i].GetComponentsInChildren<Text>()[2].text = $"{getParseTime(globalScores[i].Score)}";
             }
 
-            var surroundScores = await lb.GetScoresAroundUserAsync(-5, 5);
+            var surroundScores = await lb.GetScoresAroundUserAsync(-5, 4);
             for (int i = 0; i < surroundScores.Length; i++)
             {
                 list_MyRank[i].GetComponentsInChildren<Text>()[0].text = $"{surroundScores[i].GlobalRank}";

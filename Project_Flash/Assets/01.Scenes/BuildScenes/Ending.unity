@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 120428194}
   - component: {fileID: 120428193}
   m_Layer: 5
-  m_Name: Hyunsoo_Job
+  m_Name: HyeonSu_Job
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1613,7 +1613,7 @@ GameObject:
   - component: {fileID: 169305357}
   - component: {fileID: 169305356}
   m_Layer: 5
-  m_Name: DongSuk_Job
+  m_Name: DongSeok_Job
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
