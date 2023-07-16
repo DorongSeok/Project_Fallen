@@ -77,7 +77,7 @@ public class EndingSceneManager : MonoBehaviour
             yield return new WaitForSeconds(fadeSpeed);
             endingCreditList[0].color = new Color(255, 255, 255, fadeCount);
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.5f);
         while (fadeCount > 0.0f)
         {
             fadeCount -= fadeSpeed;
@@ -86,14 +86,14 @@ public class EndingSceneManager : MonoBehaviour
         }
 
         fadeCount = 0;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         while (fadeCount < 1.0f)
         {
             fadeCount += fadeSpeed;
             yield return new WaitForSeconds(fadeSpeed);
             endingCreditList[1].color = new Color(255, 255, 255, fadeCount);
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.5f);
         while (fadeCount > 0.0f)
         {
             fadeCount -= fadeSpeed;
@@ -102,14 +102,14 @@ public class EndingSceneManager : MonoBehaviour
         }
 
         fadeCount = 0;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         while (fadeCount < 1.0f)
         {
             fadeCount += fadeSpeed;
             yield return new WaitForSeconds(fadeSpeed);
             endingCreditList[2].color = new Color(255, 255, 255, fadeCount);
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.5f);
         while (fadeCount > 0.0f)
         {
             fadeCount -= fadeSpeed;
@@ -118,14 +118,14 @@ public class EndingSceneManager : MonoBehaviour
         }
 
         fadeCount = 0;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         while (fadeCount < 1.0f)
         {
             fadeCount += fadeSpeed;
             yield return new WaitForSeconds(fadeSpeed);
             endingCreditList[3].color = new Color(255, 255, 255, fadeCount);
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.5f);
         while (fadeCount > 0.0f)
         {
             fadeCount -= fadeSpeed;
@@ -134,14 +134,14 @@ public class EndingSceneManager : MonoBehaviour
         }
 
         fadeCount = 0;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         while (fadeCount < 1.0f)
         {
             fadeCount += fadeSpeed;
             yield return new WaitForSeconds(fadeSpeed);
             endingCreditList[4].color = new Color(255, 255, 255, fadeCount);
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.5f);
         while (fadeCount > 0.0f)
         {
             fadeCount -= fadeSpeed;
@@ -150,14 +150,14 @@ public class EndingSceneManager : MonoBehaviour
         }
 
         fadeCount = 0;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         while (fadeCount < 1.0f)
         {
             fadeCount += fadeSpeed;
             yield return new WaitForSeconds(fadeSpeed);
             endingCreditList[5].color = new Color(255, 255, 255, fadeCount);
         }
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
         while (fadeCount > 0.0f)
         {
             fadeCount -= fadeSpeed;

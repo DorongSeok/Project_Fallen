@@ -146,13 +146,13 @@ public class PlayerCharacterControl : MonoBehaviour
         {
             if (isMove == false && isFallen == false)
             {
-                if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.J))
+                if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.L))
                 {
                     directionX = Input.GetAxisRaw("Horizontal"); // 좌우 입력
                     directionY = Input.GetAxisRaw("Vertical"); // 상하 입력
                     Move();
                 }
-                else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.J))
+                else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.L))
                 {
                     Charging();
                 }
