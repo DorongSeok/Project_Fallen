@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public EventSystem eventSystem;
     public GameObject warning;
     public GameObject panel;
+    public GameObject credit;
 
     private AsyncOperation asyncOperation;
 
@@ -102,6 +103,14 @@ public class UIManager : MonoBehaviour
     public void CoroutineRankingButtonClick()
     {
         StartCoroutine(nameof(RankingButtonClick));
+    }
+    public void CreditButtonClick()
+    {
+        credit.SetActive(true);
+    }
+    public void CloseCredit()
+    {
+        credit.SetActive(false);
     }
     public void ExitButtonClick()
     {
