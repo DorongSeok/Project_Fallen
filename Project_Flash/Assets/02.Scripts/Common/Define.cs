@@ -13,6 +13,10 @@ public class Define
     {
         Bgm,
         Effect,
+        Effect2,
+        Effect3,
+        Effect4,
+        Effect5,
         MaxCount,
     }
 }
